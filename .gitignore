@@ -16,3 +16,7 @@ Gemfile.lock
 # npm dependencies
 node_modules
 package-lock.json
+
+# For MacOS
+__MAC_OSX__
+.DS_Store
