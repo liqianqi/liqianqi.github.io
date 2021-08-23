@@ -2,11 +2,11 @@
 title: First Blog
 author: Harry-hhj
 date: 2021-08-23 20:30:00 +0800
-categories: [Essay; Diary]
+categories: [Essay, Diary]
 tags: [feelings]
 pin: true
 image:
-  src: https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-23-First-Blog.assets/cover.png
+  src: https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-23-First-Blog.assets/cover.png?raw=true
   width: 1920
   height: 1080
 ---
@@ -23,7 +23,7 @@ image:
 
 博客搭好了，这是它最开始的样子：
 
-![image-20210823210939395](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-23-First-Blog.assets/image-20210823210939395.png)
+![image-20210823210939395](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-23-First-Blog.assets/image-20210823210939395.png?raw=true)
 
 还算不错。但我也知道，它只是这样了，因为我没有能力去修改它，至少暂时没有。很多的项目，我拿来，会用，但不会改，却满足的不得了。这就是我创建这个博客的原因吧，督促自己有自己的东西，逼迫自己学习新的知识，然后竭尽所能地把它说明白，首先做一个自己的老师。我正渴望着吸收更多的知识，能够和更多的人侃侃而谈，能够被更多的人认可，能够有更大的价值。所以这个博客我不想放弃，也不能放弃。当然，除了技术分享，我还会在这里发些随笔、人生感悟，让自己的博客更加有特色些。如果有志同道合、兴趣相同的朋友，也欢迎交流、投稿，我会在每篇文章下注明作者和联系方式。
 
