@@ -2,7 +2,7 @@
 title: Building your Blog too
 author: Harry-hhj
 date: 2021-08-24 08:00:00 +0800
-categories: [Tutorial]
+categories: [Tutorial, jekyll]
 tags: [getting started]
 math: true
 mermaid: true

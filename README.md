@@ -1,4 +1,4 @@
-# Harry's Personal Blog
+# Harry's personal Blog
 
 网站主页：点击[这里](https://harry-hhj.github.io)访问。
 
