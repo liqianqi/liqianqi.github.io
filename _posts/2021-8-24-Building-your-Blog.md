@@ -7,7 +7,7 @@ tags: [getting started]
 math: true
 mermaid: true
 image:
-  src: https://cdn.jsdelivr.net/gh/cotes2020/chirpy-images/commons/devices-mockup.png
+  src: https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-24-Building-your-Blog.assets/devices-mockup.png?raw=true
   width: 850
   height: 585
 ---
