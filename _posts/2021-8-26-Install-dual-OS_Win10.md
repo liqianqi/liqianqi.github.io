@@ -7,7 +7,7 @@ tags: [getting started]
 math: true
 mermaid: true
 image:
-  src: https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-26-Install-dual-OS_Win10.assets/win10.jpeg?raw=true
+  src: https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-26-Install-dual-OS_Win10.assets/win10.jpeg?raw=true
   width: 1202
   height: 676
 ---
