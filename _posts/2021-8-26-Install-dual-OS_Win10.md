@@ -236,9 +236,7 @@ cscript slmgr.vbs /ato
 
 ---
 
-作者：Harry-hhj
-
-github主页：_<https://github.com/Harry-hhj>_
+作者：Harry-hhj，github主页：[传送门](https://github.com/Harry-hhj)
 
 <br/>
 

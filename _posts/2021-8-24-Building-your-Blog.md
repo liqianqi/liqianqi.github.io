@@ -227,6 +227,4 @@ GitHub 目前已经不支持密码登陆。至于 GitHub token 的使用方法�
 
 ---
 
-作者：Harry-hhj
-
-github主页：_<https://github.com/Harry-hhj>_
+作者：Harry-hhj，github主页：[传送门](https://github.com/Harry-hhj)
