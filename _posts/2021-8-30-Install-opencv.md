@@ -22,11 +22,11 @@ image:
 
 ## 一、安装环境
 
--   Ubuntu 系统版本：20.04 LTS
--   OpenCV 版本：4.5.3
--   OpenCV_contrib版本：需与 OpenCV 一致
+-   Ubuntu 系统版本：20.04 LTS，链接: https://pan.baidu.com/s/1ojBoCBSHbMVZHhD8HOHYyA 提取码: 76wv（不建议下载，以为反而慢）
+-   OpenCV 版本：4.5.3，链接: https://pan.baidu.com/s/1foen04ULGOwGpwLJUwvS2A 提取码: vwmq
+-   OpenCV_contrib版本：需与 OpenCV 一致，链接: https://pan.baidu.com/s/1wI7IgSBt3sSBjE374Gnksg 提取码: 7mef
 
-通过 Github 访问可能会非常缓慢，所以我们提供了百度网盘[下载地址]()。
+通过 Github 访问可能会非常缓慢，所以我们提供了百度网盘下载地址。
 
 
 
