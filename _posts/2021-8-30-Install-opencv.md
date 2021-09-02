@@ -22,9 +22,9 @@ image:
 
 ## 一、安装环境
 
--   Ubuntu 系统版本：20.04 LTS，链接: https://pan.baidu.com/s/1ojBoCBSHbMVZHhD8HOHYyA 提取码: 76wv（不建议下载，以为反而慢）
--   OpenCV 版本：4.5.3，链接: https://pan.baidu.com/s/1foen04ULGOwGpwLJUwvS2A 提取码: vwmq
--   OpenCV_contrib版本：需与 OpenCV 一致，链接: https://pan.baidu.com/s/1wI7IgSBt3sSBjE374Gnksg 提取码: 7mef
+-   Ubuntu 系统版本：20.04 LTS，链接: _<https://pan.baidu.com/s/1ojBoCBSHbMVZHhD8HOHYyA>_ 提取码: 76wv（不建议下载，以为反而慢）
+-   OpenCV 版本：4.5.3，链接: _<https://pan.baidu.com/s/1foen04ULGOwGpwLJUwvS2A>_ 提取码: vwmq
+-   OpenCV_contrib版本：需与 OpenCV 一致，链接: _<https://pan.baidu.com/s/1wI7IgSBt3sSBjE374Gnksg>_ 提取码: 7mef
 
 通过 Github 访问可能会非常缓慢，所以我们提供了百度网盘下载地址。
 
@@ -239,15 +239,15 @@ cmake-gui
 
 确认无误后，点击 `Configure` ；先排除三个常见的问题：
 
-1.   `ippicv_*` 无法下载：手动下载（链接: https://pan.baidu.com/s/1g6gZ8CrvdE9VWGmp8XmDyw 提取码: hbor），存放在 Downloads 文件夹里，打开 `<opencv>/3rdparty/ippicv/ippcv.cmake` ，把 42 行路径更换成自己的下载的文件目录路径，例如 `/home/<username>/Downloads/`  ，其中 `<username>` 代表你的用户名。重新 Configure 。
+1.   `ippicv_*` 无法下载：手动下载（链接: _<https://pan.baidu.com/s/1g6gZ8CrvdE9VWGmp8XmDyw>_ 提取码: hbor），存放在 Downloads 文件夹里，打开 `<opencv>/3rdparty/ippicv/ippcv.cmake` ，把 42 行路径更换成自己的下载的文件目录路径，例如 `/home/<username>/Downloads/`  ，其中 `<username>` 代表你的用户名。重新 Configure 。
 
      <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-30-Install-opencv.assets/image-20210902213146790.png?raw=true" alt="image-20210902213146790" style="zoom:30%;" />
 
-2.   `face_landmark_model.dat` 无法下载：手动下载（链接: https://pan.baidu.com/s/1DKkQTfAY-F91r9vZ6qPUYw 提取码: pe82），存放在 Downloads 文件夹里，打开相应的配置文件 `<opencv>/<opencv_contrib>/modules/face/CMakeLists.txt` ，将 CMakeLists.txt 文件的第 19 行修改为本地路径，即将原来的网址修改为下载的文件保存的路径，`"/home/<username>/Downloads/"` ，其中 `<username>` 代表你的用户名。重新 Configure 。
+2.   `face_landmark_model.dat` 无法下载：手动下载（链接: _<https://pan.baidu.com/s/1DKkQTfAY-F91r9vZ6qPUYw>_ 提取码: pe82），存放在 Downloads 文件夹里，打开相应的配置文件 `<opencv>/<opencv_contrib>/modules/face/CMakeLists.txt` ，将 CMakeLists.txt 文件的第 19 行修改为本地路径，即将原来的网址修改为下载的文件保存的路径，`"/home/<username>/Downloads/"` ，其中 `<username>` 代表你的用户名。重新 Configure 。
 
      <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-30-Install-opencv.assets/image-20210902213733915.png?raw=true" alt="image-20210902213733915" style="zoom:30%;" />
 
-3.   `boostdesc_*.i` 、 `vgg_generated_*.i` ：手动下载（链接: https://pan.baidu.com/s/1VCdMUUm2ipu-fbL2189lFg 提取码: 88eo），存放在 `<opencv>/<opencv_contrib>/modules/xfeatures2d/src/` 路径下即可，无需修改文件。
+3.   `boostdesc_*.i` 、 `vgg_generated_*.i` ：手动下载（链接: _<https://pan.baidu.com/s/1VCdMUUm2ipu-fbL2189lFg>_ 提取码: 88eo），存放在 `<opencv>/<opencv_contrib>/modules/xfeatures2d/src/` 路径下即可，无需修改文件。
 
 显示 Configuring done 后（**注意上翻看看有没有红色的报错**，因为即使报错也是会显示 Configuring done 的，当然以上这些报错你不解决其实不会影响多少），点击 `Generate` 生成文件；这时资源文件就出现在 build 文件夹中，我们可以关闭 cmake 界面了。
 
@@ -331,7 +331,7 @@ cd build
 
 ## 五、示例代码
 
-点击下载，链接: https://pan.baidu.com/s/1nCnebXdNe1XW4e1xzbrXOA 提取码: 80dc。
+点击下载，链接: _<https://pan.baidu.com/s/1nCnebXdNe1XW4e1xzbrXOA>_ 提取码: 80dc。
 
 最终运行程序应该出现一张图片显示.`apple.png` 的窗口。
 
