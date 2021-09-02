@@ -18,6 +18,8 @@ image:
 
 >   机械是血肉，电控是大脑，视觉是灵魂。
 
+
+
 ## 一、安装环境
 
 -   Ubuntu 系统版本：20.04 LTS
@@ -28,11 +30,15 @@ image:
 
 
 
+
+
 ## 二、前言
 
 OpenCV （开源的计算机视觉库）是基于 BSD 协议，因此它可免费用于学术和商业用途。其提供 C++ 、 C 、 Python 和 Java 接口，支持 Windows 、 Linux 、 Mac OS 、 iOS 和 Android 。OpenCV 致力于高效运算和即时应用开发。因其是用优化的 C/C++ 编写的，故其可以充分利用多核处理优势，并且还启用了 OpenSL ，它可以利用底层异构计算平台的硬件加速。可以说，想要入门机器视觉，安装 OpenCV 是躲不掉的第一步。我在 RoboMaster 的组员一年后还在参考此教程，足见它的实用性了。
 
 配置环境是做项目的第一步，也是非常重要的一步，如果你希望培养自己的这种能力，我非常鼓励你先自己查找资料探索整个安装步骤，并给出你可能需要查阅资料用到的关键词：`Git` 、 `OpenCV` 、 `OpenCV_contrib` 、 `cmake/cmake-gui` 、以及可能出现的问题：权限不足、文件下载失败（TimeOut）等，这些问题一般只需要搜索关键字或将报错的句子复制到搜索引擎中，就能找到解决方法，其中大部分问题在 CSDN 中都有解答，少部分问题需要查阅 Overstackflow 查看英文解决方法，查阅官方资料（实际上这是最重要的一种方式）和论坛也是一种不错的方法。
+
+
 
 
 
@@ -207,7 +213,7 @@ cmake-gui
 
 在出现的界面中，点击 `Browse Source` 选择源文件目录 `opencv` ，点击 `Browse Build` 选择编译文件存放目录 `build` ，然后点击 `Configure` 。
 
-<img src="2021-8-30-Install-OpenCV.assets/image-20210901191947014.png" alt="image-20210901191947014" style="zoom:40%;" />
+<img src="2021-8-30-Install-OpenCV.assets/image-20210901191947014.png" alt="image-20210901191947014" style="zoom:33%;" />
 
 会跳出一个弹窗，下拉框中选择 `Unix Makefiles` ，然后点击 `Finish` 。
 
@@ -217,27 +223,33 @@ cmake-gui
 
 完成后界面如下：
 
-<img src="2021-8-30-Install-OpenCV.assets/image-20210901201237796.png" alt="image-20210901201237796" style="zoom:40%;" />
+<img src="2021-8-30-Install-OpenCV.assets/image-20210901201237796.png" alt="image-20210901201237796" style="zoom:35%;" />
 
 然后我们需要修改两个地方：
 
 1.   通过 `search` 找到 CMAKE_BUILD_TYPE 处，输入 `Release` 。
 
-     <img src="2021-8-30-Install-OpenCV.assets/image-20210901214517367.png" alt="image-20210901214517367" style="zoom:80%;" />
+     <img src="2021-8-30-Install-OpenCV.assets/image-20210901214517367.png" alt="image-20210901214517367" style="zoom:50%;" />
 
 2.   在 OPENCV_EXTRA_MODULES_PATH 处加入 opencv_contrib 模块路径。**注意，不是选 opencv_contrib 文件夹，而是需要选中 opencv_contrib 里面的 modules 文件夹！**
 
-     <img src="2021-8-30-Install-OpenCV.assets/image-20210901214618102.png" alt="image-20210901214618102" style="zoom:80%;" />
+     <img src="2021-8-30-Install-OpenCV.assets/image-20210901214618102.png" alt="image-20210901214618102" style="zoom:50%;" />
 
 这里说明一下，CMAKE_INSTALL_PREFIX 为安装路径，系统默认为 `/usr/local` ，如若对 Ubuntu 不熟悉，则不要更改，默认就好。
 
 确认无误后，点击 `Configure` ；先排除三个常见的问题：
 
-1.   IPPCV：TODO
-2.   face_landmark_model.dat下载过慢：手动下载[face_landmark_model.dat]( https://raw.githubusercontent.com/opencv/opencv_3rdparty/8afa57abc8229d611c4937165d20e2a2d9fc5a12/face_landmark_model.dat)，存放在Downloads文件夹里，修改相应的配置文件 `gedit /home/<username>/opencv/opencv_contrib/modules/face/CMakeLists.txt` ，其中用户名换成自己的用户名，将 CMakeLists.txt 文件的第 19 行修改为本地路径，即将原来的网址修改为下载的文件保存的路径，`"/home/<username>/Downloads/"`，原来的内容是 `*"https://raw.githubusercontent.com/opencv/opencv_3rdparty/${__commit_hash}/"*` 。
-3.   boostdec,vgg：TODO
+1.   `ippicv_*` 无法下载：手动下载（链接: https://pan.baidu.com/s/1g6gZ8CrvdE9VWGmp8XmDyw 提取码: hbor），存放在 Downloads 文件夹里，打开 `<opencv>/3rdparty/ippicv/ippcv.cmake` ，把 42 行路径更换成自己的下载的文件目录路径，例如 `/home/<username>/Downloads/`  ，其中 `<username>` 代表你的用户名。重新 Configure 。
 
-显示 Configuring done 后，点击 `Generate` 生成文件；这时资源文件就出现在 build 文件夹中，我们可以关闭 cmake 界面了。
+     <img src="2021-8-30-Install-OpenCV.assets/image-20210902213146790.png" alt="image-20210902213146790" style="zoom:30%;" />
+
+2.   `face_landmark_model.dat` 无法下载：手动下载（链接: https://pan.baidu.com/s/1DKkQTfAY-F91r9vZ6qPUYw 提取码: pe82），存放在 Downloads 文件夹里，打开相应的配置文件 `<opencv>/<opencv_contrib>/modules/face/CMakeLists.txt` ，将 CMakeLists.txt 文件的第 19 行修改为本地路径，即将原来的网址修改为下载的文件保存的路径，`"/home/<username>/Downloads/"` ，其中 `<username>` 代表你的用户名。重新 Configure 。
+
+     <img src="2021-8-30-Install-OpenCV.assets/image-20210902213733915.png" alt="image-20210902213733915" style="zoom:30%;" />
+
+3.   `boostdesc_*.i` 、 `vgg_generated_*.i` ：手动下载（链接: https://pan.baidu.com/s/1VCdMUUm2ipu-fbL2189lFg 提取码: 88eo），存放在 `<opencv>/<opencv_contrib>/modules/xfeatures2d/src/` 路径下即可，无需修改文件。
+
+显示 Configuring done 后（**注意上翻看看有没有红色的报错**，因为即使报错也是会显示 Configuring done 的，当然以上这些报错你不解决其实不会影响多少），点击 `Generate` 生成文件；这时资源文件就出现在 build 文件夹中，我们可以关闭 cmake 界面了。
 
 在 `<opencv>/build` 中打开终端，输入：
 
@@ -259,7 +271,7 @@ sudo make install
 
 
 
-## IDE 安装
+## 四、IDE 安装
 
 从事项目开发，一款得心应手的 IDE 是必不可缺的。笔者目前使用下来有两款 IDE 比较好用：
 
@@ -278,27 +290,63 @@ sudo make install
 
 如果没有跳出以上弹窗，那么点击左上角 `CLion` -> `Settings` 或 `Preferences` -> `Build, Execution, Deployment` -> `Toolchains` ，配置 `Default` 。
 
-<img src="2021-8-30-Install-OpenCV.assets/image-20210902093059433.png" alt="image-20210902093059433" style="zoom:40%;" />
+<img src="2021-8-30-Install-OpenCV.assets/image-20210902093059433.png" alt="image-20210902093059433" style="zoom:33%;" />
 
 
 
 ### VScode 环境配置
 
+前往 Ubuntu Software 下载 Visual Studio Code ，然后打开界面如下：
+
+<img src="2021-8-30-Install-OpenCV.assets/image-20210902204824496.png" alt="image-20210902204824496" style="zoom:30%;" />
+
+点击图中红色区域的按，进入 Extensions ，分别搜索安装以下三个插件：
+
+<img src="2021-8-30-Install-OpenCV.assets/image-20210902205200247.png" alt="image-20210902205200247" style="zoom:40%;" />
+
+安装完毕后，在任意位置创建一个空目录。VScode 不支持单文件编译，必须具有项目目录。创建完毕后，用 VScode 打开项目目录，点击 Shift+Ctrl+P （Ubuntu 版本快捷键），搜索 `cmake:configure` ：
+
+<img src="2021-8-30-Install-OpenCV.assets/image-20210902205359002.png" alt="image-20210902205359002" style="zoom:33%;" />
+
+对每个项目首次进入时，会提示选择工具包，这里我们选择 GCC：
+
+<img src="2021-8-30-Install-OpenCV.assets/image-20210902210027703.png" alt="image-20210902210027703" style="zoom:33%;" />
+
+在左侧可以先建文件，使用以下示例代码测试。
+
+以后每次编译项目，只需要简单地右击 CMakeLists.txt ，选择 `Build All Projects` ：
+
+<img src="2021-8-30-Install-OpenCV.assets/image-20210902210312110.png" alt="image-20210902210312110" style="zoom:33%;" />
+
+编译完成后，点击下方 Terminal ，输入以下命令运行程序：
+
+```bash
+cd build
+./<name/of/binary_file>  # 一般与项目同名
+```
 
 
 
 
-## 示例代码
 
-百度网盘
+## 五、示例代码
+
+点击下载，链接: https://pan.baidu.com/s/1nCnebXdNe1XW4e1xzbrXOA 提取码: 80dc。
+
+最终运行程序应该出现一张图片显示.`apple.png` 的窗口。
 
 
 
+<br/>
+
+恭喜你安装成功！
 
 
-## 参考教程
+
+## 六、参考教程
 
 1.   [OpenCV学习笔记（一） OpenCV简介及安装](https://zhuanlan.zhihu.com/p/31784840)
+2.   [VSCode + CMake搭建C/C++开发环境（MacOS篇）](https://www.jianshu.com/p/7b84a4dc1ad0)
 
 
 
