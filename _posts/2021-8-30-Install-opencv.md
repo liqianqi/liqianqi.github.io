@@ -3,7 +3,7 @@ title: Install-OpenCV
 author: Harry-hhj
 date: 2021-08-31 14:15:00 +0800
 categories: [Tutorial, Computer Vision, OpenCV]
-tags: [getting started, RoboMaster]
+tags: [getting started, robomaster, computer]
 math: true
 mermaid: true
 image:

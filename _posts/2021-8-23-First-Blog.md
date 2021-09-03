@@ -3,7 +3,7 @@ title: First Blog
 author: Harry-hhj
 date: 2021-08-23 20:30:00 +0800
 categories: [Essay]
-tags: [feelings, Diary]
+tags: [feelings, diary]
 pin: true
 image:
   src: https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-23-First-Blog.assets/cover.png?raw=true

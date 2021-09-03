@@ -2,8 +2,8 @@
 title: Install-dual-OS_Win10
 author: Harry-hhj
 date: 2021-08-26 16:40:00 +0800
-categories: [Tutorial, 双系统]
-tags: [getting started]
+categories: [Tutorial, Dual OS]
+tags: [getting started, computer]
 math: true
 mermaid: true
 image:
