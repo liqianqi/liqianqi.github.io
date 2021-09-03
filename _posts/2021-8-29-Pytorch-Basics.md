@@ -123,7 +123,12 @@ x = torch.randn(5, 3).index_select(0, torch.linspace(0, 4, 2, dtype=torch.int32)
 x = x.masked_select(x>0)  # .masked_select(mask)->Tensor: 选取掩膜为 1 处的元素，不保留原始位置信息
 x = x.nonzero()  # 返回非零元素的下标
 
-
+# torch.gather(input, dim, index:torch.long, out=None)->Tensor：根据index，在dim维度上选取数据
+# out[i][j][k]...[i+dim]...[z] = input[i][j][k]...[index[i][j][k]...[z]]_{i+dim}...[z]
+t = torch.Tensor([[1,2],[3,4]])
+torch.gather(t, 1, torch.LongTensor([[0,0],[1,0]]))	# [[1 1] [4 3]]
+																							# index 中元素范围 [0, n_dim-1]，用来指定第 dim 维的选取的位置
+# 关于 torch.gather 的更多用法请参考教程：https://zhuanlan.zhihu.com/p/352877584
 
 # 改变张量的维度和大小
 x = torch.randn(4, 4)
@@ -137,8 +142,8 @@ unsqueeze()
 
 注意：
 
--   任何以 `_` 结尾的操作都会用结果替换原变量。例如：`x.copy_(y)` ， `x.t_()` ，都会改变 `x` 。
--   view() 返回的新 Tensor 与原 Tensor 虽然可能有不同的 size ，但是是共享 data 的（ view 仅仅是改变了对这个张量的观察角度，内部数据并未改变）
+-   任何以 `_` 结尾的操作都会用结果**替换原变量**。例如：`x.copy_(y)` ， `x.t_()` ，都会改变 `x` 。
+-   view() 返回的新 Tensor 与原 Tensor 虽然可能有不同的 size ，但是是**共享 data 的**（ view 仅仅是改变了对这个张量的观察角度，内部数据并未改变）。如果需要副本先使用 `.clone()` 。
 
 
 
@@ -172,6 +177,18 @@ np.add(a, 1, out=a)  # 此时 a 发生变化
 
 
 
+### Broadcasting
+
+当对两个形状不同的 Tensor 按元素运算时，可能会触发广播（broadcasting）机制：先适当复制元素使这两个 Tensor 形状相同后再按元素运算。
+
+```python
+x = torch.arange(1, 3).view(1, 2)
+y = torch.arange(1, 4).view(3, 1)
+z = x + y  # torch.Size([3, 2])
+```
+
+
+
 ### CUDA
 
 使用 `.to` 方法 可以将 Tensor 移动到任何设备中。
@@ -190,6 +207,8 @@ if torch.cuda.is_available():
 
 
 
+<br/>
+
 更多内容，请查看[官网教程](https://pytorch.org/docs/torch)。
 
 
@@ -204,8 +223,93 @@ PyTorch 中所有神经网络的核心是 autograd 包，它为张量上的所�
     -   如果设置 `.requires_grad` 为 `True`，那么将会追踪所有对于该张量的操作。当完成计算后通过调用 `.backward()`，自动计算所有的梯度，这个张量的所有梯度将会自动积累到 `.grad` 属性。
     -   为了防止跟踪历史记录（和使用内存），可以将代码块包装在 `with torch.no_grad():` 中。 这在评估模型时特别有用，因为模型可能具有 `requires_grad = True` 的可训练参数，但是我们不需要梯度计算。
 -   Function
-    -   Tensor 和 Function 互相连接并生成一个**非循环图**，它表示和存储了完整的计算历史。 每个张量都有一个 `.grad_fn` 属性，这个属性引用了一个创建了 Tensor 的 Function （除非这个张量是用户手动创建的，即，这个张量的 `grad_fn` 是 `None` ）。
+    -   Tensor 和 Function 互相连接并生成一个**非循环图**，它表示和存储了完整的计算历史。 每个张量都有一个 `.grad_fn` 属性，这个属性引用了一个创建了 Tensor 的 Function ，即该 Tensor 是不是通过某些运算得到的，若是，则 grad_fn 返回一个与这些运算相关的对象（除非这个张量是用户手动创建的，即，这个张量的 `grad_fn` 是 `None` ）。
     -   如果需要计算导数，你可以在 Tensor 上调用 `.backward()` 。 如果 Tensor 是一个标量（即它包含一个元素数据）则不需要为 `backward()` 指定任何参数， 但是如果它有更多的元素，你需要指定一个 `gradient`  参数来匹配张量的形状。
+
+注意：在其他的文章中你可能会看到说将 Tensor 包裹到 Variable 中提供自动梯度计算， Variable 这个在 0.41 版中已经被标注为过期了，现在可以直接使用 Tensor ，官方文档在[这里](https://pytorch.org/docs/stable/autograd.html#variable-deprecated)。
+
+
+
+### 打开关闭微分
+
+```python
+x = torch.ones(2, 2, requires_grad=True)  # x.grad_fn = None
+y = x + 2  # y.grad_fn = <AddBackward0 object at 0x...>
+z = y * y * 3  # z.grad_fn = <MulBackward0 object at 0x...>
+out = z.mean()  # out.grad_fn = <MeanBackward0 object at 0x...>
+```
+
+`x` 是直接创建的，所以么有 `grad_fn` ，` y` 作为操作的结果被创建，因此具有 `grad_fn` 。像 `x` 这样的节点被称为**叶子节点**，叶子节点对应的 `grad_fn` 是 `None` 。
+
+输入的 `requires_grad` 在**没有给定参数的情况下**默认是 `False` ，可以通过 `requires_grad_()` 来改变张量的 `requires_grad` 属性。如果输入的  `requires_grad` 是 `False` ，那么之后所有计算结果的变量的  `requires_grad` 属性都将是 `False` ，且 `grad_fn` 为 None。
+
+
+
+### 求梯度
+
+在调用 `y.backward()` 时，如果 `y` 是标量，则不需要为 `backward()` 传入任何参数；否则，需要传入一个与 `y` 同形的 `Tensor` 。因为不允许张量对张量求导，只允许标量对张量求导，求导结果是和自变量同形的张量。
+
+在数学上，如果我们有向量值函数  $\overrightarrow y = f(\overrightarrow x)$，且 $\overrightarrow y$ 关于 $\overrightarrow x$ 的梯度是一个雅可比矩阵（Jacobian matrix）：
+$$
+J = 
+\begin{pmatrix}
+\frac{\partial y_1}{\partial x_1}&\cdots&\frac{\partial y_1}{\partial x_n}\\
+\cdots&\cdots&\cdots\\
+\frac{\partial y_m}{\partial x_1}&\cdots&\frac{\partial y_m}{\partial x_n}\\
+\end{pmatrix}
+$$
+一般来说，`torch.autograd` 就是用来计算 vector-Jacobian product 的工具。也就是说，给定任一向量 $\overrightarrow v = (v_1\ v_2\ \cdots\ v_m)^T$ ，计算 $v^T \cdot J$ 。如果 $v$ 恰好是标量函数 $l = g(\overrightarrow y)$ 的梯度，也就是说 $v = (\frac{\partial l}{y_1}\ \cdots \frac{\partial l}{y_m})^T$ ，那么根据链式法则，vector-Jacobian product 是  $l$ 关于 $\overrightarrow x$ 的梯度：
+$$
+J^T \cdot v = 
+\begin{pmatrix}
+\frac{\partial y_1}{\partial x_1}&\cdots&\frac{\partial y_1}{\partial x_n}\\
+\cdots&\cdots&\cdots\\
+\frac{\partial y_m}{\partial x_1}&\cdots&\frac{\partial y_m}{\partial x_n}\\
+\end{pmatrix}
+\begin{pmatrix}
+\frac{\partial l}{\partial x_1}\\
+\cdots\\
+\frac{\partial l}{\partial x_n}\\
+\end{pmatrix}
+$$
+（注意，$v^T \cdot J$ 给出了一个行向量，可以通过 $J^T \cdot v$ 将其视为列向量）
+
+vector-Jacobian product 这种特性使得**将外部梯度返回到具有非标量输出的模型**变得非常方便。
+
+以下是两个例子：
+
+-   标量求导
+
+    ```python
+    x = torch.ones(2, 2, requires_grad=True)
+    y = x + 2
+    z = y * y * 3
+    out = z.mean()
+    out.backward()  #  因为 out 是一个纯量（scalar），out.backward() 等于 out.backward(torch.tensor(1))
+    print(x.grad)  # tensor([[4.5000, 4.5000], [4.5000, 4.5000]])
+    ```
+
+-   非标量求导
+
+    ```python
+    x = torch.randn(3, requires_grad=True)
+    y = x * 2
+    while y.data.norm() < 1000:
+        y = y * 2
+    gradients = torch.tensor([0.1, 1.0, 0.0001], dtype=torch.float)
+    y.backward(gradients)
+    print(x.grad)
+    ```
+
+    在这个情形中，`y` 不再是个标量， `torch.autograd` 无法直接计算出完整的雅可比矩阵，但是如果我们只想要 vector-Jacobian product ，只需将向量作为参数传入 `backward` 。
+
+
+
+<br/>
+
+更多内容，请查看[官网教程](https://pytorch.org/docs/autograd)。
+
+
 
 
 
@@ -217,4 +321,12 @@ PyTorch 中所有神经网络的核心是 autograd 包，它为张量上的所�
 
 1.   [标量，向量，矩阵与张量](https://www.jianshu.com/p/abe7515c6c7f)
 2.   [torch.rand()、torch.randn()、torch.randint()、torch.randperm()用法](https://blog.csdn.net/leilei7407/article/details/107710852)
+3.   [我对torch中的gather函数的一点理解](https://zhuanlan.zhihu.com/p/110289027)
+4.   [pytorch简介和准备知识](https://zhuanlan.zhihu.com/p/97234180)
+
+
+
+-----
+
+作者：Harry-hhj，github主页：[传送门](https://github.com/Harry-hhj)
 
