@@ -5,7 +5,7 @@ date: 2021-08-24 08:00:00 +0800
 categories: [Tutorial, Jekyll]
 tags: [getting started, jekyll]
 image:
-  src: https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-24-Building-your-Blog.assets/devices-mockup.png?raw=true
+  src: https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-24-Building-your-Blog.assets/devices-mockup.png?raw=true
   width: 850
   height: 585
 ---
@@ -91,7 +91,7 @@ g++ -v  # 如果你的电脑安装了 g++ 的话
 
     -   记住你刚刚查看到的原始版本号，以下命令中的 `<版本号>` 用下图中你查询到的数字替代：
 
-        ![image-20210825174125342](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-24-Building-your-Blog.assets/image-20210825174125342.png?raw=true)
+        ![image-20210825174125342](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-24-Building-your-Blog.assets/image-20210825174125342.png?raw=true)
 
     -   ```bash
         # 首先让系统知道我们安装了多个 gcc 版本
@@ -134,7 +134,7 @@ g++ -v  # 如果你的电脑安装了 g++ 的话
 
 首先前往原项目[仓库](https://github.com/cotes2020/jekyll-theme-chirpy)，点击屏幕右侧的 `fork` 按钮：
 
-![image-20210825182140392](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-24-Building-your-Blog.assets/image-20210825182140392.png?raw=true)
+![image-20210825182140392](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-24-Building-your-Blog.assets/image-20210825182140392.png?raw=true)
 
 这样，我们的代码库里就有了一个相同的仓库，唯一不同的这个仓库的所有权属于我们自己。找到这个仓库并点击进入。
 
@@ -211,7 +211,7 @@ GitHub 目前已经不支持密码登陆。至于 GitHub token 的使用方法�
 
 设置完毕后通过 `git push` 将本地的修改提交到远程仓库，这将触发 `GitHub Actions workflow` ，一旦操作完成，会产生一个新的分支 `gh-pages` 。在网页上点击项目的 `settings` ，找到 `Pages` ，选择 `gh-pages` 分支作为 `publishing source` ，如下图：
 
-![image-20210825214236259](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-24-Building-your-Blog.assets/image-20210825214236259.png?raw=true)
+![image-20210825214236259](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-24-Building-your-Blog.assets/image-20210825214236259.png?raw=true)
 
 点击 Github 上的链接就可以访问你的博客啦！
 

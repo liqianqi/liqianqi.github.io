@@ -7,7 +7,7 @@ tags: [getting started, computer, win]
 math: true
 mermaid: true
 image:
-  src: https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-26-Install-dual-OS_Win10.assets/win10.jpeg?raw=true
+  src: https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-26-Install-dual-OS_Win10.assets/win10.jpeg?raw=true
   width: 1202
   height: 676
 ---
@@ -46,7 +46,7 @@ Macbook pro 的存储空间是非常宝贵的，因为苹果的硬盘速度虽�
 
 备注：每次用 DiskGenius 操作分区后都需要右击左侧磁盘选择`保存分区表`，推荐对所有硬盘如此操作。
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-26-Install-dual-OS_Win10.assets/1.png?raw=true" alt="image-20210813174437934" style="zoom:50%;" />
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-26-Install-dual-OS_Win10.assets/1.png?raw=true" alt="image-20210813174437934" style="zoom:50%;" />
 
 ## 科普
 
@@ -106,13 +106,13 @@ Macbook 的硬件在 Windows 上是不能直接使用的，因此需要获得相
 
 在**苹果系统**中打开“启动转换助理”，如下图：
 
-![启动转换助理](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-26-Install-dual-OS_Win10.assets/2.jpg?raw=true)
+![启动转换助理](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-26-Install-dual-OS_Win10.assets/2.jpg?raw=true)
 
 打开后在左上角点击`操作`-`下载Windows支持软件`，下载完毕后，将文件转存到一个 U 盘或机械硬盘上备用（注意容量，未压缩约为 1.26 GB ），以便后续文件传输。
 
-![img](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-26-Install-dual-OS_Win10.assets/3.jpg?raw=true)
+![img](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-26-Install-dual-OS_Win10.assets/3.jpg?raw=true)
 
-![WindowsSupport](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-26-Install-dual-OS_Win10.assets/4.jpg?raw=true)
+![WindowsSupport](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-26-Install-dual-OS_Win10.assets/4.jpg?raw=true)
 
 然后将待用的硬盘（SSD）全盘格式化为 exFAT 格式，不要含有多个分区，供后续使用。
 
@@ -131,7 +131,7 @@ cscript slmgr.vbs /ato
 
 激活成功。
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-26-Install-dual-OS_Win10.assets/5.png?raw=true" alt="image-20210813181627309" style="zoom:33%;" />
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-26-Install-dual-OS_Win10.assets/5.png?raw=true" alt="image-20210813181627309" style="zoom:33%;" />
 
 
 
@@ -139,21 +139,21 @@ cscript slmgr.vbs /ato
 
 将上述的 Windows 镜像文件复制到宿主系统（虚拟机）中，双击打开，这时系统会显示有个 DVD 驱动器，此时先不要操作。
 
-![在这里插入图片描述](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-26-Install-dual-OS_Win10.assets/6.jpg?raw=true)
+![在这里插入图片描述](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-26-Install-dual-OS_Win10.assets/6.jpg?raw=true)
 
 使用附件[^attachment]中的 wtga5590 ，双击 `exe` 文件，注意网上 4.8 版本的 wtga 不能选择 windows 版本，所以不要使用。打开软件后，第一个候选框选择上图中的 `DVD驱动器/sousrces/install.wim` 。然后选择版本为 `企业版` ，最后选择你的硬盘。右侧高级选项选择 `传统` + `UEFI+GPT` ，其他可以选择默认。最后选择 `部署` 。需要分区的朋友可以在 `分区` 里进行设置，需要注意给系统盘留出足够的空间。也可以按之后的教程进行操作。
 
-![img](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-26-Install-dual-OS_Win10.assets/7.jpg?raw=true)
+![img](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-26-Install-dual-OS_Win10.assets/7.jpg?raw=true)
 
 会弹出一个窗口提示你整个硬盘会被格式化，让你确认，点击 `是` 即可。
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-26-Install-dual-OS_Win10.assets/8.jpg?raw=true" alt="在这里插入图片描述" style="zoom:50%;" />
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-26-Install-dual-OS_Win10.assets/8.jpg?raw=true" alt="在这里插入图片描述" style="zoom:50%;" />
 
  耐心等待制作完成。
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-26-Install-dual-OS_Win10.assets/9.jpg?raw=true" alt="在这里插入图片描述" style="zoom:50%;" />
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-26-Install-dual-OS_Win10.assets/9.jpg?raw=true" alt="在这里插入图片描述" style="zoom:50%;" />
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-26-Install-dual-OS_Win10.assets/10.jpg?raw=true" alt="img" style="zoom:40%;" />
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-26-Install-dual-OS_Win10.assets/10.jpg?raw=true" alt="img" style="zoom:40%;" />
 
 
 
@@ -161,11 +161,11 @@ cscript slmgr.vbs /ato
 
 在 MacOS 系统启动时，同时安装 `Command` + `R`  ，进入到恢复助理的界面，选择知道密码的用户，输入密码后选择左上角的 `实用工具` ，选择里面的 `允许从外部介质启动` 。同时将安全启动那里选择 `无安全性` 。
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-26-Install-dual-OS_Win10.assets/11.jpg?raw=true" alt="img" style="zoom:50%;" />
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-26-Install-dual-OS_Win10.assets/11.jpg?raw=true" alt="img" style="zoom:50%;" />
 
 不然可能会出现以下的错误：
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-26-Install-dual-OS_Win10.assets/12.jpg?raw=true" alt="img" style="zoom:40%;" />
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-26-Install-dual-OS_Win10.assets/12.jpg?raw=true" alt="img" style="zoom:40%;" />
 
 
 
@@ -173,7 +173,7 @@ cscript slmgr.vbs /ato
 
 关机，在开机时按住 `option` 键，选择 EFI 启动磁盘，然后就进入了 Windows 的启动界面，注意 第一次进入会**自动重启**，所以在重启时还需要按住 `option` 键。然后就像正常的 Windows 一样初始化就行了，唯一要注意的是**此时 Mac 里自带的网卡、键盘和触控板统统不能使用**，需要外接 USB 设备，这就是要准备 USB 鼠标键盘和无线网卡的原因。
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-26-Install-dual-OS_Win10.assets/13.jpg?raw=true" alt="在这里插入图片描述" style="zoom:10%;" />
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-26-Install-dual-OS_Win10.assets/13.jpg?raw=true" alt="在这里插入图片描述" style="zoom:10%;" />
 
 设置好后进入Win10 桌面，这时候鼠标键盘等依旧不能使用需要安装之前下载好的 `Windows支持软件` 。找到你U盘里复制过来的支持软件，打开文件夹找到 `setup.exe` ，双击打开安装 BootCamp 驱动。安装完后，如果遇到没有声音，使用搜索栏搜索 `Apple Software Update`，更新后应该能解决问题，再不行就多安装几次，再不行点击带❌的音量，自动搜索驱动、重启等，应该是能解决的。
 
@@ -181,9 +181,9 @@ cscript slmgr.vbs /ato
 
 如果没有找到  `Boot Camp` 控制面板，就去 Mac 上重新下载 WindowsSupport 安装，就能解决。
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-26-Install-dual-OS_Win10.assets/14.png?raw=true" alt="image-20210813185033085" style="zoom:70%;" />
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-26-Install-dual-OS_Win10.assets/14.png?raw=true" alt="image-20210813185033085" style="zoom:70%;" />
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-26-Install-dual-OS_Win10.assets/15.png?raw=true" alt="image-20210813185245170" style="zoom:40%;" />
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-26-Install-dual-OS_Win10.assets/15.png?raw=true" alt="image-20210813185245170" style="zoom:40%;" />
 
 
 
@@ -193,7 +193,7 @@ cscript slmgr.vbs /ato
 
 - 首先在宿主系统中的搜索框输入`此电脑`，然后`右键`点击`管理`，如下图：
 
-  <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-26-Install-dual-OS_Win10.assets/16.png?raw=true" alt="image-20210813165746461" style="zoom:40%;" />
+  <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-26-Install-dual-OS_Win10.assets/16.png?raw=true" alt="image-20210813165746461" style="zoom:40%;" />
 
 - 在新出现的窗口点击`存储`->`磁盘管理`，找到目标磁盘（根据磁盘大小），`右击`选择`压缩卷`，将系统盘的容量压缩到你认为合适的大小，这里我预留了 `350 GB` （仅供参考）。
 
@@ -201,13 +201,13 @@ cscript slmgr.vbs /ato
 
 - 在目标系统中进入同样的界面，重新`删除卷`，并`新建卷`，这么做的目的是为了**分配盘符**，不然会被隐藏，在目标系统中不可见。如果希望进行更细致的格式化可以使用附件[^attachment]中的 `DiskGenius` 重新格式化，可以选择簇大小（对簇大小的理解就是：簇大小越大，读写速度越快，但小文件浪费的空间也更多，如果不知道直接选择默认就行）。如下图：
 
-  ![image-20210813172303745](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-26-Install-dual-OS_Win10.assets/17.png?raw=true)
+  ![image-20210813172303745](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-26-Install-dual-OS_Win10.assets/17.png?raw=true)
 
   （图中我留了 256GB 的未分配空间，操作的方法是使用 `DiskGenius` 对 DATA 盘`新建分区`，再通过`磁盘管理`来`删除卷`就行了。）
 
 - 最终的结果如下图所示：
 
-  <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-26-Install-dual-OS_Win10.assets/18.png?raw=true" alt="image-20210813173623009" style="zoom:50%;" />
+  <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-26-Install-dual-OS_Win10.assets/18.png?raw=true" alt="image-20210813173623009" style="zoom:50%;" />
 
 
 
@@ -215,7 +215,7 @@ cscript slmgr.vbs /ato
 
 最终我的 Windows 界面如下：
 
-![image-20210813185431706](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-26-Install-dual-OS_Win10.assets/19.png?raw=true)
+![image-20210813185431706](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-26-Install-dual-OS_Win10.assets/19.png?raw=true)
 
 恭喜成功！
 

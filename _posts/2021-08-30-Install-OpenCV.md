@@ -7,7 +7,7 @@ tags: [getting started, robomaster, computer, opencv]
 math: true
 mermaid: true
 image:
-  src: https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-30-Install-opencv.assets/opencv.jpeg?raw=true
+  src: https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-30-Install-opencv.assets/opencv.jpeg?raw=true
   width: 1202
   height: 676
 ---
@@ -120,7 +120,7 @@ sudo gedit /etc/apt/sources.list
 
 不然你可能会遇到以下问题：
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-30-Install-opencv.assets/image-20210902103451786.png?raw=true" alt="image-20210902103451786" style="zoom:50%;" />
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-30-Install-opencv.assets/image-20210902103451786.png?raw=true" alt="image-20210902103451786" style="zoom:50%;" />
 
 在文件中加入：
 
@@ -175,11 +175,11 @@ sudo apt install qt5-default qtcreator
 
 先从 GitHub 下载最新版的 [OpenCV](https://github.com/opencv/opencv.git) 和 [OpenCV_contrib](https://github.com/opencv/opencv_contrib.git) ，点击下图红框，选择下拉按钮 master -> Tags ->4.5.3 。
 
-![image-20210901172014018](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-30-Install-opencv.assets/image-20210901172014018.png?raw=true)
+![image-20210901172014018](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-30-Install-opencv.assets/image-20210901172014018.png?raw=true)
 
 然后点击右侧绿色按钮 Code，如果你打算选择最新的版本，直接复制地址，如果你选择了特定的版本，那么点击 `Download ZIP` ，解压至之后的 `Applications` 文件夹下。
 
-![image-20210901173309075](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-30-Install-opencv.assets/image-20210901173309075.png?raw=true)
+![image-20210901173309075](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-30-Install-opencv.assets/image-20210901173309075.png?raw=true)
 
 在 Ubuntu 中打开终端（Terminal），输入以下命令：
 
@@ -199,11 +199,11 @@ cd ~/Applications/<opencv>
 mkdir build
 ```
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-30-Install-opencv.assets/image-20210901191831817.png?raw=true" alt="image-20210901191831817" style="zoom:40%;" />
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-30-Install-opencv.assets/image-20210901191831817.png?raw=true" alt="image-20210901191831817" style="zoom:40%;" />
 
 最终应该如下图：
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-30-Install-opencv.assets/image-20210901194319253.png?raw=true" alt="image-20210901194319253" style="zoom:40%;" />
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-30-Install-opencv.assets/image-20210901194319253.png?raw=true" alt="image-20210901194319253" style="zoom:40%;" />
 
 接下来借助 `cmake-gui` 编译，打开终端输入：
 
@@ -213,27 +213,27 @@ cmake-gui
 
 在出现的界面中，点击 `Browse Source` 选择源文件目录 `opencv` ，点击 `Browse Build` 选择编译文件存放目录 `build` ，然后点击 `Configure` 。
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-30-Install-opencv.assets/image-20210901191947014.png?raw=true" alt="image-20210901191947014" style="zoom:33%;" />
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-30-Install-opencv.assets/image-20210901191947014.png?raw=true" alt="image-20210901191947014" style="zoom:33%;" />
 
 会跳出一个弹窗，下拉框中选择 `Unix Makefiles` ，然后点击 `Finish` 。
 
 
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-30-Install-opencv.assets/image-20210901194212894.png?raw=true" alt="image-20210901194212894" style="zoom:30%;" />
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-30-Install-opencv.assets/image-20210901194212894.png?raw=true" alt="image-20210901194212894" style="zoom:30%;" />
 
 完成后界面如下：
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-30-Install-opencv.assets/image-20210901201237796.png?raw=true" alt="image-20210901201237796" style="zoom:35%;" />
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-30-Install-opencv.assets/image-20210901201237796.png?raw=true" alt="image-20210901201237796" style="zoom:35%;" />
 
 然后我们需要修改两个地方：
 
 1.   通过 `search` 找到 CMAKE_BUILD_TYPE 处，输入 `Release` 。
 
-     <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-30-Install-opencv.assets/image-20210901214517367.png?raw=true" alt="image-20210901214517367" style="zoom:50%;" />
+     <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-30-Install-opencv.assets/image-20210901214517367.png?raw=true" alt="image-20210901214517367" style="zoom:50%;" />
 
 2.   在 OPENCV_EXTRA_MODULES_PATH 处加入 opencv_contrib 模块路径。**注意，不是选 opencv_contrib 文件夹，而是需要选中 opencv_contrib 里面的 modules 文件夹！**
 
-     <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-30-Install-opencv.assets/image-20210901214618102.png?raw=true" alt="image-20210901214618102" style="zoom:50%;" />
+     <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-30-Install-opencv.assets/image-20210901214618102.png?raw=true" alt="image-20210901214618102" style="zoom:50%;" />
 
 这里说明一下，CMAKE_INSTALL_PREFIX 为安装路径，系统默认为 `/usr/local` ，如若对 Ubuntu 不熟悉，则不要更改，默认就好。
 
@@ -241,11 +241,11 @@ cmake-gui
 
 1.   `ippicv_*` 无法下载：手动下载（链接: _<https://pan.baidu.com/s/1g6gZ8CrvdE9VWGmp8XmDyw>_ 提取码: hbor），存放在 Downloads 文件夹里，打开 `<opencv>/3rdparty/ippicv/ippcv.cmake` ，把 42 行路径更换成自己的下载的文件目录路径，例如 `/home/<username>/Downloads/`  ，其中 `<username>` 代表你的用户名。重新 Configure 。
 
-     <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-30-Install-opencv.assets/image-20210902213146790.png?raw=true" alt="image-20210902213146790" style="zoom:30%;" />
+     <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-30-Install-opencv.assets/image-20210902213146790.png?raw=true" alt="image-20210902213146790" style="zoom:30%;" />
 
 2.   `face_landmark_model.dat` 无法下载：手动下载（链接: _<https://pan.baidu.com/s/1DKkQTfAY-F91r9vZ6qPUYw>_ 提取码: pe82），存放在 Downloads 文件夹里，打开相应的配置文件 `<opencv>/<opencv_contrib>/modules/face/CMakeLists.txt` ，将 CMakeLists.txt 文件的第 19 行修改为本地路径，即将原来的网址修改为下载的文件保存的路径，`"/home/<username>/Downloads/"` ，其中 `<username>` 代表你的用户名。重新 Configure 。
 
-     <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-30-Install-opencv.assets/image-20210902213733915.png?raw=true" alt="image-20210902213733915" style="zoom:30%;" />
+     <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-30-Install-opencv.assets/image-20210902213733915.png?raw=true" alt="image-20210902213733915" style="zoom:30%;" />
 
 3.   `boostdesc_*.i` 、 `vgg_generated_*.i` ：手动下载（链接: _<https://pan.baidu.com/s/1VCdMUUm2ipu-fbL2189lFg>_ 提取码: 88eo），存放在 `<opencv>/<opencv_contrib>/modules/xfeatures2d/src/` 路径下即可，无需修改文件。
 
@@ -286,11 +286,11 @@ sudo make install
 
 初次进入 Clion ，需要配置 Toolchains ，创建一个新项目会出现以下弹窗，一般系统会自动检测 cmake 路径，如果没有那么手动选择以下，其余的会自动检测的。
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-30-Install-opencv.assets/image-20210902092213415.png?raw=true" alt="image-20210902092213415" style="zoom:33%;" />
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-30-Install-opencv.assets/image-20210902092213415.png?raw=true" alt="image-20210902092213415" style="zoom:33%;" />
 
 如果没有跳出以上弹窗，那么点击左上角 `CLion` -> `Settings` 或 `Preferences` -> `Build, Execution, Deployment` -> `Toolchains` ，配置 `Default` 。
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-30-Install-opencv.assets/image-20210902093059433.png?raw=true" alt="image-20210902093059433" style="zoom:33%;" />
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-30-Install-opencv.assets/image-20210902093059433.png?raw=true" alt="image-20210902093059433" style="zoom:33%;" />
 
 
 
@@ -298,25 +298,25 @@ sudo make install
 
 前往 Ubuntu Software 下载 Visual Studio Code ，然后打开界面如下：
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-30-Install-opencv.assets/image-20210902204824496.png?raw=true" alt="image-20210902204824496" style="zoom:30%;" />
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-30-Install-opencv.assets/image-20210902204824496.png?raw=true" alt="image-20210902204824496" style="zoom:30%;" />
 
 点击图中红色区域的按，进入 Extensions ，分别搜索安装以下三个插件：
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-30-Install-opencv.assets/image-20210902205200247.png?raw=true" alt="image-20210902205200247" style="zoom:40%;" />
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-30-Install-opencv.assets/image-20210902205200247.png?raw=true" alt="image-20210902205200247" style="zoom:40%;" />
 
 安装完毕后，在任意位置创建一个空目录。VScode 不支持单文件编译，必须具有项目目录。创建完毕后，用 VScode 打开项目目录，点击 Shift+Ctrl+P （Ubuntu 版本快捷键），搜索 `cmake:configure` ：
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-30-Install-opencv.assets/image-20210902205359002.png?raw=true" alt="image-20210902205359002" style="zoom:33%;" />
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-30-Install-opencv.assets/image-20210902205359002.png?raw=true" alt="image-20210902205359002" style="zoom:33%;" />
 
 对每个项目首次进入时，会提示选择工具包，这里我们选择 GCC：
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-30-Install-opencv.assets/image-20210902210027703.png?raw=true" alt="image-20210902210027703" style="zoom:33%;" />
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-30-Install-opencv.assets/image-20210902210027703.png?raw=true" alt="image-20210902210027703" style="zoom:33%;" />
 
 在左侧可以先建文件，使用以下示例代码测试。
 
 以后每次编译项目，只需要简单地右击 CMakeLists.txt ，选择 `Build All Projects` ：
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-8-30-Install-opencv.assets/image-20210902210312110.png?raw=true" alt="image-20210902210312110" style="zoom:33%;" />
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-30-Install-opencv.assets/image-20210902210312110.png?raw=true" alt="image-20210902210312110" style="zoom:33%;" />
 
 编译完成后，点击下方 Terminal ，输入以下命令运行程序：
 
