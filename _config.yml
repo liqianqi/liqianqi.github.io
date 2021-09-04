@@ -38,7 +38,7 @@ social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
   name: HHJ
-  email: 13818658603@163.com             # change to your email address
+  email: Harry-hhj@163.com             # change to your email address
   links:
     # The first element serves as the copyright owner's link
     # - https://twitter.com/username      # change to your twitter homepage
@@ -58,6 +58,8 @@ google_analytics:
   pv:
     proxy_endpoint:   # fill in the Google Analytics superProxy endpoint of Google App Engine
     cache_path:       # the local PV cache data, friendly to visitors from GFW region
+
+baidu-analysis: f40851b91841f1abe810a63f8d41c2e2
 
 # Prefer color scheme setting.
 #
