@@ -230,7 +230,7 @@ PyTorch 中所有神经网络的核心是 autograd 包，它为张量上的所�
 
 
 
-### 打开关闭微分
+### requires_grad
 
 ```python
 x = torch.ones(2, 2, requires_grad=True)  # x.grad_fn = None
@@ -245,7 +245,7 @@ out = z.mean()  # out.grad_fn = <MeanBackward0 object at 0x...>
 
 
 
-### 求梯度
+### backward()
 
 在调用 `y.backward()` 时，如果 `y` 是标量，则不需要为 `backward()` 传入任何参数；否则，需要传入一个与 `y` 同形的 `Tensor` 。因为不允许张量对张量求导，只允许标量对张量求导，求导结果是和自变量同形的张量。
 
@@ -303,17 +303,52 @@ vector-Jacobian product 这种特性使得**将外部梯度返回到具有非标
 
     在这个情形中，`y` 不再是个标量， `torch.autograd` 无法直接计算出完整的雅可比矩阵，但是如果我们只想要 vector-Jacobian product ，只需将向量作为参数传入 `backward` 。
 
+### 中断梯度追踪
+
+`with torch.no_grad():` 中的变量将不进入梯度计算。
+
+直接举个例子说明：
+
+```python
+x = torch.tensor(1.0, requires_grad=True)
+print(x, x.requires_grad)
+y1 = x ** 2
+print(y1, y1.requires_grad)
+with torch.no_grad():
+    y2 = x**2
+print(y2, y2.requires_grad)
+y3 = y1 + y2
+print(y3, y3.requires_grad)
+y3.backward()
+print(x.grad)  # tensor(2.)
+```
+
+此时 y3 的梯度经由 y1 （与 y2 无关）传播给 x ，因此 x 的梯度是 2 而不是 4 。
+
+### tensor.data
+
+此外，如果我们想要修改 tensor 的数值，但是又不希望被 autograd 记录（即不会影响反向传播），那么我么可以对 **tensor.data** 进行操作。
+
+```python
+x = torch.tensor(1.0, requires_grad=True)
+print(x.data)  # 依然是一个 tensor
+print(x.data.requires_grad)  # False，即独立于计算图之外
+y = 2 * x
+x.data *= 100  # 只改变了值，不会记录在计算图，所以不会影响梯度传播
+y.backward()
+print(x)
+print(x.grad)
+```
+
+如果对 x 本身直接操作，将导致 x 叶子节点身份的丢失。
+
+
+
 
 
 <br/>
 
 更多内容，请查看[官网教程](https://pytorch.org/docs/autograd)。
-
-
-
-
-
-
 
 
 
