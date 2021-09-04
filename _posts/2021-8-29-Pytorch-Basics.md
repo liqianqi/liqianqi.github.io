@@ -3,7 +3,7 @@ title: PyTorch-Basics
 author: Harry-hhj
 date: 2021-08-29 11:12:00 +0800
 categories: [Tutorial, PyTorch]
-tags: [getting started, computer]
+tags: [getting started, computer, pytorch]
 math: true
 mermaid: true
 image:
@@ -249,26 +249,26 @@ out = z.mean()  # out.grad_fn = <MeanBackward0 object at 0x...>
 
 在调用 `y.backward()` 时，如果 `y` 是标量，则不需要为 `backward()` 传入任何参数；否则，需要传入一个与 `y` 同形的 `Tensor` 。因为不允许张量对张量求导，只允许标量对张量求导，求导结果是和自变量同形的张量。
 
-在数学上，如果我们有向量值函数  $\overrightarrow y = f(\overrightarrow x)$，且 $\overrightarrow y$ 关于 $\overrightarrow x$ 的梯度是一个雅可比矩阵（Jacobian matrix）：
+在数学上，如果我们有向量值函数  $\vec y = f(\vec x)$，且 $\vec y$ 关于 $\vec x$ 的梯度是一个雅可比矩阵（Jacobian matrix）：
 $$
 J = 
 \begin{pmatrix}
 \frac{\partial y_1}{\partial x_1}&\cdots&\frac{\partial y_1}{\partial x_n}\\
-\cdots&\cdots&\cdots\\
+\vdots&\ddots&\vdots\\
 \frac{\partial y_m}{\partial x_1}&\cdots&\frac{\partial y_m}{\partial x_n}\\
 \end{pmatrix}
 $$
-一般来说，`torch.autograd` 就是用来计算 vector-Jacobian product 的工具。也就是说，给定任一向量 $\overrightarrow v = (v_1\ v_2\ \cdots\ v_m)^T$ ，计算 $v^T \cdot J$ 。如果 $v$ 恰好是标量函数 $l = g(\overrightarrow y)$ 的梯度，也就是说 $v = (\frac{\partial l}{y_1}\ \cdots \frac{\partial l}{y_m})^T$ ，那么根据链式法则，vector-Jacobian product 是  $l$ 关于 $\overrightarrow x$ 的梯度：
+一般来说，`torch.autograd` 就是用来计算 vector-Jacobian product 的工具。也就是说，给定任一向量 $\vec v = (v_1\ v_2\ \cdots\ v_m)^T$ ，计算 $v^T \cdot J$ 。如果 $v$ 恰好是标量函数 $l = g(\vec y)$ 的梯度，也就是说 $v = (\frac{\partial l}{y_1}\ \cdots \frac{\partial l}{y_m})^T$ ，那么根据链式法则，vector-Jacobian product 是  $l$ 关于 $\vec x$ 的梯度：
 $$
 J^T \cdot v = 
 \begin{pmatrix}
 \frac{\partial y_1}{\partial x_1}&\cdots&\frac{\partial y_1}{\partial x_n}\\
-\cdots&\cdots&\cdots\\
+\vdots&\ddots&\vdots\\
 \frac{\partial y_m}{\partial x_1}&\cdots&\frac{\partial y_m}{\partial x_n}\\
 \end{pmatrix}
 \begin{pmatrix}
 \frac{\partial l}{\partial x_1}\\
-\cdots\\
+\vdots\\
 \frac{\partial l}{\partial x_n}\\
 \end{pmatrix}
 $$
