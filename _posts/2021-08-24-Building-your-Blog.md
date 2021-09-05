@@ -217,6 +217,68 @@ GitHub 目前已经不支持密码登陆。至于 GitHub token 的使用方法�
 
 
 
+### 第五步 设置百度统计
+
+之所以不使用官方推荐的 Google Analysis ，是因为在国内大部分地区都没有办法直接访问，这种统计也就失效了。因此，我选择了更加简便的 Baidu Analysis 来代替，一样可以达到效果。
+
+首先前往[百度统计](https://tongji.baidu.com/)注册一个账号，注册完成后新建一个网站。
+
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-24-Building-your-Blog.assets/image-20210905112057891.png?raw=true" alt="image-20210905112057891" style="zoom:50%;" />
+
+之后会要填写以下信息：
+
+-   网站域名：`<your/github/username>.github.io`
+-   网站首页：`https://<your/github/username>.github.io`
+-   剩下的随便写
+
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-24-Building-your-Blog.assets/image-20210905112219946.png?raw=true" alt="image-20210905112219946" style="zoom:40%;" />
+
+完后会会自动跳转到获取代码（如何没有自己点击跳转），选择复制代码。
+
+接下来修改个人博客项目，需要修改三个地方：
+
+1.   修改 `_config.yml` ，在其中加入：
+
+     ```yaml
+     baidu-analysis: <your-token>
+     ```
+
+     其中 <your-token> 就是那段复制的代码中 ```hm.src = "https://hm.baidu.com/hm.js?..." 后的那串字符。```
+
+2.   在 `_includes` 目录下新建 `baidu-analysis.html` 文件，在其中输入：
+
+     ```html
+     <!--
+       The BA snippet
+     -->
+     <script>
+     var _hmt = _hmt || [];
+     (function() {
+       var hm = document.createElement("script");
+       hm.src = "https://hm.baidu.com/hm.js?{{ site.baidu-analysis }}";
+       var s = document.getElementsByTagName("script")[0]; 
+       s.parentNode.insertBefore(hm, s);
+     })();
+     </script>
+     ```
+
+     这里无需修改，直接复制即可。
+
+3.   在页头模版页面中安装百度统计，这里我选择了 `head.html` ，实际查看代码我发现 Google Analysis 是放在 `js-selector.html` 中的，但是该部分属于 `body` 而百度统计官方建议放入 `head` ，因此在 `head.html` 最后的 `</head>` 前加入以下代码：
+
+     ```html
+     <!-- BA -->
+     {% if site.baidu-analysis %}
+       {% include baidu-analysis.html %}
+     {% endif %}
+     ```
+
+     如果你对代码整洁度有很高的要求（其实我就算是，只是配置更新太慢了就算了），你可以尝试在  `js-selector.html` 中的最后一个 `if` 语句块中加入以上代码。
+
+至此就完成网站统计的配置了，由于更新 `_config.yml` 体现在网站上的时间比较久，因此需要耐心等待，笔者等了一个晚上。去百度统计点击首页代码状态检查，如果显示 `代码安装正确` ，那么恭喜你，你可以查看你的个人博客的访问情况了。
+
+
+
 <br/>
 
 如果本篇教程中有任何不对的地方，欢迎联系我指正！（评论功能可能尚在开发中）
