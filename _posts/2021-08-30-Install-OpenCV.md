@@ -1,5 +1,5 @@
 ---
-title: Install-OpenCV
+title: Install OpenCV
 author: Harry-hhj
 date: 2021-08-31 14:15:00 +0800
 categories: [Tutorial, Computer Vision, OpenCV]

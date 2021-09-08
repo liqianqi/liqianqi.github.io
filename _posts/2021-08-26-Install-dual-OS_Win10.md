@@ -1,5 +1,5 @@
 ---
-title: Install-dual-OS_Win10
+title: Install dual-OS - Win10
 author: Harry-hhj
 date: 2021-08-26 16:40:00 +0800
 categories: [Tutorial, Dual OS]

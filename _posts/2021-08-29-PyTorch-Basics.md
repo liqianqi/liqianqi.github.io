@@ -1,5 +1,5 @@
 ---
-title: PyTorch-Basics
+title: PyTorch Basics
 author: Harry-hhj
 date: 2021-08-29 11:12:00 +0800
 categories: [Tutorial, PyTorch]
