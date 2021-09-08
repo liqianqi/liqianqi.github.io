@@ -1,5 +1,5 @@
 ---
-title: Pytorch Nueral Network
+title: Pytorch Building Nueral Network
 author: Harry-hhj
 date: 2021-09-04 08:00:00 +0800
 categories: [Tutorial, Pytorch]
@@ -87,7 +87,7 @@ netron.start(model_path)
 
 运行这段代码会自动跳出一个网页，如下图：
 
-<img src="2021-09-04-Pytorch-Neural-Network.assets/example.onnx.svg" alt="example.onnx" style="zoom:50%;" />
+<img src="2021-09-04-Pytorch-Building-Neural-Network.assets/example.onnx.svg" alt="example.onnx" style="zoom:50%;" />
 
 
 

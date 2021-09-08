@@ -28,7 +28,7 @@ image:
 
 从上面可以看出，deconvolution 最大的用处是：**对 feature map 进行升采样**，这和双线性插值（bilinear interpolation）类似。
 
-注意，它虽然叫做逆卷积，但是**它并不是卷积的逆过程**，不能完全还原出卷积前的输入，与原输入仅仅**在大小上相同**，在数值上虽然具有一定的相关性，但是**没有可逆关系**。deconv 仅仅是一个普通的卷积层，在神经网络中也是需要通过梯度下降去学习的。在 Pytorch 中通过 [`torch.nn.ConvTranspose2d`](https://pytorch.org/docs/stable/nn.html?highlight=trans#torch.nn.ConvTranspose2d) 实现，使用方法参考这篇教程 [todo]()。
+注意，它虽然叫做逆卷积，但是**它并不是卷积的逆过程**，不能完全还原出卷积前的输入，与原输入仅仅**在大小上相同**，在数值上虽然具有一定的相关性，但是**没有可逆关系**。deconv 仅仅是一个普通的卷积层，在神经网络中也是需要通过梯度下降去学习的。在 Pytorch 中通过 [`torch.nn.ConvTranspose2d`](https://pytorch.org/docs/stable/nn.html?highlight=trans#torch.nn.ConvTranspose2d) 实现，使用方法参考[这篇教程](https://harry-hhj.github.io/posts/Pytorch-Building-Neural-Network/)。
 
 
 
@@ -39,9 +39,10 @@ image:
 ### 1. 无 padding 、无 stride
 
 <center class="half">
-  <img src="2021-09-06-Deconvolution.assets/no_padding_no_strides.gif" alt="no_padding_no_strides" style="zoom:80%;" />
-  <img src="2021-09-06-Deconvolution.assets/no_padding_no_strides_transposed.gif" alt="no_padding_no_strides_transposed" style="zoom:60%;" />
+  <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-06-Deconvolution.assets/no_padding_no_strides.gif" alt="no_padding_no_strides?raw=true" style="zoom:80%;" />
+  <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-06-Deconvolution.assets/no_padding_no_strides_transposed.gif?raw=true" alt="no_padding_no_strides_transposed" style="zoom:60%;" />
 </center>
+
 
 首先我们来看看最基本的卷积形式：对于 $(m \times m)$ 的特征图 $I$ ，用大小为 $(k \times k)$ 的核做卷积，则得到的特征图 $O$ 大小为 $((m-k+1) \times (m-k+1))$ 。怎么让特征图 $O$ 经过同样大小的卷积核以后的到和特征图 $I$ 一样的大小呢？我们先对特征图 $O$ 做 $padding=k-1$ 的填充，大小变为 $((m+k-1) \times (m+k-1))$ ，再用等大的  $(k \times k)$ 核做卷积，则得到的特征图 $I'$ 的大小是 $(m \times m)$ 。
 
@@ -50,9 +51,10 @@ image:
 ### 2. 无 padding 、有 stride
 
 <center class="half">
-  <img src="2021-09-06-Deconvolution.assets/no_padding_strides.gif" alt="no_padding_strides" style="zoom:80%;" />
-  <img src="2021-09-06-Deconvolution.assets/no_padding_strides_transposed.gif" alt="no_padding_strides_transposed" style="zoom:60%;" />
+  <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-06-Deconvolution.assets/no_padding_strides.gif?raw=true" alt="no_padding_strides" style="zoom:80%;" />
+  <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-06-Deconvolution.assets/no_padding_strides_transposed.gif?raw=true" alt="no_padding_strides_transposed" style="zoom:60%;" />
 </center>
+
 然后我们来看看加入 `stride` 后如何 deconv ：对于 $(m \times m)$ 的特征图 $I$ ，用 $(k \times k)$ 大小的核做卷积，记 `stride` 为 $s$ ，则得到的特征图 $O$ 的大小为 $((\lfloor \cfrac{m-k}{s}+1 \rfloor) \times (\lfloor \cfrac{m-k}{s}+1 \rfloor))$ 。怎么让特征图 $O$ 经过同样大小的卷积核以后的到和特征图 $I$ 一样的大小呢？与之前不同的是，我们需要根据 `stride` 对 $I$ 做**内部扩充（填 $0$）**，具体的规则是：在两个元素之间加入 $s-1$ 个 $0$ ，共有 $\lfloor \cfrac{m-k}{s}+1 \rfloor - 1$ 个插入点。再和之前一样，加入  $padding=k-1$ 的填充，得到 $O'$ 。此时计算可得 $O'$ 的边长为为 $\lfloor \cfrac{m-k}{s}+1 \rfloor + 2(k-1) + (s-1)(\lfloor \cfrac{m-k}{s}+1 \rfloor-1) = m+k-1$ ，即大小为 $(m-k+1, m-k+1)$ ，用等大的 $(k \times k)$ 核做卷积之后得到的特征图 $I'$ 的大小是  $(m \times m)$  。
 
 另 `s=1` 就得到 [1] 中的情况。
@@ -63,9 +65,10 @@ image:
 ### 3. 有 padding 、无 stride
 
 <center class="half">
-  <img src="2021-09-06-Deconvolution.assets/same_padding_no_strides.gif" alt="same_padding_no_strides" style="zoom:80%;" />
-  <img src="2021-09-06-Deconvolution.assets/same_padding_no_strides_transposed.gif" alt="same_padding_no_strides_transposed" style="zoom:80%;" />
+  <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-06-Deconvolution.assets/same_padding_no_strides.gif?raw=true" alt="same_padding_no_strides" style="zoom:80%;" />
+  <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-06-Deconvolution.assets/same_padding_no_strides_transposed.gif?raw=true" alt="same_padding_no_strides_transposed" style="zoom:80%;" />
 </center>
+
 为了方便了解加入 `padding` 之后我们应该如何操作，我们先不考虑 `stride` 带来的影响，即令 `stride=1` 。对于大小为 $(m \times m)$ 的特征图 $I$ ，先做大小为 $p$ 的 `padding` ，用 $(k \times k)$ 的核做卷积，则得到的特征图 $O$ 的大小为 $((m+2p-k+1) \times (m+2p-k+1))$ 。怎么让特征图 $O$ 经过同样大小的卷积核以后的到和特征图 $I$ 一样的大小呢？我们先假设我们对 $O$ 做大小为 $p'$ 的 `padding` 得到 $O'$ ，再用等大的 $(k \times k)$ 的核做 `stride=1` 的卷积，则得到的特征图 $I'$ 的边长是 $(m+2p-k+1)+2p'-k+1$ ，最终需要得到大小为 $(m \times m)$ 的特征图 $I'$ 。那么得到以下等式：
 $$
 (m+2p-k+1)+2p'-k+1 = m
@@ -138,6 +141,8 @@ $$
 首先我们要认可一个前提：在大多数情况下我们都希望经过卷积/反卷积处理后的图像尺寸比例能够被步长**整除**，即 $输入特征图大小/输出特征图大小=stride$ ，也就是 same 模式。所以我们通过添加 `out_padding` 这一参数来使得结果满足这一前提，那么 deconv 的输出特征图大小就能够满足为 $其输入大小*stride$ ，而不是任意可能的大小。
 
 实现方法：
+
+
 
 
 
