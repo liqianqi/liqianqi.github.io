@@ -89,7 +89,13 @@ netron.start(model_path)
 
 <img src="2021-09-04-Pytorch-Building-Neural-Network.assets/example.onnx.svg" alt="example.onnx" style="zoom:50%;" />
 
+先请读者思考一个问题，这个网络的输入大小是多少，为什么？
 
+想要了解网络的结构，我们需要看 `forward()` 的函数，注意不是看 `init()` 。 `__init__()` 中可以定义网络的比较关键的部件，这样的做的好处是：便于变量名称管理（见 【[三](#命名规则)】 ）和规定层的参数，增加代码的可读性。
+
+解析：
+
+因此答案是 $(32, 32, 3)$ 。
 
 
 
@@ -103,7 +109,7 @@ netron.start(model_path)
 
 
 
-## 三、各层权重命名规则
+## <span id="命名规则">三、各层权重命名规则</span>
 
 ### 1. init 中的变量定义
 

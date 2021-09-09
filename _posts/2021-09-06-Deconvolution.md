@@ -39,9 +39,10 @@ image:
 ### 1. 无 padding 、无 stride
 
 <center class="half">
-  <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-06-Deconvolution.assets/no_padding_no_strides.gif" alt="no_padding_no_strides?raw=true" style="zoom:80%;" />
+  <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-06-Deconvolution.assets/no_padding_no_strides.gif?raw=true" alt="no_padding_no_strides?raw=true" style="zoom:80%;" />
   <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-06-Deconvolution.assets/no_padding_no_strides_transposed.gif?raw=true" alt="no_padding_no_strides_transposed" style="zoom:60%;" />
 </center>
+
 
 
 首先我们来看看最基本的卷积形式：对于 $(m \times m)$ 的特征图 $I$ ，用大小为 $(k \times k)$ 的核做卷积，则得到的特征图 $O$ 大小为 $((m-k+1) \times (m-k+1))$ 。怎么让特征图 $O$ 经过同样大小的卷积核以后的到和特征图 $I$ 一样的大小呢？我们先对特征图 $O$ 做 $padding=k-1$ 的填充，大小变为 $((m+k-1) \times (m+k-1))$ ，再用等大的  $(k \times k)$ 核做卷积，则得到的特征图 $I'$ 的大小是 $(m \times m)$ 。
@@ -138,11 +139,20 @@ $$
 
 解决的方法就是使用 `out_padding` 参数，它的作用是：当 $\text{stride} \gt 1$ 时， Conv2d 将多个输入形状映射到相同的输出形状。output_padding 通过在一边有效地增加计算出的输出形状来解决这种模糊性。
 
-首先我们要认可一个前提：在大多数情况下我们都希望经过卷积/反卷积处理后的图像尺寸比例能够被步长**整除**，即 $输入特征图大小/输出特征图大小=stride$ ，也就是 same 模式。所以我们通过添加 `out_padding` 这一参数来使得结果满足这一前提，那么 deconv 的输出特征图大小就能够满足为 $其输入大小*stride$ ，而不是任意可能的大小。
+首先我们要认可一个前提：在大多数情况下我们都希望经过卷积/反卷积处理后的图像尺寸比例能够被步长**整除**，即 $输入特征图大小/输出特征图大小=stride$ ，也就是 same 模式。所以我们通过添加 `out_padding` 这一参数来使得结果满足这一前提，那么 deconv 的输出特征图大小就能够满足为 $其输入大小*stride$ ，而不是任意可能的大小。这样的好处是：网络在后面进行预尺寸相关的操作时，输入的大小是已知且固定的。
 
 实现方法：
 
+对于 conv 一般推荐的 padding 是 `(kernel_size-1)/2` ，那么对于 deconv 来说为了满足前提有如下的等式（假设 `dilation` 为 $1$）：
+$$
+\begin{equation}\begin{split}
+H_{out} & = (H_{in}-1) \times \text{stride}[0] - 2 \times \text{padding}[0] + \text{dilation}[0] \times (\text{kernel\_size[0]}-1) + \text{out\_padding}[0] + 1 \\
+        & = (H_{in}-1) \times \text{stride}[0] - (\text{kernel\_size}[0]-1) + \text{dilation}[0] \times (\text{kernel\_size[0]}-1) + \text{out\_padding}[0] + 1 \\
+\end{split}\end{equation}
+$$
+得到 $$\text{out\_padding}[0] = \text{stride}[0]-1$$。`out_padding[1]` 同理。
 
+当然可以取其他值，不妨碍 deconv 的计算，但是需要注意，网络后面进行尺寸有关的操作时输入的大小可能不能确定。
 
 
 
