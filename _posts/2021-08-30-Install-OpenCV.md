@@ -22,7 +22,7 @@ image:
 
 ## 一、安装环境
 
--   Ubuntu 系统版本：20.04 LTS，链接: _<https://pan.baidu.com/s/1ojBoCBSHbMVZHhD8HOHYyA>_ 提取码: 76wv（不建议下载，以为反而慢）
+-   Ubuntu 系统版本：20.04 LTS，链接: _<https://pan.baidu.com/s/1ojBoCBSHbMVZHhD8HOHYyA>_ 提取码: 76wv（不建议下载，因为反而慢）
 -   OpenCV 版本：4.5.3，链接: _<https://pan.baidu.com/s/1foen04ULGOwGpwLJUwvS2A>_ 提取码: vwmq
 -   OpenCV_contrib版本：需与 OpenCV 一致，链接: _<https://pan.baidu.com/s/1wI7IgSBt3sSBjE374Gnksg>_ 提取码: 7mef
 
@@ -241,7 +241,7 @@ cmake-gui
 
 1.   `ade*` 无法下载：手动下载（链接: _<https://pan.baidu.com/s/1oVUeBL6cbxeczRAd22-CHw>_ 提取码: j2v7），存放在 Downloads 文件夹里，打开 `<opencv>/modules/gapi/cmake/DownloadADE.cmake` ，把第 10 行更换成自己下载的文件目录路径，例如 `/home/<username>/Downloads/`  ，其中 `<username>` 代表你的用户名。重新 Configure 。
 
-     <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-30-Install-OpenCV.assets/image-20210909120332323.png?raw=true" alt="image-20210909120332323" style="zoom:30%;" />
+     <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-30-Install-opencv.assets/image-20210909120332323.png?raw=true" alt="image-20210909120332323" style="zoom:30%;" />
 
 2.   `ippicv_*` 无法下载：手动下载（链接: _<https://pan.baidu.com/s/1g6gZ8CrvdE9VWGmp8XmDyw>_ 提取码: hbor），存放在 Downloads 文件夹里，打开 `<opencv>/3rdparty/ippicv/ippcv.cmake` ，把 42 行路径更换成自己的下载的文件目录路径，例如 `/home/<username>/Downloads/`  ，其中 `<username>` 代表你的用户名。重新 Configure 。
 

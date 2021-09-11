@@ -157,7 +157,7 @@ bundle
 bash tools/init.sh
 ```
 
->    如果你不打算在 Github Pages 部署博客，那么在这个命令后加上参数 `--no-gh` 
+>    如果你不打算在 Github Pages 部署博客，那么在这个命令后加上参数 `--no-gh` .
 
 这一步所执行的操作是：
 
