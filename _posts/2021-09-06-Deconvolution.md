@@ -85,7 +85,7 @@ $$
 
 对于大小为 $(m \times m)$ 的特征图 $I$ ，先做大小为 $p$ 的 `padding` ，得到 $I'$ 的大小为 $((m+2p) \times (m+2p))$ ，卷积后得到特征图 $O$ 的大小为 $((\cfrac{m+2p-k}{s}+1) \times (\cfrac{m+2p-k}{s}+1))$ 。
 
-对 $O'$ 进行 deconv ，先做大小为 $p'$ 的 padding 得到 $O'$ ，大小为 $(\lfloor \cfrac{m+2p-k}{s}+1 \rfloor + 2p') \times (\lfloor \cfrac{m+2p-k}{s}+1 \rfloor + 2p')$ 。然后根据 stride 填充得到 $O''$ ，大小为 $(\lfloor \cfrac{m+2p-k}{s}+1 \rfloor + 2p'+(s-1)(\lfloor \cfrac{m+2p-k}{s}+1 \rfloor - 1)) \times (\lfloor \cfrac{m+2p-k}{s}+1 \rfloor + 2p'+(s-1)(\lfloor \cfrac{m+2p-k}{s}+1 \rfloor - 1))$ 。再用等大的 $(k \times k)$ 的核做 `stride=1` 的卷积，则得到的特征图 $I''$ 的边长是 $\lfloor \cfrac{m+2p-k}{s}+1 \rfloor + 2p'+(s-1)(\lfloor \cfrac{m+2p-k}{s}+1 \rfloor - 1) -k+1$ ，令 $I''$ 的边长为 $m$ （我们的目标），可得等式：
+对 $O'$ 进行 deconv ，先做大小为 $p'$ 的 padding 得到 $O'$ ，边长为 $\lfloor \cfrac{m+2p-k}{s}+1 \rfloor + 2p'$ 。然后根据 stride 填充得到 $O''$ ，边长为 $\lfloor \cfrac{m+2p-k}{s}+1 \rfloor + 2p'+(s-1)(\lfloor \cfrac{m+2p-k}{s}+1 \rfloor - 1)$ 。再用等大的 $(k \times k)$ 的核做 `stride=1` 的卷积，则得到的特征图 $I''$ 的边长是 $\lfloor \cfrac{m+2p-k}{s}+1 \rfloor + 2p'+(s-1)(\lfloor \cfrac{m+2p-k}{s}+1 \rfloor - 1) -k+1$ ，令 $I''$ 的边长为 $m$ （我们的目标），可得等式：
 $$
 \lfloor \cfrac{m+2p-k}{s}+1 \rfloor + 2p'+(s-1)(\lfloor \cfrac{m+2p-k}{s}+1 \rfloor - 1) -k+1 = m
 $$
