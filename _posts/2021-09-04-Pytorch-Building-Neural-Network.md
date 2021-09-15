@@ -108,6 +108,10 @@ $$
 
 
 
+在定义一个自己的网络时，我们
+
+
+
 ## 二、torch.nn
 
 ### 1. 卷积层
@@ -130,9 +134,84 @@ class torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=
 -   **padding_mode** (`string**`，可选) – `'zeros'`, `'reflect'`, `'replicate'` or `'circular'`，默认`'zeros'`
 -   **dilation** (`int` or `tuple`，可选) – 内核元素之间的距离，默认 1 
 -   **groups** (`int`，可选) – 从输入通道到输出通道到阻塞连接数，默认为 1 
--   **bias** (`bool`，可选) – 如果 `bias=True` ，添加科学系的偏置到输出中 
+-   **bias** (`bool`，可选) – 如果 `bias=True` ，添加科学系的偏置到输出中，默认为 `true`
 
 参数说明：
+
+-   `dilation` ：**空洞卷积**。下图蓝色为输入，绿色为输出（注意参考文献 4 中的阐述有误）
+    
+    -   `dilation=1` 
+    
+        <img src="2021-09-04-Pytorch-Building-Neural-Network.assets/full_padding_no_strides_transposed.gif" alt="full_padding_no_strides_transposed" style="zoom:50%;" />
+    
+    -   `dilation=2` 
+    
+        <img src="2021-09-04-Pytorch-Building-Neural-Network.assets/dilation.gif" alt="dilation" style="zoom:50%;" />
+    
+    -   以此类推
+    
+    -   其实这里 `dilation` 的定义和 `stride` 是一致的， `dilation` 并不代表跳过多少个元素，而代表两个内核元素之间的距离，因此默认值是 1 。
+    
+    -   好处：使用 `dilation` 的好处是增大单次计算时的感受域（即覆盖的面积），在**增大感受域**的同时却**没有增加计算量**，保留了更多的细节信息。例如在上面的例子中， `dilation=1` 时感受域为 $3*3=9$ ， `dilation=2` 时感受域为 $5*5=25$ 。
+    
+-   `groups` ：**深度可分离卷积**。
+
+    -   `groups=1` ：输出是所有的输入的卷积
+
+        ```python
+        conv = nn.Conv2d(in_channels=6, out_channels=3, kernel_size=1, groups=1)
+        conv.weight.data.size()  # torch.Size([3, 6, 1, 1])
+        ```
+
+    -   `groups=2` ：此时相当于有并排的两个卷积层，每个卷积层计算输入通道的一半，并且产生的输出是输出通道的一半，随后将这两个输出连接起来得到结果
+
+        ```python
+        conv = nn.Conv2d(in_channels=6, out_channels=6, kernel_size=1, groups=2)
+        conv.weight.data.size()  # torch.Size([6, 3, 1, 1])
+        ```
+
+    -   `groups=in_channels` ：每一个输入通道和它对应的卷积核进行卷积，该对应的卷积核大小为 $$\cfrac{C_{out}}{C_{in}}$$ 
+
+        ```python
+        conv = nn.Conv2d(in_channels=6, out_channels=6, kernel_size=1, groups=6)
+        conv.weight.data.size()  # torch.Size([6, 1, 1, 1])
+        ```
+
+        提示一下，**一般卷积网络中出现的大小都是四维数组，他们分别表示 $(数量N, 通道C, 高度H, 宽度W)$ **。注意顺序。
+
+    -   `groups` 的值必须能**同时整除 `in_channels` 和 `out_channels`** 。
+    
+    -   **【理解】**其**规律**是共有 `out_channels` 个卷积核，被分为 `groups` 组，即每组有 `out_channels/groups` 个卷积核，输入的通道也被分为 `groups` 组，每组的通道数为`in_channels/groups` ，因此每个卷积核的通道数为 `in_channels/groups` 组，每一组卷积核负责输入的一组，最后将 `groups` 组的卷积结果拼接起来，就得到了最终的输出。具体的实验结果可以查看[这篇教程](https://blog.csdn.net/cxx654/article/details/109681004)。
+    
+    -   好处：深度可分离卷积的目的是**减少卷积操作的参数量和计算量**，从而提升运算速度。在实际实验中，同样的网络结构下，这种分组的卷积效果是**好于**未分组的卷积的效果的。
+    
+-   参数 `kernel_size` ， `stride` ， `padding` ， `dilation` 
+
+    -   可以是一个 `int` 的数据，此时卷积 `height` 和 `width` 值相同
+    -   也可以是一个 `tuple` 数组， `tuple` 的第一维度表示 `height` 的数值， `tuple` 的第二维度表示 `width` 的数值
+
+大小推导：
+
+假设输入大小为 $(N, C_{in}, H_{in}, W_{in})$ ，输出为 $(N, C_{out}, H_{out}, W_{out})$ ，满足以下关系：
+
+
+$$
+H_{out} = \lfloor \cfrac{H_{in}+2 \times \text{padding}[0]-\text{dilation}[0] \times (\text{kernel\_size}[0]-1)-1}{\text{stride}[0]}+1 \rfloor
+$$
+
+$$
+W_{out} = \lfloor \cfrac{W_{in}+2 \times \text{padding}[1]-\text{dilation}[1] \times (\text{kernel\_size}[1]-1)-1}{\text{stride}[1]}+1 \rfloor
+$$
+
+
+卷积层含有两个变量：
+
+-   **~Conv2d.weight** (Tensor)：权重，可学习参数，大小为 $(\text{out\_channels}, \frac{\text{in\_channels}}{\text{groups}}, \text{kernel\_size}[0], \text{kernel\_size}[1])$ 
+-   **~Conv2d.bias** (Tensor)：偏置，可学习参数
+
+
+
+
 
 
 
@@ -306,6 +385,8 @@ module.fc2.weight、module.fc2.bias
 1.   [TORCH.NN](https://pytorch.org/docs/stable/nn.html)
 2.   [pytorch中存储各层权重参数时的命名规则，为什么有些层的名字中带module.](https://blog.csdn.net/u014734886/article/details/106230535)
 3.   [pytorch中文文档-torch.nn常用函数-待添加](https://www.cnblogs.com/wanghui-garcia/p/10775859.html)
+4.   [pytorch的函数中的dilation参数的作用](https://www.cnblogs.com/wanghui-garcia/p/10775367.html)
+5.   [pytorch卷积操作nn.Conv中的groups参数用法解释](https://blog.csdn.net/cxx654/article/details/109681004)
 
 
 
