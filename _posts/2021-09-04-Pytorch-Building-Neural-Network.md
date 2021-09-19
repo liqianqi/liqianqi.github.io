@@ -130,7 +130,7 @@ class torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=
 -   **out_channels** (`int`) – 输出的通道数量
 -   **kernel_size** (`int` or `tuple`) – 卷积核的大小
 -   **stride** (`int` or `tuple`，可选) – 卷积步长，默认为 1 
--   **padding** (`int` or `tuple` or `str`，可选) – Padding added to all four sides of the input. Default: 0
+-   **padding** (`int` or `tuple` or `str`，可选) – 向输入四边添加的填充宽度，默认为 0 
 -   **padding_mode** (`string**`，可选) – `'zeros'`, `'reflect'`, `'replicate'` or `'circular'`，默认`'zeros'`
 -   **dilation** (`int` or `tuple`，可选) – 内核元素之间的距离，默认 1 
 -   **groups** (`int`，可选) – 从输入通道到输出通道到阻塞连接数，默认为 1 
@@ -195,13 +195,16 @@ class torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=
 假设输入大小为 $(N, C_{in}, H_{in}, W_{in})$ ，输出为 $(N, C_{out}, H_{out}, W_{out})$ ，满足以下关系：
 
 
+
 $$
 H_{out} = \lfloor \cfrac{H_{in}+2 \times \text{padding}[0]-\text{dilation}[0] \times (\text{kernel\_size}[0]-1)-1}{\text{stride}[0]}+1 \rfloor
 $$
 
+
 $$
 W_{out} = \lfloor \cfrac{W_{in}+2 \times \text{padding}[1]-\text{dilation}[1] \times (\text{kernel\_size}[1]-1)-1}{\text{stride}[1]}+1 \rfloor
 $$
+
 
 
 卷积层含有两个变量：
@@ -211,7 +214,212 @@ $$
 
 
 
+### 2) nn.ConvTranspose2d
 
+微步卷积（fractionally-strided convolutions）或解卷积（deconvolutions），也可以看作是输入卷积的梯度。注意，解卷积并**不是卷积的逆过程**， 不能还原卷积前的数据。
+
+```python
+class torch.nn.ConvTranspose2d(in_channels, out_channels, kernel_size, stride=1, padding=0, output_padding=0, groups=1, bias=True, dilation=1, padding_mode='zeros', device=None, dtype=None)
+```
+
+参数：
+
+-   **in_channels** (`int`) – 输入的通道数量
+-   **out_channels** (`int`) – 输出的通道数量
+-   **kernel_size** (`int` or `tuple`) – 卷积核的大小
+-   **stride** (`int` or `tuple`，可选) – 卷积步长，默认为 1 
+-   **padding** (`int` or `tuple`，可选) – 向输入四边添加 `dilation * (kernel_size - 1) - padding` 零填充，默认为 0 
+-   **output_padding** (`int` or `tuple`，可选) – 向输出图片一边添加的填充，默认为 0 
+-   **groups** (`int`，可选) – 从输入通道到输出通道到阻塞连接数，默认为 1 
+-   **bias** (`bool`，可选) – 如果 `bias=True` ，添加科学系的偏置到输出中，默认为 `true` 
+-   **dilation** (`int` or `tuple`，可选) – 内核元素之间的距离，默认 1 
+
+参数说明：
+
+-   本质同样是卷积，很多参数的意义都和 conv 一样
+
+-   `out_padding` ：这种填充只会填充一边，目的是规定输出的大小。
+
+    -   在进行卷积时，对于不同大小的输入，规定不同的 `padding` 、 `stride` 和卷积类型，可能得到相同大小的输出。举个例子，对于 $6\times6$  的输入特征图，定义 `stride` 为 $2$ ，`kernel_size` 为 $3$ ，`padding` 为 $2$，输出的特征图大小为 $3\times3$ 。对于 $5\times5$  的输入特征图，定义 `stride` 为 $2$ ，`kernel_size` 为 $3$ ，`padding` 为 $1$，输出的特征图大小也为 $3\times3$ 。既然不同大小的图片经过卷积运算能够得到相同尺寸的输出，那么作为解卷积，同样的一样图片可以得到不同尺寸的合法输出，这就引发了歧义。当我们后续的操作涉及到尺寸有关的行为时，就无法保证网络按照预期进行计算。为了解决这种模糊性，pytorch 巧妙地引入了参数 `out_padding` 来获得固定大小的输出。
+
+    -   这里有一个默认前提，一般情况下我们希望经过卷积/解卷积处理后的图像尺寸比例与步长相等，即 $输入特征图大小/输出特征图大小=\text{stride}$ 。
+
+        我们先来算为了满足这个前提 `padding` 应该设置为多少。根据公式
+        $$
+        H_{out} = \lfloor \cfrac{H_{in}+2 \times \text{padding}[0]-\text{dilation}[0] \times (\text{kernel\_size}[0]-1)-1}{\text{stride}[0]}+1 \rfloor
+        $$
+        
+
+大小推导：
+
+假设输入大小为 $(N, C_{in}, H_{in}, W_{in})$ ，输出为 $(N, C_{out}, H_{out}, W_{out})$ ，满足以下关系：
+
+
+$$
+H_{out} = (H_{in}-1) \times \text{stride}[0] - 2 \times \text{padding}[0] + \text{dilation}[0] \times (\text{kernel\_size}[0]-1) + \text{out\_padding}[0] + 1
+$$
+
+$$
+W_{out} = (W_{in}-1) \times \text{stride}[1] - 2 \times \text{padding}[1] + \text{dilation}[1] \times (\text{kernel\_size}[1]-1) + \text{out\_padding}[1] + 1
+$$
+
+
+逆卷积层含有两个变量：
+
+-   **~ConvTranspose2d.weight** (Tensor)：权重，可学习参数，大小为 $(\text{in\_channels}, \frac{\text{out\_channels}}{\text{groups}}, \text{kernel\_size}[0], \text{kernel\_size}[1])$ 
+-   **~ConvTranspose2d.bias** (Tensor)：权重，可学习参数，大小为 $(\text{out\_channels})$ 
+
+更详细的说明可以查看这篇 [Deconvolution教程](https://harry-hhj.github.io/posts/Deconvolution/) 。
+
+
+
+### 2. 池化层
+
+#### 1) nn.MaxPool2d
+
+
+
+#### 2) nn.MaxUnpool2d
+
+
+
+#### 3) nn.AvgPool2d
+
+
+
+#### 4) nn.AdaptiveMaxPool2d
+
+
+
+#### 5) nn.AdaptiveAvgPool2d
+
+
+
+
+
+### 3. 非线性激活函数
+
+#### 1) nn.ELU
+
+
+
+#### 2) nn.Hardshrink
+
+
+
+#### 3) nn.Hardsigmoid
+
+
+
+#### 4) nn.Hardtanh
+
+
+
+#### 5) nn.Hardwish
+
+
+
+#### 6) nn.LeakyReLu
+
+
+
+#### 7) nn.LogSigmoid
+
+
+
+#### 8) nn.MultiheadAttention
+
+
+
+#### 9) nn.PReLu
+
+
+
+####  10) nn.ReLu
+
+
+
+#### 11) nn.ReLu6
+
+
+
+#### 12) RReLu
+
+
+
+#### 13) nn.SELU
+
+
+
+#### 14) nn.CELU
+
+
+
+#### 15) nn.GELU
+
+
+
+#### 16) nn.Sigmoid
+
+
+
+#### 17) nn.SiLU
+
+
+
+#### 18) nn.Mish
+
+
+
+#### 19) nn.Softplus
+
+
+
+####  20) nn.Softsign
+
+
+
+#### 21) nn.Tanh
+
+
+
+#### 22) nn.Tanhshrink
+
+
+
+#### 23) nn.Threshold
+
+
+
+### 4. 其他非线性操作
+
+#### 1) nn.Softmax
+
+
+
+#### 2) nn.LogSoftmax
+
+
+
+#### 3) nn.AdaptiveLogSoftmaxWithLoss
+
+
+
+
+
+### 5. 标准化层
+
+#### 1) nn.BatchNorm2d
+
+
+
+#### 2) nn.GroupNorm
+
+
+
+### 6. 循环层
+
+#### 1) 
 
 
 
