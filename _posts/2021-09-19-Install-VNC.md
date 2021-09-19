@@ -81,29 +81,47 @@ ifconfig
 
 ### 设置静态 IP 地址
 
+#### 操作主机
+
 为了防止 Linux 系统在不同的 Wi-Fi 中有不同的 IP 地址，或是 DHCP 每次分配了不一样的 IP 地址，我们可以使用网线来连接它，这样，我们可以通过这根网线配置一个局域网，而 IP 地址都是手动静态的了。
 
 在你的电脑主机上，配置网口或者拓展坞的 IP 地址、子网掩码和路由器。我们以常见的 Windows 系统和 MacOS 系统为例。
 
 对于 MacOS 系统，一般较新的苹果电脑是没有网口的，因此需要插上拓展坞，这里给出一个可用的产品（非广告，不提供链接）：
 
-<img src="2021-09-19-Install-VNC.assets/IMG_4627.PNG" alt="IMG_4627" style="zoom:30%;" />
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-19-Install-VNC.assets/IMG_4627.PNG?raw=true" alt="IMG_4627" style="zoom:30%;" />
 
 然后插上电脑后，点击`设置`->`网络`，会出现一个新的网卡连接，配置 IPv4 为手动，然后按照你的需求设置其他选项，点击应用就完成了。
 
-<img src="2021-09-19-Install-VNC.assets/image-20210919122021272.png" alt="image-20210919122021272" style="zoom:40%;" />
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-19-Install-VNC.assets/image-20210919122021272.png?raw=true" alt="image-20210919122021272" style="zoom:40%;" />
 
-对于 Windows 系统，TODO
+对于 Windows 系统，以 Windows 10 为例。打开控制面板：
+
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-19-Install-VNC.assets/1632038318067.png?raw=true" alt="1632038318067" style="zoom:40%;" />
+
+进入 ``网络和Internet->网络和共享中心`` 。选择网线接口对应的``连接``，我这里选择 ``以太网3`` 。要注意的是，**只有在网线连接电脑和对应设备时，才会有这一选项出现**：
+
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-19-Install-VNC.assets/1632038483428.png?raw=true" alt="1632038483428" style="zoom:50%;" />
+
+在 ``以太网3状态`` 窗口中，选择 ``属性`` 。在弹出的 ``以太网3属性`` 窗口中选择 ``Internet协议版本4`` ，并点击下方的按钮 ``属性`` ：
+
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-19-Install-VNC.assets/1632038506223.png?raw=true" alt="1632038506223" style="zoom:50%;" />
+
+在弹出的窗口中部署 ``ip`` ， ``子网掩码`` ， ``默认网关`` 。其中 ``ip`` 地址的前三位( ``192.168.***`` )需要保持与需要配置 ``VNC`` 的设备保持一致。最后一位需要与 ``VNC设备`` 不同，建议设置成 ``1`` ，子网掩码为 ``255.255.255.0`` ，默认网关与 ``ip`` 一致即可。点击确认保存，完成配置。
+
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-19-Install-VNC.assets/1632038552781.png?raw=true" alt="1632038552781" style="zoom:70%;" />
 
 
+
+#### 目标机
 
 在 Linux 系统中，以 Ubuntu 系统中为例，运行 `Settings` 软件，点击 `Network` ，点击 `Wired` 中右侧设置图标：
 
-<img src="2021-09-19-Install-VNC.assets/image-20210919122803884.png" alt="image-20210919122803884" style="zoom:25%;" />
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-19-Install-VNC.assets/image-20210919122803884.png?raw=true" alt="image-20210919122803884" style="zoom:25%;" />
 
 点击 `IPv4` ，点击 `Manual` ，在 `Addresses` 中添加 `IP 地址`、`子网掩码`和`网关`，注意这里的子网和网关必须和远程操作机上的一致，而 IP 地址必须不同，且都不和网关 IP 冲突：
 
-<img src="2021-09-19-Install-VNC.assets/image-20210919123207452.png" alt="image-20210919123207452" style="zoom:50%;" />
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-19-Install-VNC.assets/image-20210919123207452.png?raw=true" alt="image-20210919123207452" style="zoom:50%;" />
 
 ### 设置桌面分辨率
 
@@ -132,4 +150,6 @@ EndSection
 -----
 
 作者：Harry-hhj，github主页：[传送门](https://github.com/Harry-hhj)
+
+第二作者：E-T-E-R-N-A-L-B-L-U-E，github主页：[传送门](https://github.com/E-T-E-R-N-A-L-B-L-U-E)
 
