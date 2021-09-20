@@ -171,6 +171,12 @@ print('parameters_count:',count_parameters(model))
 
 
 
+<br/>
+
+可以下载本文的例子自行实践：链接: _<https://pan.baidu.com/s/1eet8b_HVmc_WMdIGxCibqA>_ 提取码: p1j3
+
+
+
 ---
 
 作者：Harry-hhj，github主页：[传送门](https://github.com/Harry-hhj)
