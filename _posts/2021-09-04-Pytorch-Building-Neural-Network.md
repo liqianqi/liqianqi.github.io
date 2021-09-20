@@ -303,6 +303,12 @@ upsample = nn.ConvTranspose2d(16, 16, 3, stride=2, padding=1)
 
 #### 1) nn.MaxPool2d
 
+```python
+torch.nn.MaxPool2d(kernel_size, stride=None, padding=0, dilation=1, return_indices=False, ceil_mode=False)
+```
+
+
+
 
 
 #### 2) nn.MaxUnpool2d
@@ -437,6 +443,10 @@ upsample = nn.ConvTranspose2d(16, 16, 3, stride=2, padding=1)
 
 #### 1) nn.BatchNorm2d
 
+```python
+class torch.nn.BatchNorm2d(num_features, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True, device=None, dtype=None)
+```
+
 论文来源： [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift](https://arxiv.org/abs/1502.03167) 。
 
 对于一个 4D 的输入（小批量的带通道的二维输入）：
@@ -535,6 +545,10 @@ m = nn.BatchNorm2d(100)  # 输入通道 100
 
 
 #### 2) nn.GroupNorm
+
+```python
+class torch.nn.GroupNorm(num_groups, num_channels, eps=1e-05, affine=True, device=None, dtype=None)
+```
 
 论文来源： [Group Normalization](https://arxiv.org/abs/1803.08494) 。
 $$
