@@ -212,6 +212,12 @@ $$
 -   **~Conv2d.weight** (Tensor)：权重，可学习参数，大小为 $(\text{out\_channels}, \frac{\text{in\_channels}}{\text{groups}}, \text{kernel\_size}[0], \text{kernel\_size}[1])$ 
 -   **~Conv2d.bias** (Tensor)：偏置，可学习参数
 
+用法：
+
+```python
+m = nn.Conv2d(16, 33, (3, 5), stride=(2, 1), padding=(4, 2), dilation=(3, 1))
+```
+
 
 
 ### 2) nn.ConvTranspose2d
@@ -246,9 +252,23 @@ class torch.nn.ConvTranspose2d(in_channels, out_channels, kernel_size, stride=1,
 
         我们先来算为了满足这个前提 `padding` 应该设置为多少。根据公式
         $$
-        H_{out} = \lfloor \cfrac{H_{in}+2 \times \text{padding}[0]-\text{dilation}[0] \times (\text{kernel\_size}[0]-1)-1}{\text{stride}[0]}+1 \rfloor
+        H_{out} = \lfloor \cfrac{H_{in}+2 \times \text{padding}[0]-\text{dilation}[0] \times (\text{kernel\_size}[0]-1)-1}{\text{stride}[0]}+1 \rfloor = \cfrac{H_{in}}{\text{stride}[0]}
         $$
+        得到：
+        $$
+        \text{padding}[0] = \cfrac{\text{dilation}[0] \times (\text{kernel\_size[0] - 1}) + 1 - \text{stride}[0]}{2}
+        $$
+        根据这个 padding 求 outpadding ，代入公式
+        $$
+        H_{out} = (H_{in}-1) \times \text{stride}[0] - 2 \times \text{padding}[0] + \text{dilation}[0] \times (\text{kernel\_size}[0]-1) + \text{out\_padding}[0] + 1 = H_{in} \times \text{stride}[0]
+        $$
+        得到：
+        $$
+        \text{out\_padding}[0] = 0
+        $$
+        这说明，当按照完全相同的尺寸逆卷积，且规定网络参数一致，输入输出特征图的比例互为倒数（即整个大小运算中应没有使用到下取整），此时无需 `out_padding` 。而当运算使用到了下取整，就意味着我们需要通过 `out_padding` 补足这部分被舍弃的大小。
         
+        而这一点，参考文献[6](https://www.cnblogs.com/wanghui-garcia/p/10791778.html)的表述就略有问题了，请读者注意。
 
 大小推导：
 
@@ -270,6 +290,12 @@ $$
 -   **~ConvTranspose2d.bias** (Tensor)：权重，可学习参数，大小为 $(\text{out\_channels})$ 
 
 更详细的说明可以查看这篇 [Deconvolution教程](https://harry-hhj.github.io/posts/Deconvolution/) 。
+
+用法：
+
+```python
+upsample = nn.ConvTranspose2d(16, 16, 3, stride=2, padding=1)
+```
 
 
 
@@ -411,9 +437,129 @@ $$
 
 #### 1) nn.BatchNorm2d
 
+论文来源： [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift](https://arxiv.org/abs/1502.03167) 。
+
+对于一个 4D 的输入（小批量的带通道的二维输入）：
+$$
+y = \cfrac{x-\mathbf{E}[x]}{\sqrt{\mathbf{Var}[x]+\epsilon}}*\gamma+\beta
+$$
+平均值和标准差是在小批量上的每个维度计算的，并且 $\gamma$ 和 $\beta$ 是大小为 $C$ 的可学习参数向量（其中 $C$ 是输入大小）。默认情况下，元素 $\gamma$ 被设置为 1 和元素 $\beta$ 被设置为 $0$ 。标准偏差是通过偏置估计器计算的，相当于 `torch.var(input, unbiased=False)` 。
+
+此外，默认情况下，在训练期间，该层**不断运行其计算出的**均值和方差的估计值，然后在评估期间将其用于归一化。运行估计保持默认值 `momentum` 0.1。更新规则：$\hat x_{new} = 1 - \text{momentum} \times \hat x + \text{momentum} \times x_t$ ，其中 $\hat x$ 是估计值， $x_t$ 是新的观测值。
+
+参数：
+
+-   **num_features** – 输入大小 $(N, C, H, W)$ 中的 $C$ 
+-   **eps** – 为数值稳定性添加到分母的值（当分母趋近于 $0$ 时会出现数值爆炸）。默认值：`1e-5`
+-   **momentum** – 用于 running_mean 和 running_var 计算的值。可以设置 `None` 为累积移动平均（即简单平均）。默认值：`0.1`
+-   **affine** – bool，当设置为 `True` 时，该模块具有可学习的仿射参数。默认：`True`
+-   **track_running_stats** – bool，当设置为 `True` ，该模块跟踪运行的均值和方差，当设定为 `False` ，该模块不跟踪这些统计数据，并初始化统计缓冲区 `running_mean` 和 `running_var` 作为 `None` 。当这些缓冲区为 `None` 时，此模块始终使用 batch 统计信息。在训练和评估模式中。默认：`True`
+
+参数说明：
+
+-   `afine` ：
+
+    -   当 `afine=true` 时， weight($\gamma$) 和 bias($\beta$) 将被使用，即进行缩放和平移
+
+        举例：
+
+        ````python
+        import torch
+        from torch import nn
+        
+        m = nn.BatchNorm2d(2,affine=True)
+        # 通过梯度下降更新，初始化为不缩放、不平移
+        print(m.weight)  	# tensor([1., 1.], requires_grad=True)
+        print(m.bias)  		# tensor([0., 0.], requires_grad=True)
+        
+        # 操作 m.weight 和 m.bias ，你将看到网络产生不同的输出
+        input = torch.arange(1*2*3*4, dtype=torch.float).view(1,2,3,4)
+        output = m(input)
+        print(output)
+        ````
+
+    -   当 `afine=true` 时， weight($\gamma$) 和 bias($\beta$) 都为 `None`
+
+        举例：
+
+        ```python
+        m = torch.nn.BatchNorm2d(2,affine=False)
+        print(m.weight) 		# None
+        print(m.bias)				# None
+        ```
+
+-   `track_running_stats` ：如果为 `True` ，则针对每次 mini-batch 结合上次的历史信息动态统计，如果为 `false` ，则使用该次 mini-batch 的静态统计信息。
+
+计算步骤：
+
+1.   先对输入按照通道进行归一化， $\mathbf E(x)$ 为计算的均值， $\mathbf{Var}(x)$ 为计算的方差
+2.   然后对归一化的结果按照通道进行缩放和平移，设置 `affine=True` ，即意味着 weight($\gamma$) 和 bias($\beta$) 将被使用
+
+大小推导：
+
+输入：$(N, C, H, W)$ ，输出：$(N, C, H, W)$
+
+用法：
+
+```python
+m = nn.BatchNorm2d(100)  # 输入通道 100 
+```
+
+
+
+##### batch & mini-batch
+
+这里顺便聊聊 batch 和 mini-batch 的区别：
+
+-   **batch** ：整个数据集，遍历一次完整的数据集称为一个 **epoch** 。遍历完所有输入数据后才进行参数更新。
+-   **mini-batch** ：将整个数据集分成几组，每次同时送入的一批数据称为一个 mini-batch 。每次迭代进行参数更新。
+
+其中 mini-batch 的方案在现在应用更为广泛，它是以下两种方案的折中：
+
+-   批梯度下降 Batch gradient descent ：
+
+    -   遍历全部数据集算一次损失函数，然后计算梯度更新参数。这种方法每更新一次参数需要遍历整个数据集，计算量开销大，计算速度慢，不支持在线学习。但是由于梯度下降方向稳定，不容易震荡。
+
+        <img src="2021-09-04-Pytorch-Building-Neural-Network.assets/image-20210920115442951.png" alt="image-20210920115442951" style="zoom:30%;" />
+
+-   随机梯度下降 Stochastic gradient descent ：
+
+    -   每输入一个数据就更新参数。这种方法速度比较快，但**不容易收敛**，会在最有点附近剧烈晃动，且梯度下降过程**震荡剧烈**。
+
+        <img src="2021-09-04-Pytorch-Building-Neural-Network.assets/image-20210920115506580.png" alt="image-20210920115506580" style="zoom:30%;" />
+
+为了结合上述两种方法的优势，克服各自的缺点，我们采用小批量梯度下降。一个 mini-batch 中的数据共同决定了本次梯度的方向，下降起来就不容易跑偏，减少了随机性。另一方面因为 mini-batch 的样本数与整个数据集相比小了很多，每次更新所需的计算量也不是很大。
+
+<img src="2021-09-04-Pytorch-Building-Neural-Network.assets/image-20210920115526710.png" alt="image-20210920115526710" style="zoom:30%;" />
+
 
 
 #### 2) nn.GroupNorm
+
+论文来源： [Group Normalization](https://arxiv.org/abs/1803.08494) 。
+$$
+y = \cfrac{x-\mathbf E[x]}{\sqrt{\mathbf{Var}[x]+\epsilon}} * \gamma + \beta
+$$
+输入通道被分成 `num_groups` 个组，每组有 `num_channels / num_groups` 个通道，有各自独立计算的均值和标准差。 $\gamma$ 和 $\beta$ 是针对每个通道可学习的
+
+参数：
+
+-   **num_groups** ( [*int*](https://docs.python.org/3/library/functions.html#int) ) – 将通道分成的组数
+-   **num_channels** ( [*int*](https://docs.python.org/3/library/functions.html#int) ) – 输入中预期的通道数
+-   **eps** – 为数值稳定性添加到分母的值。默认值：1e-5
+-   **affine** – bool，当设置为 时 `True` ，该模块具有可学习的每通道仿射参数，初始化为 `1`（对于权重）和 `0`（对于偏差）。默认值：`True`。
+
+大小推导：
+
+输入：$(N, C, *)$ ，输出：$(N, C, *)$
+
+用法：
+
+```python
+m = nn.GroupNorm(3, 6)  # Separate 6 channels into 3 groups
+```
+
+
 
 
 
@@ -595,6 +741,10 @@ module.fc2.weight、module.fc2.bias
 3.   [pytorch中文文档-torch.nn常用函数-待添加](https://www.cnblogs.com/wanghui-garcia/p/10775859.html)
 4.   [pytorch的函数中的dilation参数的作用](https://www.cnblogs.com/wanghui-garcia/p/10775367.html)
 5.   [pytorch卷积操作nn.Conv中的groups参数用法解释](https://blog.csdn.net/cxx654/article/details/109681004)
+6.   [nn.ConvTranspose2d的参数output_padding的作用](https://www.cnblogs.com/wanghui-garcia/p/10791778.html)
+7.   [Batch、Mini-batch和随机梯度下降的区别和Python示例](https://baijiahao.baidu.com/s?id=1665861710638558010&wfr=spider&for=pc)
+8.   https://github.com/vdumoulin/conv_arithmetic
+9.   
 
 
 
