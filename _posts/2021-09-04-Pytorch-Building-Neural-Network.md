@@ -16,6 +16,8 @@ image:
 
 # Pytorch 搭建神经网络
 
+
+
 ## 一、热身
 
 `torch.nn` 包依赖 `autograd` 包来定义模型并求导。 一个 `nn.Module` 包含：
@@ -93,7 +95,7 @@ netron.start(model_path)
 
 想要了解网络的结构，我们需要看 `forward()` 的函数，注意不是看 `init()` 。 `__init__()` 中可以定义网络的比较关键的部件，这样的做的好处是：便于变量名称管理（见 [【三】](#命名规则) ）和规定层的参数，增加代码的可读性。
 
-解析：对于大小为 $(w, h, c)$ 的输入 x ，首先经过 conv1 ，可以看出 conv1 的输入通道是 $3$ ，因此 $c=3$ ，输出 $6$ 通道。经过 $(5 \times 5)$ 的卷积，大小变为 $(w-4, h-4, 6)$ 。经过 $(2,2)$ 的最大池化层，大小缩减一半，通道数不变，为 $(\cfrac{w-4}{2}, \cfrac{h-4}{2}, 6)$ 。再经过一层 $(5 \times 5)$ 卷积，卷积核数量为 $16$ ，此时特征图尺寸 $(\cfrac{w-4}{2}-4, \cfrac{h-4}{2}-4, 16)$ 。再经过 $(2,2)$ 的最大池化层，变为 $(\cfrac{\cfrac{w-4}{2}-4}{2}, \cfrac{\cfrac{h-4}{2}-4}{2}, 16)$ 。全连接层的输入大小是固定的，因此我们得到以下的等式：
+解析：对于大小为 $(w, h, c)$ 的输入 x ，首先经过 conv1 ，可以看出 conv1 的输入通道是 $3$ ，因此 $c=3$ ，输出 $6$ 通道。经过 $(5 \times 5)$ 的卷积，大小变为 $(w-4, h-4, 6)$ 。经过 $(2,2)$ 的最大池化层，默认 `stride=kernel_size=2`，大小缩减一半，通道数不变，为 $(\cfrac{w-4}{2}, \cfrac{h-4}{2}, 6)$ 。再经过一层 $(5 \times 5)$ 卷积，卷积核数量为 $16$ ，此时特征图尺寸 $(\cfrac{w-4}{2}-4, \cfrac{h-4}{2}-4, 16)$ 。再经过 $(2,2)$ 的最大池化层，变为 $(\cfrac{\cfrac{w-4}{2}-4}{2}, \cfrac{\cfrac{h-4}{2}-4}{2}, 16)$ 。全连接层的输入大小是固定的，因此我们得到以下的等式：
 $$
 \left \{
 \begin{array}{c}
@@ -303,11 +305,92 @@ upsample = nn.ConvTranspose2d(16, 16, 3, stride=2, padding=1)
 
 #### 1) nn.MaxPool2d
 
+下采样的一种。
+
 ```python
 torch.nn.MaxPool2d(kernel_size, stride=None, padding=0, dilation=1, return_indices=False, ceil_mode=False)
 ```
 
+参数：
 
+-   **kernel_size** – 取最大值的窗口大小
+-   **stride** – 窗口滑动的步幅。**默认值为 `kernel_size`** （注意不是 $1$ ）
+-   **padding** – 要在两侧添加隐式零填充
+-   **dilation** – 控制窗口中元素步幅的参数
+-   **return_indices** – 如果`True`，将返回最大索引和输出。对之后的 `torch.nn.MaxUnpool2d` 有用。
+-   **ceil_mode** – 当为 True 时，将使用上取整 ceil （即填充数据）而不是下取整 floor （即舍弃数据）来计算**输出形状**
+
+参数说明：
+
+-   `stride` ：默认值等于卷积核的大小
+
+-   `ceil_mode` ：当 `ceil_mode = true` 时，将保存剩余的不足为 `kernel_size` 大小的数据保存，自动补足 $\text{NAN}$ 至 `kernel_size` 大小；当 `ceil_mode = False` 时，剩余数据不足 `kernel_size` 大小时，直接舍弃。
+
+    举例：对于如下原始数据，进行 $(2\times2)$ MaxPool2d：
+
+    ```text
+            0		0		|		0		0		|		0
+            1		1		|		1		1		|		1
+            ————————————----————————————
+            2		2		|		2		2		|		2
+            3		3		|		3		3		|		3
+            —————————————---————————————
+            4		4		|		4		4		|		4
+    ```
+
+    
+
+    -   ```text
+        当ceil_mode = True时：
+                0		0		|		0		0		|		0		×
+                1		1		|		1		1		|		1		×
+                ————————————----————————————----
+                2		2		|		2		2		|		2		×
+                3		3		|		3		3		|		3		×
+                —————————————---————————————----
+                4		4		|		4		4		|		4		×
+                ×		×		|		×		×		|		×		×
+                ————————————————————————————----
+                
+        输出：
+                [	1 	1 	1
+                 	3 	3 	3
+                 	4 	4 	4	]
+        
+        即：当数据不足以构成 2*2 时，仍然对剩余数据进行计算
+        ```
+
+    -   ```text
+        当ceil_mode = False时：
+                0		0		|		0		0
+                1		1		|		1		1
+                ————————————----——-
+                2		2		|		2		2
+                3		3		|		3		3
+        
+        输出：
+        				[	1		1
+        					3  	3	]
+        
+        即：当数据不足以构成 2*2 时，舍弃
+        ```
+
+大小推导：
+
+假设输入大小为 $(N, C_{in}, H_{in}, W_{in})$ ，输出为 $(N, C_{out}, H_{out}, W_{out})$ ，满足以下关系：
+$$
+H_{out} = \lfloor \cfrac{H_{in}+2 \times \text{padding}[0]-\text{dilation}[0] \times (\text{kernel\_size}[0]-1)-1}{\text{stride}[0]}+1 \rfloor
+$$
+
+$$
+W_{out} = \lfloor \cfrac{W_{in}+2 \times \text{padding}[1]-\text{dilation}[1] \times (\text{kernel\_size}[1]-1)-1}{\text{stride}[1]}+1 \rfloor
+$$
+
+用法：
+
+```python
+m = nn.MaxPool2d((3, 2), stride=(2, 1))
+```
 
 
 
@@ -758,7 +841,8 @@ module.fc2.weight、module.fc2.bias
 6.   [nn.ConvTranspose2d的参数output_padding的作用](https://www.cnblogs.com/wanghui-garcia/p/10791778.html)
 7.   [Batch、Mini-batch和随机梯度下降的区别和Python示例](https://baijiahao.baidu.com/s?id=1665861710638558010&wfr=spider&for=pc)
 8.   https://github.com/vdumoulin/conv_arithmetic
-9.   
+9.   [Pytorch池化层Maxpool2d中ceil_mode参数](https://blog.csdn.net/seungribariumgd/article/details/107066502)
+10.   
 
 
 

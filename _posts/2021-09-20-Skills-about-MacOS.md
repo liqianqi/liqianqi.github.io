@@ -8,8 +8,8 @@ math: false
 mermaid: false
 image:
   src: https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-20-Skills-about-MacOS.assets/MacOS.jpg?raw=true
-  width: 
-  height: 
+  width: 3200
+  height: 2000
 ---
 
 
