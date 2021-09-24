@@ -3,7 +3,7 @@ title: Linux Commands
 author: Harry-hhj
 date: 2021-09-22 22:00:00 +0800
 categories: [Tutorial, Linux]
-tags: [computer, Linux]
+tags: [computer, linux]
 math: false
 mermaid: false
 pin: false
