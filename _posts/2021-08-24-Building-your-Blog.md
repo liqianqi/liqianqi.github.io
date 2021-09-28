@@ -3,7 +3,7 @@ title: Building your Blog too
 author: Harry-hhj
 date: 2021-08-24 08:00:00 +0800
 categories: [Tutorial, Jekyll]
-tags: [getting started, jekyll]
+tags: [install, jekyll]
 image:
   src: https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-24-Building-your-Blog.assets/devices-mockup.png?raw=true
   width: 850

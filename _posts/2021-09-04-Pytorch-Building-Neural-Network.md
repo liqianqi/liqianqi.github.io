@@ -3,7 +3,7 @@ title: Pytorch Building Nueral Network
 author: Harry-hhj
 date: 2021-09-04 08:00:00 +0800
 categories: [Tutorial, Pytorch]
-tags: [getting started, computer, pytorch]
+tags: [getting started, computer science, pytorch]
 math: true
 mermaid: false
 image:
@@ -396,13 +396,99 @@ m = nn.MaxPool2d((3, 2), stride=(2, 1))
 
 #### 2) nn.MaxUnpool2d
 
+一种上采样方法， `MaxPool2d` 的部分逆运算，因为非最大值已经丢失了。
+
+`MaxUnpool2d` 将`MaxPool2d` 包含最大值索引的输出作为输入，并计算部分逆，其中所有非最大值都设置为零。
+
+```python
+```
+
+参数：
+
+-   **kernel_size** ( `int` or `tuple` ) – 最大池化窗口的大小
+-   **stride** ( `int` *or* `tuple` ) – 最大池化窗口的步幅。默认设置为 `kernel_size` 。
+-   **padding** ( `int` *or* `tuple` ) – 添加到输入的填充，可以通过输入 `output_size` 来确定
+
+输入：
+
+-   `input` ：输入张量
+-   `indices` ：`MaxPool2d` 返回
+-   `output_size` (optional)：目标输出大小
+
+用法：
+
+```python
+pool = nn.MaxPool2d(2, stride=2, return_indices=True)
+unpool = nn.MaxUnpool2d(2, stride=2)
+input = torch.tensor([[[[ 1.,  2,  3,  4],
+                        [ 5,  6,  7,  8],
+                        [ 9, 10, 11, 12],
+                        [13, 14, 15, 16]]]])
+output, indices = pool(input)
+unpool(output, indices, output_size=torch.Size([1, 1, 5, 5]))
+# tensor([[[[  0.,   0.,   0.,   0.,   0.],
+#           [  6.,   0.,   8.,   0.,   0.],
+#           [  0.,   0.,   0.,  14.,   0.],
+#           [ 16.,   0.,   0.,   0.,   0.],
+#           [  0.,   0.,   0.,   0.,   0.]]]])
+```
+
 
 
 #### 3) nn.AvgPool2d
 
+平均池化。
+$$
+\text{out}(N_i, C_j, h, w) = \frac{1}{kH*kW}\sum_{m=0}^{kH-1}\sum_{n=0}^{kW-1} \text{input}(N_i, C_j, \text{stride}[0] \times h+m, \text{stride}[1] \times w+n)
+$$
+
+````python
+class torch.nn.AvgPool2d(kernel_size, stride=None, padding=0, ceil_mode=False, count_include_pad=True, divisor_override=None)
+````
+
+参数：
+
+-   **kernel_size** – 窗口的大小
+-   **stride** – 窗口的步幅，默认值为 `kernel_size`
+-   **padding** – 要在两侧添加的隐式零填充
+-   **ceil_mode** – 当为 True 时，将使用 ceil 而不是 floor 来计算输出形状
+-   **count_include_pad** – 当为 True 时，将在平均计算中包括零填充
+-   **divisor_override** – 除法因子，如果指定，它将被用作平均时的除数，否则 `kernel_size` 将被使用
+
+用法：
+
+```python
+m = nn.AvgPool2d(3, stride=2)
+```
+
 
 
 #### 4) nn.AdaptiveMaxPool2d
+
+二维自适应最大池化。对于任何大小的输入，可以产生指定输出大小。
+
+```python
+class torch.nn.AdaptiveMaxPool2d(output_size, return_indices=False)
+```
+
+参数：
+
+-   **output_size** – H 和 W 可以是 `int`，或者 `None` 表示大小将与输入相同。
+-   **return_indices** – 如果`True`，将返回索引和输出。传递给 nn.MaxUnpool2d 很有用。默认：`False`
+
+AdaptiveMaxPool2d 自动计算了 `kernel_size` 、 `stride` 、 `padding` ，它可以用以下公式与 MaxPool2d 转换：
+$$
+\begin{equation}\begin{split}
+& \text{kernel\_size} = \text{input\_size} - (\text{output\_size}-1) * \text{stride}\\
+& \text{stride} = \lfloor \frac{\text{input\_size}}{\text{output\_size}} \rfloor\\
+& padding = 0
+\end{split}\end{equation}
+$$
+用法：
+
+```python
+m = nn.AdaptiveMaxPool2d((None, 7))
+```
 
 
 
@@ -665,6 +751,22 @@ m = nn.GroupNorm(3, 6)  # Separate 6 channels into 3 groups
 #### 1) 
 
 
+
+
+
+### Vision Layers（上采样）
+
+#### 1) nn.PixelShuffle
+
+
+
+#### 2) nn.Upsample
+
+
+
+https://samuel92.blog.csdn.net/article/details/82855946
+
+https://zhuanlan.zhihu.com/p/98081181
 
 
 

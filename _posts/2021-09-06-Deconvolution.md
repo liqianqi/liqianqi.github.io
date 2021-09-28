@@ -3,7 +3,7 @@ title: Deconvolution
 author: Harry-hhj
 date: 2021-09-06 12:00:00 +0800
 categories: [Tutorial, Nerual Network Theory]
-tags: [getting started, computer, nerual network]
+tags: [getting started, computer science, nerual network]
 math: true
 mermaid: false
 image:

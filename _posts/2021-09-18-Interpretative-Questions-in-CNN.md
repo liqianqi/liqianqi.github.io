@@ -3,7 +3,7 @@ title: CNN 中的解释性问题
 author: Harry-hhj
 date: 2021-09-18 16:20:00 +0800
 categories: [Question, CNN]
-tags: [computer, question]
+tags: [computer science, questions]
 math: true
 mermaid: false
 image:

@@ -3,7 +3,7 @@ title: Install VNC
 author: Harry-hhj
 date: 2021-09-19 11:48:00 +0800
 categories: [Tutorial, VNC]
-tags: [getting started, computer, vnc]
+tags: [install, tools, vnc]
 math: false
 mermaid: false
 pin: false

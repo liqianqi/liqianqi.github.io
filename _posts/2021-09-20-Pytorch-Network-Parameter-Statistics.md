@@ -3,7 +3,7 @@ title: Pytorch Network Parameter Statistics
 author: Harry-hhj
 date: 2021-09-20 18:40:00 +0800
 categories: [Tutorial, Pytorch]
-tags: [computer, pytorch, tools]
+tags: [computer science, pytorch, tools]
 math: false
 mermaid: false
 image:

@@ -3,7 +3,7 @@ title: RM 教程 1 —— Linux 教程
 author: Harry-hhj
 date: 2021-09-24 16:00:00 +0800
 categories: [Tutorial, RM]
-tags: [getting started, computer, rm, ubuntu]
+tags: [getting started, rm, ubuntu]
 math: false
 mermaid: false
 pin: false

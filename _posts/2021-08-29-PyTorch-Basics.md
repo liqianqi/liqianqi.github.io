@@ -3,9 +3,9 @@ title: PyTorch Basics
 author: Harry-hhj
 date: 2021-08-29 11:12:00 +0800
 categories: [Tutorial, PyTorch]
-tags: [getting started, computer, pytorch]
+tags: [getting started, computer science, pytorch]
 math: true
-mermaid: true
+mermaid: false
 image:
   src: https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-29-Pytorch-Basics.assets/pytorch.jpeg?raw=true
   width: 480

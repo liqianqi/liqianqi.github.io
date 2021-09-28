@@ -21,77 +21,65 @@ bundle exec jekyll s
 
 ## 二、博客规范
 
-博客采用 Markdown 语言编写，允许插入 html 语言。
+博客采用 Markdown 语言编写，支持所有 Markdown 语法，允许插入 html 语言。
 
-1.   博客名称采用 `<year>-<month>-<date>-<name/of/Blog>` 的方式命名，其中 `<name/of/Blog>` 不允许有空格，用 `-` 代替。
+### 1）博客命名
 
-2.   将 `<name/of/blog>.md` 与同名目录 `<name/of/blog>.assets` 共同存放于 `_post` 目录下，其中 `<name/of/blog>.assets` 目录用于存放图片和附件。
-
-3.   每篇博客的最开始处需要配置 config 选项，请参考其他博客顶部。
-
-     -   必须： `title` 用于指定博客标题，一般是文件名去除日期的剩余部分
-     -   必须： `author` 处签署作者花名
-     -   必须：`date`：创建的准确日期，须指明时区
-     -   必须：`categories`：指定文章类别，统一大写开头。一篇文章只能属于一个大类，可以二层分级，目前开设的类别有：
-         -   Essay：随笔，用于分享日常生活或人生感悟或文学创作等，内容不限
-         -   Tutorial：教程，用于分享技术，二级类别一般用英语专业名词命名，分类前先查看已有分类
-
-     -   必须：`tags`：指定文章标签，格式要求较弱，必须小写开头，标签不具有层级关系，现有规定如下：
-
-         -   只要涉及安装环境类教程必须带有 `getting started`
-         -   计算机类带有 `computer`
-         -   感悟类带有 `feelings`
-         -   日记类带有 `diary`
-
-     -   非必须：`toc`：指定文章是否开启右侧导航
-
-         ```yaml
-         toc: true  # 默认
-         toc: false
-         ```
-
-     -   非必须：`comments`：评论功能，暂不支持
-
-         ```yaml
-         comments: true  # 默认
-         comments: false
-         ```
-
-     -   非必须：`math`：如果你的博客带有如 MathJax 公式，需要手动开启，默认关闭节省性能
-
-         ```yaml
-         math: true
-         ```
-
-     -   非必须：`mermaid`：如果你的博客使用 [**Mermaid**](https://github.com/mermaid-js/mermaid) 绘图功能，需要手动开启
-
-         ```yaml
-         mermaid: true
-         ```
-
-         使用 ```` ```mermaid ```` 和 ```` ``` ```` 括起。
-
-     -   非必须：`image`：博客初始图片
-
-         ```yaml
-         image:
-           src: /path/to/image/file
-           width: 1000   # 像素
-           height: 400   # 像素
-           alt: image alternative text
-         ```
-
-     -   不可使用：`pin`：置顶，不开放
-
-4.   支持所有 Markdown 语法
+博客名称采用 `<year>-<month>-<date>-<name-of-Blog>` 的方式命名，放置于 `_posts/` 目录下，其中 `<name-of-Blog>` **不允许有空格，用 `-` 代替**。请尽量简洁并符合英文语法。此名称中的 `<year>-<month>-<date>` 仅用于区别不同的博客，方便识别，**分别用 4 、 2 、 2 个数字表示**，如 `2000-01-01` 。
 
 
 
-## 三、技巧
+### 2）博客头部
 
-### 图片
+每篇博客开始都需要配置 config 选项，**必须放置于博客最开始，采用 yaml 语法**。一个通用的头部如下，创建博客可以复制以下代码使用：
 
-最终提交的图片的路径**不是本地的相对路径**，而是 GitHub 上的预览路径，这一点我会在最终提交时修改，不必费心。虽然可以将图片放入 assets 文件夹下，无需修改路径，但为了方便修改，最终决定如此规定。
+```yaml
+---
+title: 
+author: 
+date: 2000-01-01 00:00:00 +0800
+categories: []
+tags: []
+math: false
+mermaid: false
+toc: true
+pin: false
+image:
+  src: 
+  width: 
+  height: 
+
+---
+```
+
+说明如下：
+
+```yaml
+---
+title: PyTorch Basics		# 博客标题，可以与 md 命名不同，但应当相似，可以使用空格
+author: Harry-hhj		# 博客作者，可以写下你的 Github 用户名
+date: 2021-08-29 11:12:00 +0800		# 时戳，用于网页排列博客的真正时间戳，指明时区
+categories: [Tutorial, PyTorch]		# 分类，见下分类规范
+tags: [getting started, computer science, pytorch]		# 标签，见下标签规范
+math: false		# 是否使用 mathjax 公示，不使用请关闭，加速网页加载
+mermaid: false		# 是否使用 mermaid 绘图（https://github.com/mermaid-js/mermaid），不使用请关闭，加速网页加载
+toc: true  # 默认，开启右侧网页导航栏与否
+pin: false		# 是否置顶，请设为 false ，仅我可以选择置顶与否
+image:		# 放置于博客标题下的图片
+  src: https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-29-Pytorch-Basics.assets/pytorch.jpeg?raw=true
+  width: 480
+  height: 230
+
+---
+```
+
+
+
+### 3）图片和小附件
+
+每篇博客 `<name-of-blog>.md` 所使用的图片和小附件放置于 `_posts` 目录下的同名目录 `<name-of-blog>.assets` 下。这样规定的原因是为了便于管理和更新。
+
+最终提交的图片的路径**不是本地的相对路径**，而是 GitHub 上的预览路径。在最后上传时，应将博客中**所有的图片路径**改为 `https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/<name-of-blog>.assets/<name-of-image>?raw=true` ，请不要遗漏 `?raw=true` 。（如果不明白可以使用相对路径并在博客中注明，我来修改）
 
 图片允许添加说明文字，格式如下：
 
@@ -115,6 +103,41 @@ _Image Caption_
 ```
 
 
+
+### 4）大附件
+
+大型附件（如超过 100 M）请使用其他平台传输，并给出链接和密码，如可使用百度网盘或阿里云盘等。请确保链接永久有效且来源可靠。（我可能会定期下载并更新为我的链接来确保文件不会丢失）
+
+
+
+### 5）分类规范
+
+分类必须使用首字母大写，允许使用空格，最多为两级。
+
+目前已经有的一级为（可以扩充更新，请使用 PR 或 Issue ）：
+
+-   Essay：随笔，用于分享日常生活或人生感悟或文学创作等，内容不限
+-   Tutorial：教程，用于分享技术，二级类别一般用英语专业名词命名，分类前先查看已有分类
+
+
+
+### 6）标签规范
+
+标签统一采用小写，不允许大写。
+
+目前已有的标签规范有：
+
+-   `getting started` ：任何入门级教程或知识分享型教程【1】
+-   `tools` ：任何有关工具、软件、语言等如何使用的教程【1】
+-   `skills` ：关于使用技巧，主要在于提高使用效率而非讲解如何使用【1】
+-   `questions` ：问题回答型文章【1】
+-   `diary` ：日记、随笔【1】
+-   `robomaster` ：与 RoboMaster 赛事有关的文章【1】
+-   `computer science` ：和计算机科学技术相关的任何文章【2】
+-   `infomation security` ：和信息安全有关的任何文章【2】
+-   一般技术文章都会带有与其核心技术点相关的英语专业名词【3】
+
+一般标签数量**小于等于 3 个**为宜，上面同一 【x】表示这些标签之间一般相互冲突。
 
 
 

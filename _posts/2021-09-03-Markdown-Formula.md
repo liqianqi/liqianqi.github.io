@@ -3,7 +3,7 @@ title: Markdown Fomula
 author: Harry-hhj
 date: 2021-09-03 18:00:00 +0800
 categories: [Tutorial, MathJax]
-tags: [share knowledge, computer, latex, markdown]
+tags: [tools, latex, markdown]
 math: true
 mermaid: true
 image:
