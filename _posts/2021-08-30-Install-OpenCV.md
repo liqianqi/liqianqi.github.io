@@ -237,7 +237,7 @@ cmake-gui
 
 这里说明一下，CMAKE_INSTALL_PREFIX 为安装路径，系统默认为 `/usr/local` ，如若对 Ubuntu 不熟悉，则不要更改，默认就好。
 
-确认无误后，点击 `Configure` ；先排除三个常见的问题：
+确认无误后，点击 `Configure` ；先排除四个常见的问题：
 
 1.   `ade*` 无法下载：手动下载（链接: _<https://pan.baidu.com/s/1oVUeBL6cbxeczRAd22-CHw>_ 提取码: j2v7），存放在 Downloads 文件夹里，打开 `<opencv>/modules/gapi/cmake/DownloadADE.cmake` ，把第 10 行更换成自己下载的文件目录路径，例如 `/home/<username>/Downloads/`  ，其中 `<username>` 代表你的用户名。重新 Configure 。
 

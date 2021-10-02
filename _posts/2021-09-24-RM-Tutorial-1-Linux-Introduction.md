@@ -3,7 +3,7 @@ title: RM 教程 1 —— Linux 教程
 author: Harry-hhj
 date: 2021-09-24 16:00:00 +0800
 categories: [Tutorial, RM]
-tags: [getting started, rm, ubuntu]
+tags: [getting started, robomaster, ubuntu]
 math: false
 mermaid: false
 pin: false
@@ -253,5 +253,5 @@ Tips：如果你想偷懒复制粘贴，但又对 Ubuntu 不熟悉，或许我�
 
 作者：唐欣阳，github主页：[传送门](https://github.com/xinyang-go)
 
-第二作者：黄弘骏，github主页：[传送门](https://github.com/Harry-hhj)
+第二作者：Harry-hhj，github主页：[传送门](https://github.com/Harry-hhj)
 
