@@ -337,11 +337,41 @@ $\rightarrow$ ：`\rightarrow`
 
 $\leftarrow$ ： `\leftarrow`
 
+$\leftrightarrow$ ： `\leftrightarrow`
+
+$\uparrow$ ： `\uparrow`
+
+$\downarrow$ ： `\downarrow`
+
+$\updownarrow$ ： `updownarrow`
+
 $\Rightarrow$ ： `\Rightarrow`
 
 $\Leftarrow$ ： `\Leftarrow`
 
+$\Leftrightarrow$ ： `\Leftrightarrow`
+
+$\Uparrow$ ： `\Uparrow`
+
+$\Downarrow$ ： `\Downarrow`
+
+$\Updownarrow$ ： `Updownarrow`
+
+$\longrightarrow$ ： `\longrightarrow`
+
+$\longleftarrow$ ： `\longleftarrow`
+
+$\longleftrightarrow$ ： `\longleftrightarrow`
+
+$\Longrightarrow$ ： `\Longrightarrow`
+
+$\Longleftarrow$ ： `\Longleftarrow`
+
+$\Longleftrightarrow$ ： `\Longleftrightarrow`
+
 $\mapsto$ ： `\mapsto`
+
+更多箭头符号可以查看[这篇教程](https://blog.csdn.net/liyuanbhu/article/details/51473886)。
 
 ### 6. 逻辑运算符
 
