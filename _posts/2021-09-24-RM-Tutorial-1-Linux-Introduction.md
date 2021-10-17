@@ -2,7 +2,7 @@
 title: RM 教程 1 —— Linux 教程
 author: Harry-hhj
 date: 2021-09-24 16:00:00 +0800
-categories: [Tutorial, RM]
+categories: [Course, RM]
 tags: [getting started, robomaster, ubuntu]
 math: false
 mermaid: false

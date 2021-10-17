@@ -2,7 +2,7 @@
 title: RM 教程 2 —— 安装 OpenCV
 author: Harry-hhj
 date: 2021-10-02 13:30:00 +0800
-categories: [Tutorial, RM]
+categories: [Course, RM]
 tags: [getting started, robomaster, opencv]
 math: false
 mermaid: false
