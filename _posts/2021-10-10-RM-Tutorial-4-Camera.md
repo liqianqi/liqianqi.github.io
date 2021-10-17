@@ -57,9 +57,10 @@ image:
 像元尺寸就是每个像素的面积。单个像素面积小，单位面积内的像素数量多，相机的分辨率增加，**利于对细小缺陷的检测和增大检测视场**。随着像素面积的缩小，满阱能力（每个像素能够储存的电荷数量）也随之减小，造成**相机动态范围的降低**。
 
 <center class="half">
-    <img src="2021-10-10-RM-Tutorial-4-Camera.assets/image-20211012104201954.png" alt="image-20211012104201954" style="zoom:50%;" />
-    <img src="2021-10-10-RM-Tutorial-4-Camera.assets/image-20211012104215207.png" alt="image-20211012104215207" style="zoom:50%;" />
+    <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-10-RM-Tutorial-4-Camera.assets/image-20211012104201954.png?raw=true" alt="image-20211012104201954" style="zoom:50%;" />
+    <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-10-RM-Tutorial-4-Camera.assets/image-20211012104215207.png?raw=true" alt="image-20211012104215207" style="zoom:50%;" />
 </center>
+
 
 #### 4. 像素深度
 
@@ -79,11 +80,11 @@ image:
 
 帧曝光是指传感器阵列中所有像素同时曝光，曝光周期由预先设定的快门时间确定。这种曝光方式的相机适合拍摄运动物体，图像不会偏移，不会失真。
 
-![global-shutter](2021-10-10-RM-Tutorial-4-Camera.assets/global-shutter.jpg)
+![global-shutter](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-10-RM-Tutorial-4-Camera.assets/global-shutter.jpg?raw=true)
 
 行曝光是指同一行上的像素同时曝光，不同行的曝光起始时间不同，每行的曝光时间是相同的，行间的延迟不变。这种曝光方式的相机适用于拍摄静止的物体，拍摄运动物体，图像会偏移。
 
-![rolling-shutter](2021-10-10-RM-Tutorial-4-Camera.assets/rolling-shutter.jpg)
+![rolling-shutter](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-10-RM-Tutorial-4-Camera.assets/rolling-shutter.jpg?raw=true)
 
 在工业相机的选型中，一般参数表中会标注全局快门或卷帘快门，他们分别对应帧曝光和行曝光。
 
@@ -121,7 +122,7 @@ image:
 
     -   标准：视角小，但产生的畸变也较小。下图是一个畸变的例子：
 
-        <img src="2021-10-10-RM-Tutorial-4-Camera.assets/1633799583875.png" alt="1633799583875" style="zoom:50%;" />
+        <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-10-RM-Tutorial-4-Camera.assets/1633799583875.png?raw=true" alt="1633799583875" style="zoom:50%;" />
 
         一般来说，在没有特殊需求的情况下，镜头选型选择标准镜头。
 
@@ -138,7 +139,7 @@ image:
 
 FOV 的全称是 Field of View 。如下图，如果成像平面的宽度 W 固定， FOV 的大小直接由 Focal Length （焦距）决定。 Focal Length 越大，看得越远，但 FOV 越小。 Focal Length 越小，看得越近，但 FOV 变大。
 
-![Fig1](2021-10-10-RM-Tutorial-4-Camera.assets/FOV.png)
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-10-RM-Tutorial-4-Camera.assets/FOV.png?raw=true" alt="Fig1" style="zoom:50%;" />
 
 如果已知 W 和 Focal Length ， FOV 可以用简单的三角函数关系就可以求出：
 $$
@@ -150,7 +151,7 @@ FOV 有三种：
 -   VFOV：由 Focal Length 和 sensor 的高度（H）决定
 -   DFOV：由 Focal Length ， W ， H 共同决定
 
-![在这里插入图片描述](2021-10-10-RM-Tutorial-4-Camera.assets/HVDFOV.png)
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-10-RM-Tutorial-4-Camera.assets/HVDFOV.png?raw=true" alt="在这里插入图片描述" style="zoom:50%;" />
 
 当我们选定了一个相机时，我们就知道了相机芯片的参数，为其配置镜头。
 
@@ -158,11 +159,11 @@ FOV 有三种：
 
 视野的计算方法比较简单，就是一个相似三角形计算。
 
-![相机视场计算图](2021-10-10-RM-Tutorial-4-Camera.assets/aa3b84a976a6771080087ed49a598d8c.png)
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-10-RM-Tutorial-4-Camera.assets/aa3b84a976a6771080087ed49a598d8c.png?raw=true" alt="相机视场计算图" style="zoom:67%;" />
 
 同样，我们可以用类似的方法估计焦距大小，这也是相机标定的完成方式。
 
-![相机镜头焦距计算](2021-10-10-RM-Tutorial-4-Camera.assets/2016-07-19-08-49-124.jpg)
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-10-RM-Tutorial-4-Camera.assets/2016-07-19-08-49-124.jpg?raw=true" alt="相机镜头焦距计算" style="zoom:67%;" />
 
 
 
@@ -173,9 +174,10 @@ FOV 有三种：
 下面为组装好的摄像机图片：
 
 <center class="half">
-  <img src="2021-10-10-RM-Tutorial-4-Camera.assets/1633801262981.png" alt="1633801262981" style="zoom:50%;" />
-  <img src="2021-10-10-RM-Tutorial-4-Camera.assets/1633801349099.png" alt="1633801349099" style="zoom:50%;" />
+  <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-10-RM-Tutorial-4-Camera.assets/1633801262981.png?raw=true" alt="1633801262981" style="zoom:50%;" />
+  <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-10-RM-Tutorial-4-Camera.assets/1633801349099.png?raw=true" alt="1633801349099" style="zoom:50%;" />
 </center>
+
 
 
 
@@ -236,7 +238,7 @@ $$
 
 相机坐标系到像平面坐标系的转换如下图所示：
 
-![img](2021-10-10-RM-Tutorial-4-Camera.assets/70.png)
+![img](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-10-RM-Tutorial-4-Camera.assets/70.png?raw=true)
 
 根据相似三角形，点 P 在相机坐标系和像平面坐标系中的坐标满足如下关系：
 $$
@@ -339,7 +341,7 @@ $$
 
 理想的针孔成像模型确定的坐标变换关系均为线性的，而实际上，现实中使用的相机由于镜头中镜片因为光线的通过产生的不规则的折射，**镜头畸变**（lens distortion）总是存在的，即根据理想针孔成像模型计算出来的像点坐标与实际坐标存在偏差。畸变的引入使得成像模型中的几何变换关系变为非线性，增加了模型的复杂度，但更接近真实情形。畸变导致的成像失真可分为**径向失真**和**切向失真**两类：
 
-![v2-3f443a32bacc0ed8ec9df0a6b60eadc0_1440w](2021-10-10-RM-Tutorial-4-Camera.assets/v2-3f443a32bacc0ed8ec9df0a6b60eadc0_1440w.png)
+![v2-3f443a32bacc0ed8ec9df0a6b60eadc0_1440w](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-10-RM-Tutorial-4-Camera.assets/v2-3f443a32bacc0ed8ec9df0a6b60eadc0_1440w.png?raw=true)
 
 畸变类型很多，总体上可分为径向畸变和切向畸变两类。
 
@@ -405,7 +407,7 @@ $$
 
 我们可以使用标定板辅助进行相机标定。这是一个非常贵重且易损坏的工具，**使用时一定要小心！**
 
-![1633810922541](2021-10-10-RM-Tutorial-4-Camera.assets/1633810922541.png)
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-10-RM-Tutorial-4-Camera.assets/1633810922541.png?raw=true" alt="1633810922541" style="zoom:30%;" />
 
 
 

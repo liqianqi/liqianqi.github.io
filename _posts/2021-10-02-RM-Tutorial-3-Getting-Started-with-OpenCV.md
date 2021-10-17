@@ -77,7 +77,7 @@ std::cout << "Pointer src2_copy2.data points to" << (void*)src2_copy2.data << st
 
 程序运行结果：
 
-![image-20211003110640589](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/image-20211003110640589.png)
+![image-20211003110640589](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/image-20211003110640589.png?raw=true)
 
 可以看到通过等号赋值的 `src2_copy1` 的指针与 `src2` 指向同一片内存地址，这意味着对任意一个变量的操作会影响另一个，而通过使用 `clone()` ，系统为新的变量 `src_copy2` 创建了一块新的内存空间，并把原始变量拷贝了过去。
 
@@ -103,7 +103,7 @@ std::cout << cv::format(src3, cv::Formatter::FMT_NUMPY) << std::endl;
 
 输出结果如下：
 
-<img src="2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/image-20211003122207307.png" alt="image-20211003122207307" style="zoom:50%;" />
+<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/image-20211003122207307.png?raw=true" alt="image-20211003122207307" style="zoom:50%;" />
 
 ### 6）矩阵的随机访问
 
@@ -126,7 +126,7 @@ Mat 类型本身没有实现 [] 的随机访问，因此如果想要随机访问
 
     从结果可以看出，第 1 行 1 列的元素从 $1$ 变成了 $2$ ：
 
-    <img src="2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/image-20211003124637243.png" alt="image-20211003124637243" style="zoom:50%;" />
+    <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/image-20211003124637243.png?raw=true" alt="image-20211003124637243" style="zoom:50%;" />
 
 -   `Mat` 类提供的 `ptr` 方法也可以借助指针的方式实现随机访问，其声明如下：
 
@@ -145,7 +145,7 @@ Mat 类型本身没有实现 [] 的随机访问，因此如果想要随机访问
 
     从结果可以看出，该代码达到了和 `at()` 一样的效果：
 
-    <img src="2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/image-20211003125310421.png" alt="image-20211003125310421" style="zoom:50%;" />
+    <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/image-20211003125310421.png?raw=true" alt="image-20211003125310421" style="zoom:50%;" />
 
 ### 7）Mat 简单运算
 
@@ -164,7 +164,7 @@ Mat 类型本身没有实现 [] 的随机访问，因此如果想要随机访问
 
     结果是 `=` 复制的矩阵 `src6_copy1` 被同时修改，而通过 `clone()` 复制的 `src6_copy2` 没有变化：
 
-    <img src="2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/image-20211003130209801.png" alt="image-20211003130209801" style="zoom:50%;" />
+    <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/image-20211003130209801.png?raw=true" alt="image-20211003130209801" style="zoom:50%;" />
 
     **如果想要安全地复制，使用 OpenCV 提供的矩阵复制函数。**
 
@@ -193,7 +193,7 @@ Mat 类型本身没有实现 [] 的随机访问，因此如果想要随机访问
 
         最终两种运算的结果是不同的：
 
-        <img src="2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/image-20211003154548150.png" alt="image-20211003154548150" style="zoom:50%;" />
+        <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/image-20211003154548150.png?raw=true" alt="image-20211003154548150" style="zoom:50%;" />
 
 ### 8）读写图片和视频
 
@@ -249,7 +249,7 @@ void cv::cvtColor(cv::InputArray src, cv::OutputArray dst, int code, int dstCn =
 
 例如对于下面这张图片：
 
-![apple](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/apple.jpg)
+![apple](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/apple.jpg?raw=true)
 
 我们通过以下代码将其转化为灰度图：
 
@@ -261,7 +261,7 @@ cv::imshow("gray", gray);
 cv::waitKey(0);
 ```
 
-![apple_grey](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/apple_grey.jpg)
+![apple_grey](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/apple_grey.jpg?raw=true)
 
 有另一种方法是在读如图片时指定读取灰度图，但是由于其实用性较低，不与赘述。
 
@@ -299,15 +299,15 @@ double cv::threshold(InputArray src, OutputArray dst, double thresh, double maxv
     -   `THRESH_TOZERO`：将小于 thres 的值变为 0 , 大于 thres 的值不变
     -   `THRESH_TOZERO_INV`：将大于 thres 的值变为 0 , 小于 thres 的值不变
 
-    <img src="2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/image-20211004105640441.png" alt="image-20211004105640441" style="zoom:30%;" />
+    <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/image-20211004105640441.png?raw=true" alt="image-20211004105640441" style="zoom:30%;" />
 
 举个例子，现在我们需要将这样一种图进行二值化，提取其中棋盘格黑色的区域：
 
-![calibrate](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/calibrate.jpg)
+![calibrate](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/calibrate.jpg?raw=true)
 
 我们用下面这段程序实现了这一功能：
 
-![thres](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/thres.jpg)
+![thres](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/thres.jpg?raw=true)
 
 可以看到我们很好地提取出了黑色的部分。
 
@@ -339,11 +339,11 @@ double thres = cv::threshold(src, binary_img, 100, 255, cv::THRESH_OTSU);
 
 例如下图这张图片，左侧的亮度明显高于右下角：
 
-![newspaper](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/newspaper.jpg)
+![newspaper](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/newspaper.jpg?raw=true)
 
 如果使用大津法自动求阈值并直接二值化，会得到类似下图的结果：
 
-![newspaper-bad](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/newspaper-bad.jpg)
+![newspaper-bad](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/newspaper-bad.jpg?raw=true)
 
 为了解决这种问题，我们需要对每个区域局部适应区域内的灰度情况，对每个区域使用不同的阈值分别二值化。 OpenCV 中提供了 `adaptiveThreshold` 方法实现这一功能。
 函数的声明如下：
@@ -360,7 +360,7 @@ void cv::adaptiveThreshold(InputArray src, OutputArray dst, double maxValue, int
 
 自适应二值化算法的运行结果如下：
 
-![newspaper_adaptive](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/newspaper_adaptive.jpg)
+![newspaper_adaptive](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/newspaper_adaptive.jpg?raw=true)
 
 
 
@@ -380,7 +380,7 @@ void cv::Canny(InputArray image, OutputArray edges, double threshold1, double th
 
 对于下面这张图：
 
-![energy_gray](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/energy_gray.jpg)
+![energy_gray](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/energy_gray.jpg?raw=true)
 
 我们使用下面的程序进行梯度边缘检测：
 
@@ -394,7 +394,7 @@ cv::waitKey(0);
 
 程序的结果是：
 
-![energy_canny](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/energy_canny.jpg)
+![energy_canny](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/energy_canny.jpg?raw=true)
 
 
 
@@ -404,7 +404,7 @@ cv::waitKey(0);
 
 首先，在 RGB 颜色表示方法中，每个颜色分量都包含了该像素点的颜色信息和亮度信息。我们希望对 RGB 颜色表示进行一个变换，使得像素点的颜色信息和亮度信息可以独立开来。为此，我们可以使用 HSV 颜色空间。
 
-![img](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/hsv.png)
+![img](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/hsv.png?raw=true)
 
 _hsv 六棱锥_
 
@@ -414,7 +414,7 @@ _hsv 六棱锥_
 
 以下是几种常见颜色的 hsv 阈值，每种颜色对应 HSV 空间中的一块区域，在各通道上呈现一个或两个区间：
 
-![img](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/900592-20160727130101544-2044756507.png)
+![img](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/900592-20160727130101544-2044756507.png?raw=true)
 
 这些数值可以作为调参的一个初值。
 
@@ -430,7 +430,7 @@ void cv::inRange(InputArray src, InputArray lowerb, InputArray upperb, OutputArr
 
 我们以下图为例：
 
-![energy](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/energy.jpg)
+![energy](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/energy.jpg?raw=true)
 
 我们想要提取的颜色为红色和橙色的区域，通过百度搜索，我们了解到红色和橙色的颜色在 HSV 空间中处于区间 $[(0, 43, 46), (255, 255, 255)] \cup [(156, 43, 46), (180, 255, 255)]$ 中。
 
@@ -450,7 +450,7 @@ cv::waitKey(0);
 
 程序结果如下：
 
-![energy_hsv_result](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/energy_hsv_result.jpg)
+![energy_hsv_result](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/energy_hsv_result.jpg?raw=true)
 
 当然， HSV 颜色提取虽然是一种非常优秀的二值化方法，但他也存在自己的局限性。例如亮度的变化会对 HSV 数值造成干扰。同时，在实际使用过程中，如果相机的感光元件敏感度较高，也会造成图像中出现噪点，形成椒盐噪声。此外，在感光角度不同时，相机获取到的颜色饱和度和色相也会发生一定程度的变化，造成 HSV空洞 。
 
@@ -526,7 +526,7 @@ void HSV_calib(const cv::Mat img, int *thres, int mode) {
 
 滤波类似于卷积，有一个叫做算子的东西处理图像的局部特征。在开始之前，我们本节中的所有实例会针对以下图片进行。
 
-![noise](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/noise.jpg)
+![noise](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/noise.jpg?raw=true)
 
 下面介绍几个比较常用的滤波算法。
 
@@ -558,7 +558,7 @@ cv::blur(img, task5_blured_img, cv::Size(7, 7));
 
 结果如下
 
-![noise_blurred](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/noise_blurred.jpg)
+![noise_blurred](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/noise_blurred.jpg?raw=true)
 
 中值滤波的效果是使得图片更加模糊，削弱噪声的边缘梯度，使其看起来不那么显著，但是噪声本身并没有得到很好的消除，同时有用的信息也被削弱了。均值滤波是最快速的滤波算法之一，但同时它的效果却也不够理想，一般无法有效地去除椒盐噪声。
 
@@ -599,7 +599,7 @@ cv::GaussianBlur(src, gaussian_blured_img, cv::Size(7, 7), 0, 0);
 
 结果如下
 
-![noise_guassian_blurred](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/noise_guassian_blurred.jpg)
+![noise_guassian_blurred](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/noise_guassian_blurred.jpg?raw=true)
 
 可以看到虽然结果的噪声仍然很大，但图像在平滑效果和特征保留上相对均值滤波都有一定的提升，例如边缘信息更加明显一些。
 
@@ -620,7 +620,7 @@ cv::medianBlur(src, median_blured_img, 7);
 
 结果如下
 
-![noise_median_blurred](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/noise_median_blurred.jpg)
+![noise_median_blurred](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/noise_median_blurred.jpg?raw=true)
 
 可以看到中值滤波在去除椒盐噪声上有着良好的表现，但在信息的保存上劣于高斯滤波。中值滤波不仅对孤立杂点的消除效果显著，对稍密集的杂点也有很好的去除效果。
 
@@ -632,7 +632,7 @@ cv::medianBlur(src, median_blured_img, 7);
 
 结构元（Structuring Elements）：一般有矩形和十字形。结构元有一个锚点 O ，O 一般定义为结构元的中心。下图是几个不同形状的结构元，紫红色块为锚点 O 。
 
-![img](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/v2-f9264db4ca737c71cf7d21eb442a74f3_1440w.jpg)
+![img](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/v2-f9264db4ca737c71cf7d21eb442a74f3_1440w.jpg?raw=true)
 
 常见的形态学运算有腐蚀、膨胀、开闭，常用于中击不中变换、边界提取和跟踪、区域填充、提取连通分量、细化和像素化， 以及凸壳。
 
@@ -663,7 +663,7 @@ cv::Mat element = cv::getStructuringElement(cv::MORPH_CROSS, cv::Size(21, 21));
 
 膨胀运算示意图如下，从视觉上看图像中的前景仿佛“膨胀”了一样：
 
-![img](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/v2-706dbd8d0eacdaf61b3595b2de4f18b2_1440w.jpg)
+![img](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/v2-706dbd8d0eacdaf61b3595b2de4f18b2_1440w.jpg?raw=true)
 
 OpenCV 中的实现函数是
 
@@ -684,7 +684,7 @@ cv::waitKey(0);
 
 效果如下：
 
-![dilated](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/dilated.jpg)
+![dilated](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/dilated.jpg?raw=true)
 
 
 
@@ -694,7 +694,7 @@ cv::waitKey(0);
 
 腐蚀运算示意图如下，从视觉上看图像中的前景仿佛被“腐蚀”了一样：
 
-![img](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/v2-dad3db32195f9849bff5f27428f293f2_1440w.jpg)
+![img](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/v2-dad3db32195f9849bff5f27428f293f2_1440w.jpg?raw=true)
 
 OpenCV 中的实现函数是
 
@@ -714,7 +714,7 @@ cv::waitKey(0);
 
 效果如下：
 
-![eroded](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/eroded.jpg)
+![eroded](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/eroded.jpg?raw=true)
 
 
 
@@ -724,7 +724,7 @@ cv::waitKey(0);
 
 开运算示意图如下，从视觉上看仿佛将原本连接的物体“分开”了一样：
 
-![img](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/v2-df1184167b6ecd67b139093fe6e57be5_1440w.jpg)
+![img](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/v2-df1184167b6ecd67b139093fe6e57be5_1440w.jpg?raw=true)
 
 开运算能够除去孤立的小点，毛刺和小桥，而总的位置和形状不便。 
 
@@ -755,7 +755,7 @@ cv::waitKey(0);
 
 效果如下：
 
-![opened](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/opened.jpg)
+![opened](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/opened.jpg?raw=true)
 
 
 
@@ -765,7 +765,7 @@ cv::waitKey(0);
 
 开运算示意图如下，从视觉上看仿佛将原本分开的部分“闭合”了一样：
 
-![img](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/v2-2673a7922d457e36998759384d627492_1440w.jpg)
+![img](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/v2-2673a7922d457e36998759384d627492_1440w.jpg?raw=true)
 
 闭运算能够填平小湖（即小孔），弥合小裂缝，而总的位置和形状不变。 
 
@@ -783,7 +783,7 @@ cv::waitKey(0);
 
 效果如下：
 
-![closed](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/closed.jpg)
+![closed](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/closed.jpg?raw=true)
 
 
 
@@ -949,7 +949,7 @@ cv::waitKey(0);
 
 实现效果如图：
 
-![energy_edge](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/energy_edge.jpg)
+![energy_edge](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/energy_edge.jpg?raw=true)
 
 
 
@@ -980,7 +980,7 @@ bool judgeContourByArea(const std::vector<cv::Point> &contour)
 
 它对能量机关的轮廓提取如图：
 
-![1634192394613](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/1634192394613.png)
+![1634192394613](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/1634192394613.png?raw=true)
 
 这种方法简单高效，但也尤其缺点，确定是**鲁棒性低，容易受干扰**，对于每一个场景往往**需要针对输入调参**后才能使用。
 
@@ -1017,7 +1017,7 @@ bool judgeContourByConvexity(const std::vector<cv::Point> &contour)
 
 它对能量机关的提取如图：
 
-![1634193485720](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/1634193485720.png)
+![1634193485720](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/1634193485720.png?raw=true)
 
 ### 3）与矩形相似性约束
 
@@ -1053,7 +1053,7 @@ bool judgeContourByRect(const std::vector<cv::Point> &contour)
 
 运行结果如图：
 
-![1634195583622](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/1634195583622.png)
+![1634195583622](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/1634195583622.png?raw=true)
 
 <br/>
 
@@ -1102,7 +1102,7 @@ bool judgeContourByTuopu(const std::vector<cv::Vec4i> &hierachy, const int &id, 
 
 运行结果如图：
 
-![1634197853445](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/1634197853445.png)
+![1634197853445](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/1634197853445.png?raw=true)
 
 ### 5）通过与其他轮廓的几何关系判断
 
@@ -1158,7 +1158,7 @@ bool judgeContourByRelation(const std::vector<std::vector<cv::Point>> &contours,
 
 运行结果如图：
 
-![1634199484314](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/1634199484314.png)
+![1634199484314](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/1634199484314.png?raw=true)
 
 对于轮廓筛选的部分就介绍到这里，传统视觉的奥妙远不止于此。以上内容有一部分是笔者的个人总结，并不一定是主流方法。读者可以在实践中慢慢探索，寻找自己的传统视觉的思路。
 
@@ -1188,7 +1188,7 @@ bool judgeContourByRelation(const std::vector<std::vector<cv::Point>> &contours,
 
 1.   苹果识别，请识别下图中的苹果
 
-     ![apple.png](2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/auto-orient&e=1634303762&token=FufIJBFRUFc5GcrmOa3fwZnzhFDNlMKS3k41hGRG:MgrzBWzw8VZt3xgwZX_T5b1NH-g.png)
+     ![apple.png](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/auto-orient&e=1634303762&token=FufIJBFRUFc5GcrmOa3fwZnzhFDNlMKS3k41hGRG:MgrzBWzw8VZt3xgwZX_T5b1NH-g.png?raw=true)
 
 2.   识别链接中两个视频中的能量机关，框出亮起扇叶的顶部矩形块位置
 
