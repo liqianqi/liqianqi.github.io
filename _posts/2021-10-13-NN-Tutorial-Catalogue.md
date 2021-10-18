@@ -33,9 +33,8 @@ image:
 
 ## 二、培训教程
 
-一、[神经网络集训 —— Numpy 的使用](https://harry-hhj.github.io/posts/Numpy-Tutorial/)
-
-二、
+1.   [神经网络集训 —— Numpy 的使用](https://harry-hhj.github.io/posts/Numpy-Tutorial/)
+2.   
 
 
 
