@@ -347,6 +347,14 @@ cd build
 
 
 
+<br/>
+
+**如果觉得本教程不错或对您有用，请前往项目地址 [https://github.com/Harry-hhj/Harry-hhj.github.io](https://github.com/Harry-hhj/Harry-hhj.github.io) 点击 Star :) ，这将是对我的肯定和鼓励，谢谢！**
+
+<br/>
+
+
+
 ## 六、参考教程
 
 1.   [OpenCV学习笔记（一） OpenCV简介及安装](https://zhuanlan.zhihu.com/p/31784840)

@@ -647,6 +647,14 @@ clear
 
 
 
+<br/>
+
+**如果觉得本教程不错或对您有用，请前往项目地址 [https://github.com/Harry-hhj/Harry-hhj.github.io](https://github.com/Harry-hhj/Harry-hhj.github.io) 点击 Star :) ，这将是对我的肯定和鼓励，谢谢！**
+
+<br/>
+
+
+
 ## 十二、参考资料
 
 1.   [Linux常用命令](https://blog.csdn.net/qq_23329167/article/details/83856430/)

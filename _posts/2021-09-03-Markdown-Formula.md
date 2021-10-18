@@ -756,6 +756,14 @@ MathJax 通过**内部策略**管理自己的公式内的空间，因此公式�
 
 
 
+<br/>
+
+**如果觉得本教程不错或对您有用，请前往项目地址 [https://github.com/Harry-hhj/Harry-hhj.github.io](https://github.com/Harry-hhj/Harry-hhj.github.io) 点击 Star :) ，这将是对我的肯定和鼓励，谢谢！**
+
+<br/>
+
+
+
 ## 十五、参考文献
 
 1.   [Mathjax公式教程](https://blog.csdn.net/dabokele/article/details/79577072)

@@ -156,6 +156,14 @@ $$
 
 
 
+<br/>
+
+**如果觉得本教程不错或对您有用，请前往项目地址 [https://github.com/Harry-hhj/Harry-hhj.github.io](https://github.com/Harry-hhj/Harry-hhj.github.io) 点击 Star :) ，这将是对我的肯定和鼓励，谢谢！**
+
+<br/>
+
+
+
 ## 八、参考文献
 
 1.   [Deconvolution（逆卷积）](https://blog.csdn.net/tfcy694/article/details/89073443)

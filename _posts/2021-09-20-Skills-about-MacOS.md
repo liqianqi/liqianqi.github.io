@@ -108,6 +108,14 @@ PS1="%F{green}%n:%F{cyan}%~%F{green}%F{white} %# "
 
 
 
+<br/>
+
+**如果觉得本教程不错或对您有用，请前往项目地址 [https://github.com/Harry-hhj/Harry-hhj.github.io](https://github.com/Harry-hhj/Harry-hhj.github.io) 点击 Star :) ，这将是对我的肯定和鼓励，谢谢！**
+
+<br/>
+
+
+
 ## 参考资料
 
 1.   [优化mac下的terminal的zsh路径显示](https://blog.csdn.net/qq_38992249/article/details/116406664)

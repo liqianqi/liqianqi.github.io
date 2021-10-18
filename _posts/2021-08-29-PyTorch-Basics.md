@@ -352,6 +352,16 @@ print(x.grad)
 
 
 
+
+
+<br/>
+
+**如果觉得本教程不错或对您有用，请前往项目地址 [https://github.com/Harry-hhj/Harry-hhj.github.io](https://github.com/Harry-hhj/Harry-hhj.github.io) 点击 Star :) ，这将是对我的肯定和鼓励，谢谢！**
+
+<br/>
+
+
+
 ## 参考文档
 
 1.   [标量，向量，矩阵与张量](https://www.jianshu.com/p/abe7515c6c7f)

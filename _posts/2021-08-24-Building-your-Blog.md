@@ -285,6 +285,14 @@ GitHub 目前已经不支持密码登陆。至于 GitHub token 的使用方法�
 
 
 
+<br/>
+
+**如果觉得本教程不错或对您有用，请前往项目地址 [https://github.com/Harry-hhj/Harry-hhj.github.io](https://github.com/Harry-hhj/Harry-hhj.github.io) 点击 Star :) ，这将是对我的肯定和鼓励，谢谢！**
+
+<br/>
+
+
+
 ---
 
 作者：Harry-hhj，github主页：[传送门](https://github.com/Harry-hhj)
