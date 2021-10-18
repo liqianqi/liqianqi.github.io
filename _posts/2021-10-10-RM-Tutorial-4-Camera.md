@@ -446,14 +446,14 @@ $$
 
 ```
 double cv::calibrateCamera(InputArrayOfArrays objectPoints,
-					InputArrayOfArrays imagePoints,
-					Size imageSize,
-					InputOutputArray cameraMatrix,
-					InputOutputArray distCoeffs,
-					OutputArrayOfArrays rvecs,
-					OutputArrayOfArrays tvecs,
-					int flags = 0,
-					TermCriteria criteria = TermCriteria(TermCriteria::COUNT+TermCriteria::EPS, 30, DBL_EPSILON) 
+                           InputArrayOfArrays imagePoints,
+                           Size imageSize,
+                           InputOutputArray cameraMatrix,
+                           InputOutputArray distCoeffs,
+                           OutputArrayOfArrays rvecs,
+                           OutputArrayOfArrays tvecs,
+                           int flags = 0,
+                           TermCriteria criteria = TermCriteria(TermCriteria::COUNT+TermCriteria::EPS, 30, DBL_EPSILON) 
 )	
 ```
 
