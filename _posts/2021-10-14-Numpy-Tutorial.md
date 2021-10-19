@@ -8,7 +8,7 @@ math: true
 mermaid: false
 pin: false
 image:
-  src: https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-14-Numpy-Tutorial.assets/IMG_4633.JPG
+  src: https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-10-14-Numpy-Tutorial.assets/IMG_4633.JPG
   width: 639
   height: 639
 ---
@@ -126,7 +126,7 @@ class D: pass
 
 3.   再次执行 `A.py` 中的 `from B import D` 这时，由于在第 1 步时，创建的 `<module B>` 对象已经缓存在了 `sys.modules` 中， 所以直接就得到了 `<module B>` ， 但是，注意，从整个过程来看，我们知道，这时 `<module B>` 还是一个空的对象，里面啥也没有， 所以从这个 `module` 中获得符号 `"D"` 的操作就会抛出异常。 如果这里只是 `import B` ，由于 `"B"` 这个符号在 `sys.modules` 中已经存在，所以是不会抛出异常的。
 
-     ![150102114196901](https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-14-Numpy-Tutorial.assets/150102114196901.jpg)
+     ![150102114196901](https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-10-14-Numpy-Tutorial.assets/150102114196901.jpg)
 
 ##### 3）包 import
 
@@ -257,11 +257,11 @@ print(x + y)
 
 它们的后缘维度相等， x 的第二维长度为 3 ，和 y 的维度相同。因此他们可以通过广播机制完成相加，在这个例子当中是将 y 沿着 0 轴进行扩展。
 
-![img](https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-14-Numpy-Tutorial.assets/v2-87f0be4142448c4b2ddbf519e478eac5_1440w.jpg)
+![img](https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-10-14-Numpy-Tutorial.assets/v2-87f0be4142448c4b2ddbf519e478eac5_1440w.jpg)
 
 同样，下图也是可以的。
 
-![img](https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-14-Numpy-Tutorial.assets/v2-658c89561ffa892d5f7935c0d1cd3dca_1440w.jpg)
+![img](https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-10-14-Numpy-Tutorial.assets/v2-658c89561ffa892d5f7935c0d1cd3dca_1440w.jpg)
 
 #### 2. 后缘维度不全相同，有一方长度为1
 
@@ -281,7 +281,7 @@ print(x + y)
  ^ ^
 ```
 
-![img](https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-14-Numpy-Tutorial.assets/v2-a870a11727cc188a1749725228e372e0_1440w.jpg)
+![img](https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-10-14-Numpy-Tutorial.assets/v2-a870a11727cc188a1749725228e372e0_1440w.jpg)
 
 反例：
 
@@ -304,7 +304,7 @@ Numpy 中表示张量的数据类型是 `ndarray` 。我们先介绍 `ndarray` �
 
 一个张量是由一个数据头和一个数据块指针组成的。数据头中存放了张量的属性值，包括数据类型、数组形状和每个维度的 `stride` 。数据块指针指向的是张量的数据值，**对应内存中的一块连续的内存空间**。
 
-![Numpy](https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-14-Numpy-Tutorial.assets/Numpy.png)
+![Numpy](https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-10-14-Numpy-Tutorial.assets/Numpy.png)
 
 数据类型很容易理解，比如 `int` 、 `float` 、 `bool` ，这些值**代表了多少个内存单元表示一个数据**，例如 `int` 表示一个数据占用 4 个字节。
 
@@ -312,7 +312,7 @@ Numpy 中表示张量的数据类型是 `ndarray` 。我们先介绍 `ndarray` �
 
 每个维度的 stride 是为了方便数据的索引、存放和运算。 **stride 表示在每一个维度上加一时需要越过多少个数据。**它是通过公式计算得出的，你很快会发现计算过程非常简单。例如，对于 shape 等于 $(3, 4, 5)$ ，那么 stride 等于 $(20, 5, 1)$。记得，最低维的数据是连续的，所以最低维索引加一意味着只要前进一个数据就能得到下一个数据，对于更高维，索引加一意味着需要越过比它维度低的所有数据，也就是比它低维的乘积。下面有个直观的示例，在上图中，紫色数据块第 0 维索引加一，对应红色数据块，此时它需要越过第 0 维大小的数据块个数 5 。
 
-![Numpy-example](https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-14-Numpy-Tutorial.assets/Numpy-example.png)
+![Numpy-example](https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-10-14-Numpy-Tutorial.assets/Numpy-example.png)
 
 **之后你也会发现通过改变张量的 shape 和 stride 可以直接实现运算而不需要改变数据内存块！**
 
@@ -393,7 +393,7 @@ Numpy 中表示张量的数据类型是 `ndarray` 。我们先介绍 `ndarray` �
     #  [1,1,1]]
     ```
 
-    <img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-14-Numpy-Tutorial.assets/70.png" style="zoom:60%;" />
+    <img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-10-14-Numpy-Tutorial.assets/70.png" style="zoom:60%;" />
 
 
 
