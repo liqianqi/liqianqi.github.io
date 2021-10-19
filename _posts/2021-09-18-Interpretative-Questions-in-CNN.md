@@ -7,7 +7,7 @@ tags: [computer science, questions]
 math: true
 mermaid: false
 image:
-  src: https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-18-Interpretative-Questions-in-CNN.assets/sea.jpg?raw=true
+  src: https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-09-18-Interpretative-Questions-in-CNN.assets/sea.jpg
   width: 1366
   height: 768
 ---

@@ -7,7 +7,7 @@ tags: [skills]
 math: false
 mermaid: false
 image:
-  src: https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-20-Skills-about-MacOS.assets/MacOS.jpg?raw=true
+  src: https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-09-20-Skills-about-MacOS.assets/MacOS.jpg
   width: 3200
   height: 2000
 ---

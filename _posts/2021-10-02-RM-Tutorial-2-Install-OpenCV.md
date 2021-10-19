@@ -8,7 +8,7 @@ math: false
 mermaid: false
 pin: false
 image:
-  src: https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-2-Install-OpenCV.assets/IMG_4633.JPG?raw=true
+  src: https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-10-02-RM-Tutorial-2-Install-OpenCV.assets/IMG_4633.JPG
   width: 639
   height: 639
 ---
@@ -45,7 +45,7 @@ sudo apt-get install libopencv-dev python-opencv libopencv-contrib-dev
 
 -   如果你的 cmake 是系统自带的，那么 cmake 路径选择 `/usr/bin/cmake` ，如果是编译安装的，那么选择 `/usr/local/bin/cmake` 。
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-2-Install-OpenCV.assets/image-20211002172153968.png?raw=true" alt="image-20211002172153968" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-10-02-RM-Tutorial-2-Install-OpenCV.assets/image-20211002172153968.png" alt="image-20211002172153968" style="zoom:50%;" />
 
 示例代码：链接: _<https://pan.baidu.com/s/1MDLwgGJ57cG3NfxDAfZASg>_ 提取码: cph8
 
@@ -80,7 +80,7 @@ conda activate opencv
 
 以 Pycharm IDE 为例，如果非系统默认的环境，请记得配置项目设置-python 解释器的路径，例如 conda 环境的解释器路径一般都为 ``/<anaconda3 or miniconda3>/envs/<env_name>/bin/python3` 。
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-02-RM-Tutorial-2-Install-OpenCV.assets/image-20211002171346104.png?raw=true" alt="image-20211002171346104" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-10-02-RM-Tutorial-2-Install-OpenCV.assets/image-20211002171346104.png" alt="image-20211002171346104" style="zoom:50%;" />
 
 示例代码：链接: _<https://pan.baidu.com/s/1AlPkGtZ-4HkRjhwuFB86eQ>_ 提取码: v7dj
 

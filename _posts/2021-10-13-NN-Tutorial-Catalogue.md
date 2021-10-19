@@ -8,7 +8,7 @@ math: false
 mermaid: false
 pin: false
 image:
-  src: https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-10-13-NN-Tutorial-Catalogue.assets/IMG_4633.JPG?raw=true
+  src: https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-10-13-NN-Tutorial-Catalogue.assets/IMG_4633.JPG
   width: 639
   height: 639
 ---

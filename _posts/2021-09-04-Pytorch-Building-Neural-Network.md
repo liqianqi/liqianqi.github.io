@@ -7,7 +7,7 @@ tags: [getting started, computer science, pytorch]
 math: true
 mermaid: false
 image:
-  src: https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-04-Pytorch-Building-Neural-Network.assets/neural-network.jpeg?raw=true
+  src: https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-09-04-Pytorch-Building-Neural-Network.assets/neural-network.jpeg
   width: 940
   height: 530
 ---

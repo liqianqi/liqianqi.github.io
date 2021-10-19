@@ -8,7 +8,7 @@ math: false
 mermaid: false
 pin: false
 image:
-  src: https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-24-RM-Tutorial-1-Linux-Introduction.assets/IMG_4633.JPG?raw=true
+  src: https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-09-24-RM-Tutorial-1-Linux-Introduction.assets/IMG_4633.JPG
   width: 639
   height: 639
 ---
@@ -102,7 +102,7 @@ apt remove <包名>		# 删除某个包
 
 一个新打开的终端应该如下图所示，从现在开始你应该适应一个只有字符组成的世界。
 
-![image-20210924162231521](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-24-RM-Tutorial-1-Linux-Introduction.assets/image-20210924162231521.png?raw=true){: width="2428" height="1552" style="max-width: 90%" }
+![image-20210924162231521](https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-09-24-RM-Tutorial-1-Linux-Introduction.assets/image-20210924162231521.png){: width="2428" height="1552" style="max-width: 90%" }
 
 你会发现你刚进入时，你的默认工作目录是 `~` ，即 `/home/<username>` ，不信你可以验证一下：
 
@@ -114,7 +114,7 @@ pwd
 
 你会发现输出是 `/home/<username>` 。
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-24-RM-Tutorial-1-Linux-Introduction.assets/image-20210924162333813.png?raw=true" alt="image-20210924162333813" style="zoom:25%;" />
+<img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-09-24-RM-Tutorial-1-Linux-Introduction.assets/image-20210924162333813.png" alt="image-20210924162333813" style="zoom:25%;" />
 
 这时你希望进入到文档的目录，于是你需要用到：
 
@@ -126,7 +126,7 @@ cd ~/Documents
 
 仔细观察，左侧的路径已经改变了。
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-24-RM-Tutorial-1-Linux-Introduction.assets/image-20210924162413441.png?raw=true" alt="image-20210924162413441" style="zoom:25%;" />
+<img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-09-24-RM-Tutorial-1-Linux-Introduction.assets/image-20210924162413441.png" alt="image-20210924162413441" style="zoom:25%;" />
 
 那么在这个文件夹里存在什么呢？我们可以这样查看：
 
@@ -138,7 +138,7 @@ ls
 
 打印出的结果如下图。
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-24-RM-Tutorial-1-Linux-Introduction.assets/image-20210924162440262.png?raw=true" alt="image-20210924162440262" style="zoom:25%;" />
+<img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-09-24-RM-Tutorial-1-Linux-Introduction.assets/image-20210924162440262.png" alt="image-20210924162440262" style="zoom:25%;" />
 
 如果你的系统是新的，那么你可能看不到任何结果。这空空如也的目录，我们改如何放入我们的东西呢？
 
@@ -172,7 +172,7 @@ gedit test.txt
 
 注意 `gedit` 与其说是一个命令，不如说是一个软件。我们会打开一个图形化编辑窗口，在其中随意输入内容，保存并关闭。
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-24-RM-Tutorial-1-Linux-Introduction.assets/image-20210924162621187.png?raw=true" alt="image-20210924162621187" style="zoom:25%;" />
+<img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-09-24-RM-Tutorial-1-Linux-Introduction.assets/image-20210924162621187.png" alt="image-20210924162621187" style="zoom:25%;" />
 
 那么我们刚刚的操作是否成功， `test.txt` 中是否存在了我们希望的内容呢？当然可以再次打开文件，但我们有更简单的方式：
 
@@ -211,7 +211,7 @@ g++ test.cpp -o test
 
 产生了可执行文件 `test` 。
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-24-RM-Tutorial-1-Linux-Introduction.assets/image-20210924162748913.png?raw=true" alt="image-20210924162748913" style="zoom:25%;" />
+<img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-09-24-RM-Tutorial-1-Linux-Introduction.assets/image-20210924162748913.png" alt="image-20210924162748913" style="zoom:25%;" />
 
 运行它，但我们希望把结果记录下来：
 

@@ -7,7 +7,7 @@ tags: [getting started, computer science, nerual network]
 math: true
 mermaid: false
 image:
-  src: https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-06-Deconvolution.assets/sky.jpeg?raw=true
+  src: https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-09-06-Deconvolution.assets/sky.jpeg
   width: 1366
   height: 768
 ---
@@ -39,9 +39,10 @@ image:
 ### 1. 无 padding 、无 stride
 
 <center class="half">
-  <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-06-Deconvolution.assets/no_padding_no_strides.gif?raw=true" alt="no_padding_no_strides?raw=true" style="zoom:80%;" />
-  <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-06-Deconvolution.assets/no_padding_no_strides_transposed.gif?raw=true" alt="no_padding_no_strides_transposed" style="zoom:60%;" />
+  <img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-09-06-Deconvolution.assets/no_padding_no_strides.gif" alt="no_padding_no_strides" style="zoom:80%;" />
+  <img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-09-06-Deconvolution.assets/no_padding_no_strides_transposed.gif" alt="no_padding_no_strides_transposed" style="zoom:60%;" />
 </center>
+
 
 
 
@@ -52,9 +53,10 @@ image:
 ### 2. 无 padding 、有 stride
 
 <center class="half">
-  <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-06-Deconvolution.assets/no_padding_strides.gif?raw=true" alt="no_padding_strides" style="zoom:80%;" />
-  <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-06-Deconvolution.assets/no_padding_strides_transposed.gif?raw=true" alt="no_padding_strides_transposed" style="zoom:60%;" />
+  <img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-09-06-Deconvolution.assets/no_padding_strides.gif" alt="no_padding_strides" style="zoom:80%;" />
+  <img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-09-06-Deconvolution.assets/no_padding_strides_transposed.gif" alt="no_padding_strides_transposed" style="zoom:60%;" />
 </center>
+
 
 然后我们来看看加入 `stride` 后如何 deconv ：对于 $(m \times m)$ 的特征图 $I$ ，用 $(k \times k)$ 大小的核做卷积，记 `stride` 为 $s$ ，则得到的特征图 $O$ 的大小为 $((\lfloor \cfrac{m-k}{s}+1 \rfloor) \times (\lfloor \cfrac{m-k}{s}+1 \rfloor))$ 。怎么让特征图 $O$ 经过同样大小的卷积核以后的到和特征图 $I$ 一样的大小呢？与之前不同的是，我们需要根据 `stride` 对 $I$ 做**内部扩充（填 $0$）**，具体的规则是：在两个元素之间加入 $s-1$ 个 $0$ ，共有 $\lfloor \cfrac{m-k}{s}+1 \rfloor - 1$ 个插入点。再和之前一样，加入  $padding=k-1$ 的填充，得到 $O'$ 。此时计算可得 $O'$ 的边长为为 $\lfloor \cfrac{m-k}{s}+1 \rfloor + 2(k-1) + (s-1)(\lfloor \cfrac{m-k}{s}+1 \rfloor-1) = m+k-1$ ，即大小为 $(m-k+1, m-k+1)$ ，用等大的 $(k \times k)$ 核做卷积之后得到的特征图 $I'$ 的大小是  $(m \times m)$  。
 
@@ -66,9 +68,10 @@ image:
 ### 3. 有 padding 、无 stride
 
 <center class="half">
-  <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-06-Deconvolution.assets/same_padding_no_strides.gif?raw=true" alt="same_padding_no_strides" style="zoom:80%;" />
-  <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-06-Deconvolution.assets/same_padding_no_strides_transposed.gif?raw=true" alt="same_padding_no_strides_transposed" style="zoom:80%;" />
+  <img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-09-06-Deconvolution.assets/same_padding_no_strides.gif" alt="same_padding_no_strides" style="zoom:80%;" />
+  <img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-09-06-Deconvolution.assets/same_padding_no_strides_transposed.gif" alt="same_padding_no_strides_transposed" style="zoom:80%;" />
 </center>
+
 
 为了方便了解加入 `padding` 之后我们应该如何操作，我们先不考虑 `stride` 带来的影响，即令 `stride=1` 。对于大小为 $(m \times m)$ 的特征图 $I$ ，先做大小为 $p$ 的 `padding` ，用 $(k \times k)$ 的核做卷积，则得到的特征图 $O$ 的大小为 $((m+2p-k+1) \times (m+2p-k+1))$ 。怎么让特征图 $O$ 经过同样大小的卷积核以后的到和特征图 $I$ 一样的大小呢？我们先假设我们对 $O$ 做大小为 $p'$ 的 `padding` 得到 $O'$ ，再用等大的 $(k \times k)$ 的核做 `stride=1` 的卷积，则得到的特征图 $I'$ 的边长是 $(m+2p-k+1)+2p'-k+1$ ，最终需要得到大小为 $(m \times m)$ 的特征图 $I'$ 。那么得到以下等式：
 $$

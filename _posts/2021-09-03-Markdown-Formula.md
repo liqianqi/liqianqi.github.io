@@ -7,7 +7,7 @@ tags: [tools, latex, markdown]
 math: true
 mermaid: true
 image:
-  src: https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-03-Markdown-Formula.assets/markdown.jpeg?raw=true
+  src: https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-09-03-Markdown-Formula.assets/markdown.jpeg
   width: 900
   height: 600
 ---

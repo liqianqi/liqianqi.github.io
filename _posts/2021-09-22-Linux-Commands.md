@@ -8,7 +8,7 @@ math: false
 mermaid: false
 pin: false
 image:
-  src: https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-22-Linux-Commands.assets/linux.jpeg?raw=true
+  src: https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-09-22-Linux-Commands.assets/linux.jpeg
   width: 480
   height: 272
 ---
@@ -236,7 +236,7 @@ vim <file_name>
 
     -   查找： `/<string>`
 
-        <img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-22-Linux-Commands.assets/image-20210923120223984.png?raw=true" alt="image-20210923120223984" style="zoom:30%;" />
+        <img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-09-22-Linux-Commands.assets/image-20210923120223984.png" alt="image-20210923120223984" style="zoom:30%;" />
 
     -   进入编辑模式：
 
@@ -288,7 +288,7 @@ Linux 下的权限粒度有三类： `User` 、 `Group` 、 `Other` 。 User 表
 
 例如下图中，
 
-<img src="https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-22-Linux-Commands.assets/image-20210923122037473.png?raw=true" alt="image-20210923122037473" style="zoom:30%;" />
+<img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-09-22-Linux-Commands.assets/image-20210923122037473.png" alt="image-20210923122037473" style="zoom:30%;" />
 
 红色部分表示 `vim.txt` 是一个文件， User 和 Group 可读可写，但不可执行，Group 可读，但不可修改删除、不可执行。
 

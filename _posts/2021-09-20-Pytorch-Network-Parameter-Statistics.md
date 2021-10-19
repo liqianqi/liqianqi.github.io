@@ -7,7 +7,7 @@ tags: [computer science, pytorch, tools]
 math: false
 mermaid: false
 image:
-  src: https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-20-Pytorch-Network-Parameter-Statistics.assets/statics.jpg?raw=true
+  src: https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-09-20-Pytorch-Network-Parameter-Statistics.assets/statics.jpg
   width: 1024
   height: 520
 ---
@@ -62,7 +62,7 @@ print('parameters_count:',count_parameters(model))
 
 结果：
 
-![image-20210920180042475](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-20-Pytorch-Network-Parameter-Statistics.assets/image-20210920180042475.png?raw=true){: .shadow width="1386" height="690" style="max-width: 90%" }
+![image-20210920180042475](https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-09-20-Pytorch-Network-Parameter-Statistics.assets/image-20210920180042475.png){: .shadow width="1386" height="690" style="max-width: 90%" }
 
 在这个案例中，使用 torchsummary 和自己统计得到相同的结果。
 
@@ -108,7 +108,7 @@ print('parameters_count:',count_parameters(model))
 
 结果：
 
-![image-20210920181012205](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-20-Pytorch-Network-Parameter-Statistics.assets/image-20210920181012205.png?raw=true){: .shadow width="1390" height="696" style="max-width: 90%" }
+![image-20210920181012205](https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-09-20-Pytorch-Network-Parameter-Statistics.assets/image-20210920181012205.png){: .shadow width="1390" height="696" style="max-width: 90%" }
 
 在这里例子中， `parameter_count` 统计的是 9 个参数，而 `torchsummary` 统计的是 18 个参数，为什么会出现这种问题？在这个网络中，我们只初始化了一个卷积层对象 `conv1` ，然后在网络构建时（ `forward` 函数中），重复调用了`conv1` ，以实现参数共享，即 `Conv2d-1` 和 `Conv2d-2` 层共享了 `conv1` 的参数。因此本例中 `parameter_count` 的计算是对的，而 `torchsummary` 计算时是先把层结构打印下来，然后统计各个层的参数并求和，不区分 `Conv2d-1` 和 `Conv2d-2` 层的参数是否相同。
 
@@ -157,7 +157,7 @@ print('parameters_count:',count_parameters(model))
 
 结果：
 
-![image-20210920181904154](https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-09-20-Pytorch-Network-Parameter-Statistics.assets/image-20210920181904154.png?raw=true){: .shadow width="1386" height="684" style="max-width: 90%" }
+![image-20210920181904154](https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-09-20-Pytorch-Network-Parameter-Statistics.assets/image-20210920181904154.png){: .shadow width="1386" height="684" style="max-width: 90%" }
 
 这个例子中我们在初始化时多初始化了一个 `conv2` 卷积层对象，但是没有在 `forward` 中使用。此时 `parameter_count` 出现了错误，即使没有在 `forward` 中调用，但是也会被算在 `model.parameters()` 中。但是要注意，尽管 `torchsummary` 和 `parameter_count` 都出现了同样结果的错误，两者出现错误的原因是不同的。
 

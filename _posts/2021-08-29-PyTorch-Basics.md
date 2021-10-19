@@ -7,7 +7,7 @@ tags: [getting started, computer science, pytorch]
 math: true
 mermaid: false
 image:
-  src: https://github.com/Harry-hhj/Harry-hhj.github.io/blob/master/_posts/2021-08-29-PyTorch-Basics.assets/pytorch.jpeg?raw=true
+  src: https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-08-29-PyTorch-Basics.assets/pytorch.jpeg
   width: 480
   height: 230
 ---
@@ -56,7 +56,7 @@ Tensors （张量），与 Numpy 中的 ndarrays 类似，但是在 PyTorch 中 
 
 举个例子，对于任意一张彩色照片，可以表示成一个三阶张量，三个维度分别是图片的高度、宽度和 RGB 通道。下图是一个白色图片的示例：
 
-![img](2021-08-29-PyTorch-Basics.assets/640.jpeg)
+![img](https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-08-29-PyTorch-Basics.assets/640.jpeg)
 
 我们继续将这一例子拓展：即：我们可以用四阶张量表示一个包含多张图片的数据集，这四个维度分别是：图片在数据集中的编号，图片高度、宽度，以及 RGB 通道。这种数据表示形式在计算机视觉中非常常见，你可以在这里先有个印象。
 
