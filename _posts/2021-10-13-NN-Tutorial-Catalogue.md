@@ -2,7 +2,7 @@
 title: 神经网络课程目录
 author: Harry-hhj
 date: 2021-10-13 00:00:00 +0800
-categories: [Course, NN]
+categories: [Course, Nerual Network]
 tags: [catalog]
 math: false
 mermaid: false
