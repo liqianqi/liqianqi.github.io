@@ -404,9 +404,7 @@ cv::waitKey(0);
 
 首先，在 RGB 颜色表示方法中，每个颜色分量都包含了该像素点的颜色信息和亮度信息。我们希望对 RGB 颜色表示进行一个变换，使得像素点的颜色信息和亮度信息可以独立开来。为此，我们可以使用 HSV 颜色空间。
 
-![img](https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/hsv.png)
-
-_hsv 六棱锥_
+![img](https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-10-02-RM-Tutorial-3-Getting-Started-with-OpenCV.assets/hsv.png)_hsv 六棱锥_
 
 在 HSV 颜色空间中， H 分量代表色度，即该像素是哪种颜色； S 分量代表饱和度； V 分量代表亮度（和光强度之间并没有直接的联系）。这种颜色表示方法很好地将每个像素的颜色、饱和度和亮度独立开。至于 RGB 颜色空间如何转换为 HSV 颜色空间，这里不作介绍，有兴趣可以自行百度。
 
@@ -921,7 +919,7 @@ void cv::findContours(InputArray image, OutputArrayOfArrays contours, OutputArra
     -   RETR_EXTERNAL：只列举外轮廓
     -   RETR_LIST：用列表的方式列举所有轮廓
     -   RETR_TREE：用列表的方式列举所有轮廓 用树状的结构表示所有的轮廓，在这种模式下会在 `hierachy` 中记录轮廓
--   `hierachy`：对于每一个轮廓， `hierarchy` 都包含 4 个整型数据，分别表示：后一个轮廓的序号、前一个轮廓的序 号、子轮廓的序号、父轮廓的序号。
+-   `hierachy`：对于每一个轮廓， `hierarchy` 都包含 4 个整型数据，分别表示：后一个轮廓的序号、前一个轮廓的序号、子轮廓的序号、父轮廓的序号。
 -   `method` ：
     -   `CHAIN_APPROX_NONE` ：绝对的记录轮廓上的所有点
     -   `CHAIN_APPROX_SIMPLE` ：记录轮廓在上下左右四个方向上的末端点(轮廓中的关键节点)
@@ -929,6 +927,19 @@ void cv::findContours(InputArray image, OutputArrayOfArrays contours, OutputArra
 下面演示如何使用 `RETR_TREE` 模式按照拓扑关系画出所有轮廓：
 
 ```c++
+void dfs(cv::Mat &drawer,
+         const std::vector< std::vector<cv::Point> > &contours,
+         const std::vector< cv::Vec4i > &hierachy,
+         const int &id,
+         const int &depth) {
+    if (id == -1) return;
+    static cv::Scalar COLOR_LIST[3] = {{220, 20, 20}, {20, 220, 20}, {20, 20, 220}};
+    cv::drawContours(drawer, contours, id, COLOR_LIST[depth % 3], 1);
+    for (int i = hierachy[id][2]; i + 1; i = hierachy[i][0]) {
+        dfs(drawer, contours, hierachy, i, depth + 1);  // 向内部的子轮廓递归
+    }
+}
+
 cv::Mat src = cv::imread(PROJECT_DIR"/assets/energy.jpg");
 cv::Mat hsv;
 cv::cvtColor(src, hsv, cv::COLOR_BGR2HSV);  // 将颜色空间从BGR转为HSV

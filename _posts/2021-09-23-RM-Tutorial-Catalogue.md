@@ -49,6 +49,7 @@ image:
 2.   [RM 教程 2 —— 安装 OpenCV](https://harry-hhj.github.io/posts/RM-Tutorial-2-Install-OpenCV/)
 3.   [RM 教程 3 —— OpenCV 传统视觉](https://harry-hhj.github.io/posts/RM-Tutorial-3-Getting-Started-with-OpenCV/)
 4.   [RM 教程 4 —— 相机](https://harry-hhj.github.io/posts/RM-Tutorial-4-Camera/)
+5.   [RM 教程 5 —— 单目视觉](https://harry-hhj.github.io/posts/RM-Tutorial-5-Monocular-Vision/)
 
 
 

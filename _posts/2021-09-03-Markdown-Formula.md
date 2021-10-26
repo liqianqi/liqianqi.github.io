@@ -76,7 +76,9 @@ Markdown 中的数学公式，其背后是由 MathJax 提供支持的。MathJax 
 
 
 
-## 二、上下标
+## 二、符号位置
+
+### （1）上下标
 
 上标：`^{}`
 
@@ -85,6 +87,20 @@ Markdown 中的数学公式，其背后是由 MathJax 提供支持的。MathJax 
 当上下标仅为一个元素时，`{}` 可以省略。
 
 举例：`x_i^2` 表示 $x_i^2$
+
+### （2）底部符号
+
+在符号底部写符号： `\underset{}{}` 
+
+在符号顶部写符号： `\overset{}{}` 
+
+举例： `\underset{0\le j \le k-1}{\arg \min}` 表示 $\underset{0\le j \le k-1}{\arg \max}$ ， `a\overset{?}=b` 表示 $a\overset{?}=b$
+
+### （3）底部换行
+
+在符号下部换行： `\understack{}`
+
+举例： `\sum_{\substack{0 \le i \le n \\ 0 \le j \le n}} A_{ij}` 表示 $\sum_{\substack{0 \le i \le n \\ 0 \le j \le n}} A_{ij}$
 
 
 
@@ -122,21 +138,33 @@ Markdown 中的数学公式，其背后是由 MathJax 提供支持的。MathJax 
 
 
 
-## 四、求和、乘积、积分
+## 四、求和、乘积、求导、积分
 
 ### 1. 求和
 
 `\sum_{}^{}` ，其下标表示求和下限，上标表示求和上限
 
-举例：`\sum_1^n` 表示 $\sum_1^n$
+使用 `\limits` 控制下标是在符号右侧还是上下侧
+
+举例：`\sum_1^n` 表示 $\sum_1^n$ ， `\sum\limits_{i=1}` 表示 $\sum\limits_{i=1}$
 
 ### 2. 乘积
 
 `\prod_{}^{}`  ，其下标表示乘积下限，上标表示乘积上限
 
-举例：`\prod_i^n` 表示 $\prod_i^n$
+使用 `\limits` 控制下标是在符号右侧还是上下侧
 
-### 3. 积分
+举例：`\prod_i^n` 表示 $\prod_i^n$ ，`\prod\limits_i^n` 表示 $\prod\limits_i^n$
+
+### 3. 求导
+
+导数： `\cfrac{\mathrm{d}y}{\mathrm{d}x}`
+
+偏导数： `\cfrac{\partial y}{\partial x}`
+
+举例：导数 $\cfrac{\mathrm{d}y}{\mathrm{d}x}$ ，偏导数 $\cfrac{\partial y}{\partial x}$
+
+### 4. 积分
 
 `\int_{}^{}` ，其下标表示积分下限，上标表示积分上限
 
@@ -144,7 +172,7 @@ Markdown 中的数学公式，其背后是由 MathJax 提供支持的。MathJax 
 
 多重积分：`\iint` 表示 $\iint$ 、 `\iiint` 表示 $\iiint$ 、 `\iiiint` 表示 $\iiiint$
 
-### 4. 其他
+### 5. 其他
 
 `\bigcup` 表示 $\bigcup$
 
@@ -369,6 +397,10 @@ $\Longleftarrow$ ： `\Longleftarrow`
 
 $\Longleftrightarrow$ ： `\Longleftrightarrow`
 
+$\xleftarrow[T]{n=0}$ ： `\xleftarrow[]{}`
+
+$\xrightarrow[T]{n>0}$ ： `\xrightarrow[]{}`
+
 $\mapsto$ ： `\mapsto`
 
 更多箭头符号可以查看[这篇教程](https://blog.csdn.net/liyuanbhu/article/details/51473886)。
@@ -393,7 +425,11 @@ $\vdash$： `\vdash`
 
 $\vDash$： `\vDash`
 
-### 7. 操作符
+### 7. 定义
+
+$\triangleq$ ： `\triangleq`
+
+### 8. 操作符
 
 $\star$： `\star`
 
@@ -405,7 +441,7 @@ $\circ$： `\circ`
 
 $\bullet$： `\bullet`
 
-### 8. 等于
+### 9. 等于
 
 $\approx$： `\approx`
 
@@ -417,7 +453,7 @@ $\equiv$： `\equiv`
 
 $\prec$： `\prec`
 
-### 9. 范围
+### 10. 范围
 
 $\infty$： `infty`
 
@@ -431,11 +467,11 @@ $\Im$： `\Im`
 
 $\Re$： `\Re`
 
-### 10. 模运算
+### 11. 模运算
 
 $\pmod p$： `pmod p`
 
-### 11. 点
+### 12. 点
 
 $\ldots$： `ldots`
 
