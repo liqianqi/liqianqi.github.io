@@ -8,7 +8,7 @@ math: true
 mermaid: false
 pin: false
 image:
-  src: https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-10-15-RM-Tutorial-5-Monocular-Vision/IMG_4633.JPG
+  src: https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-10-15-RM-Tutorial-5-Monocular-Vision.assets/IMG_4633.JPG
   width: 639
   height: 639
 ---
