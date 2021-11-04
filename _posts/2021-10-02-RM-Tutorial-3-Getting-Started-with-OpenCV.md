@@ -933,7 +933,7 @@ void dfs(cv::Mat &drawer,
          const int &id,
          const int &depth) {
     if (id == -1) return;
-    static cv::Scalar COLOR_LIST[3] = {{220, 20, 20}, {20, 220, 20}, {20, 20, 220}};
+    static cv::Scalar COLOR_LIST[3] = { {220, 20, 20}, {20, 220, 20}, {20, 20, 220} };
     cv::drawContours(drawer, contours, id, COLOR_LIST[depth % 3], 1);
     for (int i = hierachy[id][2]; i + 1; i = hierachy[i][0]) {
         dfs(drawer, contours, hierachy, i, depth + 1);  // 向内部的子轮廓递归
