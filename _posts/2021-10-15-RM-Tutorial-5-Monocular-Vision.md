@@ -740,7 +740,7 @@ std::cout << "R=" << R << std::endl;
 
 下面举个例子（来自参考资料 5 ）。这里，我把三个 Gimbal 环用不同的颜色做了标记，底部三个轴向， RGB 分别对应 XYZ 。 假设现在这个陀螺仪被放在一艘船上，船头的方向沿着 +Z 轴，也就是蓝色右前方。
 
-![陀螺仪示意图](https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-10-15-RM-Tutorial-5-Monocular-Vision.assets/NorthEast)
+![陀螺仪示意图](https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-10-15-RM-Tutorial-5-Monocular-Vision.assets/NorthEast.jpg)
 
 现在假设，船体发生了摇晃，是沿着前方进行旋转的摇晃，也就是桶滚。由于转子和旋转轴具有较大的惯性，只要没有直接施加扭矩，就会保持原有的姿态。由于上图中绿色的活动的连接头处是可以灵活转动的，此时将发生相对旋转，从而出现以下的情形： 
 
@@ -762,7 +762,7 @@ std::cout << "R=" << R << std::endl;
 
 现在看起来，这个陀螺仪一切正常，在船体发生任意方向摇晃都可以通过自身调节来应对。然而，真的是这样吗？假如，船体发生了剧烈的变化，此时船首仰起了90度（虽然可能不合理），此时的陀螺仪调节状态如下图： 
 
-![死锁开始](https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-10-15-RM-Tutorial-5-Monocular-Vision.assets/NorthEast-20211025131154268)
+![死锁开始](https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-10-15-RM-Tutorial-5-Monocular-Vision.assets/NorthEast-20211025131154268.jpg)
 
 此时，船体再次发生转动，沿着当前世界坐标的 +Z 轴（蓝色轴，应该正指向船底）进行转动，那么来看看发生了什么情况。
 

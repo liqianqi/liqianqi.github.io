@@ -164,7 +164,7 @@ FOV 有三种：
 
 同样，我们可以用类似的方法估计焦距大小，这也是相机标定的完成方式。
 
-<img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-10-10-RM-Tutorial-4-Camera.assets/2016-07-19-08-49-124.jpg" alt="相机镜头焦距计算" style="zoom:67%;" />
+<img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-10-10-RM-Tutorial-4-Camera.assets/cal-f.jpg" alt="相机镜头焦距计算" style="zoom:67%;" />
 
 
 
