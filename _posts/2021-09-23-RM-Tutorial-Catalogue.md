@@ -67,5 +67,5 @@ image:
 
 作者：Harry-hhj，github主页：[传送门](https://github.com/Harry-hhj)
 
-如果觉得本教程不错请前往 [https://github.com/Harry-hhj/Harry-hhj.github.io](https://github.com/Harry-hhj/Harry-hhj.github.io) 点个 Star :) ，这是对我的肯定和激励，谢谢！
+
 
