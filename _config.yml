@@ -23,7 +23,7 @@ title: Harry's Blog                          # the main title
 tagline: Write blogs, share ideas, make friends and enjoy life.   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
-  Nothing.
+  I hope it will become a grain of gold someday.
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: 'https://Harry-hhj.github.io'
@@ -159,7 +159,7 @@ exclude:
   - LICENSE
   - gulpfile.js
   - node_modules
-  - '*.json'
+  - package.json
 
 jekyll-archives:
   enabled: [categories, tags]
