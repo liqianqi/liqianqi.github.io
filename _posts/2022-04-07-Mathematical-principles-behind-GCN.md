@@ -92,6 +92,8 @@ $$
 
 
 对于 $L_{sym}$ ，证明如下：
+
+
 $$
 \begin{aligned}
 &\vec x^T L_{sym} \vec x = \vec x^T D^{-\frac12} L D^{-\frac12} \vec x = (\vec x^T D^{-\frac12}) L (D^{-\frac12} \vec x)\\
