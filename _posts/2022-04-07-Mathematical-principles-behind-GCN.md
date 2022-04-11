@@ -42,22 +42,27 @@ $A$ 代表邻接矩阵， $D$ 代表度矩阵， $\hat A$ 代表添加了自环�
 -   特征值和特征向量：若 $A \vec x = \lambda \vec x$ ，且 $\vec x \ne \vec 0$ ，那么 $\vec x$ 称为 $A$ 的一个特征向量， $\lambda$ 是 $A$ 的一个特征值。
 
 -   定理：如果一个矩阵是实对称阵，那么它一定有 $n$ 个特征值，并且这 $n$ 个特征值对应着 $n$ 个互相正交的特征向量，其中 $n$ 代表矩阵维度。数学表达如下：
+    
+    
     $$
     A = U \Lambda U^T\\
     UU^T = I\\
     \Lambda = diag(\lambda_1, \lambda_2, \dots, \lambda_n)\\
     $$
-
+    
+    
 -   半正定矩阵：所有特征值都大于等于 $0$ 
 
 -   二次型：给定一个矩阵 $A$ ，向量 $x$ 对于矩阵 $A$ 的二次型为 $\vec x^T A \vec x$ 
 
 -   Rayleigh 熵：一个向量关于 $A$  的二次型和它关于 $I$ 的二次型的比值，即 $\frac{\vec x^T A \vec x}{\vec x^T \vec x}$ ，它与矩阵的特征值有着密切的联系。假设 $\vec x$ 是 $A$ 的特征向量，则可以证明 Rayleigh 熵等于矩阵的特征值。证明如下：
+    
+    
     $$
     \frac{\vec x^T A \vec x}{\vec x^T \vec x} = \frac{\vec x^T \lambda \vec x}{\vec x^T \vec x} = \frac{\lambda (\vec x^T \vec x)}{\vec x^T \vec x} = \lambda
     $$
 
--   
+
 
 然后我们研究和 GCN 相关的最重要的两个矩阵 $L$ 和 $L_{sym}$ 。
 
@@ -84,6 +89,8 @@ $$
 &结论成立\\
 \end{aligned}
 $$
+
+
 对于 $L_{sym}$ ，证明如下：
 $$
 \begin{aligned}
@@ -92,6 +99,8 @@ $$
 &\vec x^T L_{sym} \vec x = \sum_{(i,j) \in E}(\frac{x_i}{\sqrt d_i}-\frac{x_j}{\sqrt d_j})^2 \ge 0\\
 \end{aligned}
 $$
+
+
 这仅仅说明了 $L_{sym}$ 特征值是非负数，但其实我们可以证明更准确的一个范围 $[0,2]$ 。证明如下：
 $$
 \begin{aligned}
@@ -114,6 +123,8 @@ $$
 \end{aligned}
 $$
 
+
+
 ### 2. 傅立叶变换
 
 什么是傅立叶变换？傅立叶变换就是从另一个域研究问题。例如，声波在时域是一个复杂的波形，根据傅立叶变换，任何函数都可以表达为一系列的正弦波，因此将声波转换到频域，表现为在不同频率下不同振幅的正弦波。此时我们就很容易区分男声和女声（假设女声频率普遍高于男声），而这在时域上是不容易操作的。这里推荐一篇讲解傅立叶变换的[教程](https://zhuanlan.zhihu.com/p/19763358)。
@@ -126,6 +137,8 @@ $$
 
 但实际上对拉普拉斯矩阵进行特征分解需要 $O(n^2)$ 的复杂度。GCN 所做的就是对带特征分解的傅立叶变换进行限制，寻找一种不需要特征分解、复杂度与边的数量成线性关系的方法。
 
+
+
 ## 三、图卷积公式推导
 
 首先需要定义图上的卷积操作。假设我们有一个关于图的邻接矩阵的函数 $F(A) \mapsto L~or~L_{sym}$ ，输入是图的邻接矩阵，输出是一种关于图的性质比较好的矩阵，例如 $L~or~L_{sym}$ ，只要它满足实对称阵都还算不错。我们定义 $F(A) = U \Lambda U^T$ 。图上的卷积操作 $g_\theta * x$ 就可以定义为 $U g_{\theta}(\Lambda) U^T x$ ，其中限定 $g_{\theta}(\lambda)$ 是一个多项式函数 $g_{\theta}(\Lambda) = \theta_0 \Lambda^0 + \theta_1 \Lambda^1 + \cdots + \theta_n \Lambda^n+ \cdots$ ，这样的好处是 $U g_{\theta}(\Lambda) U^T = g_{\theta}(U \Lambda U^T) = g_\theta(F(A))$ ，就不需要再对 $A$ 做特征分解了。证明如下：
@@ -136,6 +149,8 @@ $$
 \end{aligned}
 $$
 但在实际操作中，我们并不是用系数的形式拟合多项式的，因为随着 $n$ 的变大这种方法存在梯度消失和梯度爆炸的问题。事实上使用切比雪夫多项式 $\Gamma_n(x) = 2\Gamma_{n-1}(x) - \Gamma_{n-2}(x),~\Gamma_0(x) = 1, \Gamma_1(x) = x$ ，它存在一个非常好的性质 $\Gamma_n(\cos \theta) = \cos(n\theta)$ ，即不论 $n$ 多大，其数值上都有一个稳定的摆动趋势。但它的缺点是要求自变量的取值范围为 $[-1,1]$ ，即 $\lambda \in [-1,1]$ 。为了满足这个性质，只需要将 $L_{sym}$ 减去 $I$ 即可，所以最终选择 $F(A) = L_{sym}-I$ 。因此
+
+
 $$
 \begin{aligned}
 g_\theta * x
@@ -145,7 +160,11 @@ g_\theta * x
 &= \sum_{k=0}^K \theta_k \Gamma_k(L_{sym}-I) x\\
 \end{aligned}
 $$
+
+
 但实际上这个运算的复杂度还是很高，需要计算矩阵的 $k$ 次方。因此 GCN 的实际做法是使用一阶近似
+
+
 $$
 \begin{aligned}
 g_\theta * x
@@ -155,7 +174,15 @@ g_\theta * x
 &= \theta_0 x + \theta_1 D^{-\frac12} A D^{-\frac12}x\\
 \end{aligned}
 $$
+
+
 在 GCN 中还应用了一些正则化，令 $\theta_1 = -\theta_0$ ，有 $g_\theta * x = \theta_0 (I + D^{-\frac12} A D^{-\frac12})x$ ，则 $\theta_0$ 也可以省略。其次使用 renormalize ，将 $I$ 移入，得到 $g_\theta * x = D^{-\frac12} \hat A D^{-\frac12}x$ 。至于原因，只是因为它的效果更好。
+
+
+
+## 四、参考资料
+
+1.   https://www.bilibili.com/video/BV1Vw411R7Fj
 
 
 
