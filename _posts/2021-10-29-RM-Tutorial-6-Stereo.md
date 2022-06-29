@@ -8,7 +8,7 @@ math: true
 mermaid: false
 pin: false
 image:
-  src: https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-10-29-RM-Tutorial-6-Stereo.assets/cover.jpeg
+  src: https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2021-10-29-RM-Tutorial-6-Stereo.assets/cover.jpg
   width: 762
   height: 451
 ---
@@ -1002,7 +1002,6 @@ int main(int argc,char** argv)
 ## Acknowledgement
 
 - 本教程大部分参考自《视觉slam十四讲》
-
 - 图片大部分来自CSDN，博客园等
 - 少数摘自OpenCV文档，OpenCV文档yyds
 
