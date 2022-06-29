@@ -29,7 +29,7 @@ Transformer 的出现推动了整个 NLP 领域。这篇博客旨在建立 GNNs 
 
 对于 NLP ，传统上使用 RNNs 以顺序方式构建句子中每个单词的表示，即 one word at a time 。直觉上， RNNs 像一个传送带，从左到右地处理句子，最终得到每个单词的隐藏特征，传递给之后的任务。
 
-![img](https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2022-06-29-Transformers-are-Graph-Neural-Networks.assets/rnn-transf-nlp.jpg)
+<img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2022-06-29-Transformers-are-Graph-Neural-Networks.assets/rnn-transf-nlp.jpg" alt="img" style="zoom:50%;" />
 
 Transformers 一开始被用于机器翻译，后来逐渐取代主流 NLP 中的RNNs 。它完全抛弃了循环，转而采用注意力机制区分其他所有单词的重要性，然后根据重要性加权求和所有单词线性变换后的特征。
 
@@ -48,7 +48,7 @@ h_i^{l+1} = \sum_{j \in S} w_{ij} \left( V^l h_j^l \right)\\
 $$
 其中 $j \in S$ 表示句子中的单词， $Q^l$ ， $K^l$ ， $V^l$ 是可学习的线性变换权重。注意力机制并行地对句子中的每一个词进行计算，获得更新的特征。这也是 Transformers 相对 RNNs 的加分项。
 
-<img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2022-06-29-Transformers-are-Graph-Neural-Networks.assets/attention-block.jpg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2022-06-29-Transformers-are-Graph-Neural-Networks.assets/attention-block.jpg" alt="img" style="zoom:20%;" />
 
 输入单词特征 $h_i^l$ 和句子中剩余的单词 $\{h_j^l~\forall j \in S\}$ ，我们通过点积计算 $(i,j)$ 对的注意力权重 $w_{ij}$ ，然后对所有 $j$ 应用 softmax ，最后加权求和所有 $\{h_i^\prime\}$ 。这一步骤对每个单词同时进行。
 
@@ -79,7 +79,7 @@ $$
 
 Transformer 层的最终图片如下所示：
 
-<img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2022-06-29-Transformers-are-Graph-Neural-Networks.assets/transformer-block.png" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2022-06-29-Transformers-are-Graph-Neural-Networks.assets/transformer-block.png" alt="img" style="zoom:20%;" />
 
 图中省略了多头注意力子层和前馈子层的 residual connections 。
 
@@ -95,7 +95,7 @@ h_i^{l+1} = \sigma \left( U^lh_i^l + \sum_{j \in \mathcal N(i)} \left( V^lh_j^l 
 $$
 其中 $U^l$ ， $V^l$ 是 GNN 层可学习的权重矩阵，  $\sigma$ 是非线性函数。
 
-<img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2022-06-29-Transformers-are-Graph-Neural-Networks.assets/gnn-social-network.jpg" alt="gnn-social-network" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2022-06-29-Transformers-are-Graph-Neural-Networks.assets/gnn-social-network.jpg" alt="gnn-social-network" style="zoom:30%;" />
 
 上图中， $\mathcal N(😆) = \{ 😘, 😎, 😜, 🤩 \}$ 。
 
@@ -103,7 +103,7 @@ $$
 
 ## 句子是全连接的单词图
 
-<img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2022-06-29-Transformers-are-Graph-Neural-Networks.assets/gnn-nlp.jpg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2022-06-29-Transformers-are-Graph-Neural-Networks.assets/gnn-nlp.jpg" alt="img" style="zoom:30%;" />
 
 于是我们可以用 GNN 来构建每个单词的特征，然后我们可以使用它来执行 NLP 任务。这就是 Transformer 在做的事情：具有多头注意力的 GNNs 进行 neighborhood aggregation 。只是 Transformer 同时处理句子中的所有单词，而 GNN 只处理一阶邻居。
 
@@ -125,7 +125,7 @@ NLP 社区对长序列和依赖问题的看法很有趣：使注意力机制在�
 
 看到 GNN 社区的想法融入其中会很有趣，例如，用于句子图稀疏化的二进制分区似乎是另一种令人兴奋的方法。 BP-Transformers 递归地将句子分成两部分，直到它们可以从句子标记中构造出分层二叉树。 这种结构归纳偏差有助于模型以高效记忆的方式处理更长的文本序列。
 
-<img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2022-06-29-Transformers-are-Graph-Neural-Networks.assets/long-term-depend.png" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Harry-hhj/Harry-hhj.github.io/master/_posts/2022-06-29-Transformers-are-Graph-Neural-Networks.assets/long-term-depend.png" alt="img" style="zoom:40%;" />
 
 ### Transformer 学习语法吗
 
