@@ -1,5 +1,5 @@
 ---
-title: Transformers are Graph Neural Networks
+title: Understanding LSTM Networks
 author: Harry-hhj
 date: 2022-06-29 12:00:00 +0800
 categories: [Tutorial, RNN]
