@@ -2,7 +2,7 @@
 title: Mathematical principles behind GCN
 author: Harry-hhj
 date: 2022-04-06 20:12:00 +0800
-categories: [Course, Machine Learning]
+categories: [Tutorial, GNN]
 tags: [maths, ml, gcn]
 math: true
 mermaid: false
@@ -49,7 +49,6 @@ $A$ 代表邻接矩阵， $D$ 代表度矩阵， $\hat A$ 代表添加了自环�
     UU^T = I\\
     \Lambda = diag(\lambda_1, \lambda_2, \dots, \lambda_n)\\
     $$
-    
     
 -   半正定矩阵：所有特征值都大于等于 $0$ 
 

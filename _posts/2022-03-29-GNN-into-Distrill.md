@@ -2,7 +2,7 @@
 title: GNN
 author: Harry-hhj
 date: 2022-03-29 10:20:00 +0800
-categories: [Course, AI models]
+categories: [Tutorial, GNN]
 tags: [gnn, graph]
 math: true
 mermaid: false

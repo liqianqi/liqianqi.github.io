@@ -2,7 +2,7 @@
 title: Transformer
 author: Harry-hhj
 date: 2022-03-29 10:10:00 +0800
-categories: [Course, AI models]
+categories: [Tutorial, AI Component]
 tags: [transformer, attention]
 math: true
 mermaid: false
