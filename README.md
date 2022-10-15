@@ -1,9 +1,9 @@
-<<<<<<< HEAD
-# Harry's personal Blog
+# liqianqi's personal Blog
 
-网站主页：点击[这里](https://harry-hhj.github.io)访问。
+网站主页：点击[这里](https://liqianqi.github.io)访问。
 
-
+声明一句：这个模板使用[上海交通大学前视觉组组长](https://Harry-hhj.github.io)的，我只是复用一下模板试一试效果。、
+最下方是他的主页
 
 博客正在搭建中。缺少：评论、美化。
 
@@ -145,14 +145,9 @@ _Image Caption_
 
 <br/>
 
-撰写博客不易，觉得本博客项目不错的请点个 star :) ~
 
 ----
 
 作者：Harry-hhj
 
 Github主页：https://github.com/Harry-hhj
-
-=======
-# liqianqi.github.io
->>>>>>> 6e3a3d7366e3f446a575a1647608ca4564f9f05b
