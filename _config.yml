@@ -13,3 +13,4 @@ public_dir: public
 
 # 启用 Fluid 主题
 theme: fluid
+post_asset_folder: true
